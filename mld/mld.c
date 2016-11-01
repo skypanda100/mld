@@ -25,11 +25,11 @@ static void init_all()
 	{
 		output_print("enable_hook is not ok\n");
 	}
-	
+
 	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
 	{
-		load_symbol(MH_ALL_HOOKS);		
-	}	
+		load_symbol(NULL);		
+	}
 }
 
 static void uninit_all()
@@ -37,6 +37,8 @@ static void uninit_all()
 	SetUnhandledExceptionFilter(g_prev);
 	
 	disable_hook(MH_ALL_HOOKS);
+	
+	release_hook();
 	
 	output_uninit();
 }

@@ -643,256 +643,267 @@ EXPORTS
     bfd_zmalloc2 @642
     binary_vec @643 DATA
     bsd_write_armap @644
-    canonical_filename_eq @645
-    close_bfd_ctx @646
-    coff_bfd_make_debug_symbol @647
-    coff_canonicalize_symtab @648
-    coff_count_linenumbers @649
-    coff_find_inliner_info @650
-    coff_find_nearest_line @651
-    coff_find_nearest_line_with_names @652
-    coff_get_lineno @653
-    coff_get_normalized_symtab @654
-    coff_get_reloc_upper_bound @655
-    coff_get_symbol_info @656
-    coff_get_symtab_upper_bound @657
-    coff_make_empty_symbol @658
-    coff_mangle_symbols @659
-    coff_object_p @660
-    coff_print_symbol @661
-    coff_real_object_p @662
-    coff_renumber_symbols @663
-    coff_section_from_bfd_index @664
-    coff_sizeof_headers @665
-    coff_symbol_from @666
-    coff_write_alien_symbol @667
-    coff_write_armap @668
-    coff_write_linenumbers @669
-    coff_write_symbols @670
-    concat @671
-    concat_copy @672
-    concat_copy2 @673
-    concat_length @674
-    core_file_matches_executable_p @675
-    cplus_demangle @676
-    cplus_demangle_builtin_types @677 DATA
-    cplus_demangle_fill_ctor @678
-    cplus_demangle_fill_dtor @679
-    cplus_demangle_fill_extended_operator @680
-    cplus_demangle_fill_name @681
-    cplus_demangle_init_info @682
-    cplus_demangle_mangled_name @683
-    cplus_demangle_name_to_style @684
-    cplus_demangle_operators @685 DATA
-    cplus_demangle_opname @686
-    cplus_demangle_print @687
-    cplus_demangle_print_callback @688
-    cplus_demangle_set_style @689
-    cplus_demangle_type @690
-    cplus_demangle_v3 @691
-    cplus_demangle_v3_callback @692
-    cplus_mangle_opname @693
-    create_hook @694
-    current_demangling_style @695 DATA
-    disable_hook @696
-    dlang_demangle @697
-    dos_lbasename @698
-    dwarf_debug_sections @699 DATA
-    elf32_be_vec @700 DATA
-    elf32_le_vec @701 DATA
-    elf32_r_info @702
-    elf32_r_sym @703
-    elf_append_rel @704
-    elf_append_rela @705
-    elf_vxworks_add_dynamic_entries @706
-    elf_vxworks_add_symbol_hook @707
-    elf_vxworks_create_dynamic_sections @708
-    elf_vxworks_emit_relocs @709
-    elf_vxworks_final_write_processing @710
-    elf_vxworks_finish_dynamic_entry @711
-    elf_vxworks_link_output_symbol_hook @712
-    elfcore_write_aarch_hw_break @713
-    elfcore_write_aarch_hw_watch @714
-    elfcore_write_aarch_tls @715
-    elfcore_write_arm_vfp @716
-    elfcore_write_linux_prpsinfo32 @717
-    elfcore_write_linux_prpsinfo64 @718
-    elfcore_write_note @719
-    elfcore_write_ppc_vmx @720
-    elfcore_write_ppc_vsx @721
-    elfcore_write_prfpreg @722
-    elfcore_write_prpsinfo @723
-    elfcore_write_prstatus @724
-    elfcore_write_prxfpreg @725
-    elfcore_write_register_note @726
-    elfcore_write_s390_ctrs @727
-    elfcore_write_s390_last_break @728
-    elfcore_write_s390_prefix @729
-    elfcore_write_s390_system_call @730
-    elfcore_write_s390_tdb @731
-    elfcore_write_s390_timer @732
-    elfcore_write_s390_todcmp @733
-    elfcore_write_s390_todpreg @734
-    elfcore_write_xstatereg @735
-    enable_hook @736
-    exception_filter = exception_filter@4 @737
-    exception_filter@4 @738
-    filename_cmp @739
-    filename_eq @740
-    filename_hash @741
-    filename_ncmp @742
-    find @743
-    fnmatch @744
-    fpHeapAlloc @745 DATA
-    fpHeapFree @746 DATA
-    fpHeapReAlloc @747 DATA
-    fpLoadLibraryA @748 DATA
-    fpLoadLibraryW @749 DATA
-    g_output @750 DATA
-    generic_core_file_matches_executable_p @751
-    get_bc @752
-    getpwd @753
-    hex_init @754
-    htab_clear_slot @755
-    htab_collisions @756
-    htab_create @757
-    htab_create_alloc @758
-    htab_create_alloc_ex @759
-    htab_create_typed_alloc @760
-    htab_delete @761
-    htab_elements @762
-    htab_empty @763
-    htab_eq_pointer @764 DATA
-    htab_find @765
-    htab_find_slot @766
-    htab_find_slot_with_hash @767
-    htab_find_with_hash @768
-    htab_hash_pointer @769 DATA
-    htab_hash_string @770
-    htab_remove_elt @771
-    htab_remove_elt_with_hash @772
-    htab_set_functions_ex @773
-    htab_size @774
-    htab_traverse @775
-    htab_traverse_noresize @776
-    htab_try_create @777
-    i386_elf32_fbsd_vec @778 DATA
-    i386_elf32_nacl_vec @779 DATA
-    i386_elf32_sol2_vec @780 DATA
-    i386_elf32_vec @781 DATA
-    i386_elf32_vxworks_vec @782 DATA
-    i386_pe_vec @783 DATA
-    i386_pei_vec @784 DATA
-    iconv_canonicalize @785
-    ihex_vec @786 DATA
-    init_bfd_ctx @787
-    init_hook @788
-    is_gnu_v3_mangled_ctor @789
-    is_gnu_v3_mangled_dtor @790
-    iterative_hash @791
-    java_demangle_v3 @792
-    java_demangle_v3_callback @793
-    lbasename @794
-    libiberty_concat_ptr @795 DATA
-    libiberty_demanglers @796 DATA
-    libiberty_vprintf_buffer_size @797
-    libiconv @798
-    libiconv_close @799
-    libiconv_open @800
-    libiconv_open_into @801
-    libiconv_relocate @802
-    libiconv_set_relocation_prefix @803
-    libiconvctl @804
-    libiconvlist @805
-    libintl_dcgettext @806
-    libintl_dcigettext @807
-    libintl_dgettext @808
-    libintl_fprintf @809
-    libintl_fwprintf @810
-    libintl_gettext_extract_plural @811
-    libintl_gettext_free_exp @812
-    libintl_gettext_germanic_plural @813 DATA
-    libintl_gettextparse @814
-    libintl_hash_string @815
-    libintl_lock_destroy_func @816
-    libintl_lock_init_func @817
-    libintl_lock_lock_func @818
-    libintl_lock_unlock_func @819
-    libintl_nl_current_default_domain @820 DATA
-    libintl_nl_default_default_domain @821 DATA
-    libintl_nl_default_dirname @822 DATA
-    libintl_nl_domain_bindings @823 DATA
-    libintl_once_func @824
-    libintl_recursive_lock_destroy_func @825
-    libintl_recursive_lock_init_func @826
-    libintl_recursive_lock_lock_func @827
-    libintl_recursive_lock_unlock_func @828
-    libintl_relocate @829
-    libintl_rwlock_destroy_func @830
-    libintl_rwlock_init_func @831
-    libintl_rwlock_rdlock_func @832
-    libintl_rwlock_unlock_func @833
-    libintl_rwlock_wrlock_func @834
-    libintl_set_relocation_prefix @835
-    libintl_snprintf @836
-    libintl_sprintf @837
-    libintl_swprintf @838
-    libintl_vasnprintf @839
-    libintl_vasnwprintf @840
-    libintl_vfprintf @841
-    libintl_vfwprintf @842
-    libintl_vprintf @843
-    libintl_vsnprintf @844
-    libintl_vsprintf @845
-    libintl_vswprintf @846
-    libintl_vwprintf @847
-    libintl_wprintf @848
-    load_symbol @849
-    local_time @850
-    locale_charset @851
-    lookup_section @852
-    lrealpath @853
-    make_relative_prefix @854
-    make_relative_prefix_ignore_links @855
-    module_path @856
-    nacl_final_write_processing @857
-    nacl_modify_program_headers @858
-    nacl_modify_segment_map @859
-    objalloc_create @860
-    objalloc_free @861
-    objalloc_free_block @862
-    output_init @863
-    output_print @864
-    output_uninit @865
-    plugin_vec @866 DATA
-    read_signed_leb128 @867
-    read_unsigned_leb128 @868
-    real_fopen @869
-    real_fseek @870
-    real_ftell @871
-    reconcat @872
-    release_set @873
-    safe_read_leb128 @874
-    set_cplus_marker_for_demangling @875
-    srec_vec @876 DATA
-    stpcpy @877
-    strnlen @878
-    symbolsrec_vec @879 DATA
-    tekhex_vec @880 DATA
-    time_buf @881 DATA
-    trace_file @882 DATA
-    uninit_hook @883
-    unix_lbasename @884
-    unlink_if_ordinary @885
-    unwrap_hash_lookup @886
-    vasprintf @887
-    verilog_vec @888 DATA
-    warn_deprecated @889
-    xcalloc @890
-    xexit @891
-    xmalloc @892
-    xmalloc_failed @893
-    xmalloc_set_program_name @894
-    xrealloc @895
-    xstrdup @896
-    xstrerror @897
+    call_stack @645
+    canonical_filename_eq @646
+    close_bfd_ctx @647
+    coff_bfd_make_debug_symbol @648
+    coff_canonicalize_symtab @649
+    coff_count_linenumbers @650
+    coff_find_inliner_info @651
+    coff_find_nearest_line @652
+    coff_find_nearest_line_with_names @653
+    coff_get_lineno @654
+    coff_get_normalized_symtab @655
+    coff_get_reloc_upper_bound @656
+    coff_get_symbol_info @657
+    coff_get_symtab_upper_bound @658
+    coff_make_empty_symbol @659
+    coff_mangle_symbols @660
+    coff_object_p @661
+    coff_print_symbol @662
+    coff_real_object_p @663
+    coff_renumber_symbols @664
+    coff_section_from_bfd_index @665
+    coff_sizeof_headers @666
+    coff_symbol_from @667
+    coff_write_alien_symbol @668
+    coff_write_armap @669
+    coff_write_linenumbers @670
+    coff_write_symbols @671
+    concat @672
+    concat_copy @673
+    concat_copy2 @674
+    concat_length @675
+    context_hashmap @676 DATA
+    core_file_matches_executable_p @677
+    cplus_demangle @678
+    cplus_demangle_builtin_types @679 DATA
+    cplus_demangle_fill_ctor @680
+    cplus_demangle_fill_dtor @681
+    cplus_demangle_fill_extended_operator @682
+    cplus_demangle_fill_name @683
+    cplus_demangle_init_info @684
+    cplus_demangle_mangled_name @685
+    cplus_demangle_name_to_style @686
+    cplus_demangle_operators @687 DATA
+    cplus_demangle_opname @688
+    cplus_demangle_print @689
+    cplus_demangle_print_callback @690
+    cplus_demangle_set_style @691
+    cplus_demangle_type @692
+    cplus_demangle_v3 @693
+    cplus_demangle_v3_callback @694
+    cplus_mangle_opname @695
+    create_hook @696
+    current_context @697
+    current_demangling_style @698 DATA
+    disable_hook @699
+    dlang_demangle @700
+    dos_lbasename @701
+    dwarf_debug_sections @702 DATA
+    elf32_be_vec @703 DATA
+    elf32_le_vec @704 DATA
+    elf32_r_info @705
+    elf32_r_sym @706
+    elf_append_rel @707
+    elf_append_rela @708
+    elf_vxworks_add_dynamic_entries @709
+    elf_vxworks_add_symbol_hook @710
+    elf_vxworks_create_dynamic_sections @711
+    elf_vxworks_emit_relocs @712
+    elf_vxworks_final_write_processing @713
+    elf_vxworks_finish_dynamic_entry @714
+    elf_vxworks_link_output_symbol_hook @715
+    elfcore_write_aarch_hw_break @716
+    elfcore_write_aarch_hw_watch @717
+    elfcore_write_aarch_tls @718
+    elfcore_write_arm_vfp @719
+    elfcore_write_linux_prpsinfo32 @720
+    elfcore_write_linux_prpsinfo64 @721
+    elfcore_write_note @722
+    elfcore_write_ppc_vmx @723
+    elfcore_write_ppc_vsx @724
+    elfcore_write_prfpreg @725
+    elfcore_write_prpsinfo @726
+    elfcore_write_prstatus @727
+    elfcore_write_prxfpreg @728
+    elfcore_write_register_note @729
+    elfcore_write_s390_ctrs @730
+    elfcore_write_s390_last_break @731
+    elfcore_write_s390_prefix @732
+    elfcore_write_s390_system_call @733
+    elfcore_write_s390_tdb @734
+    elfcore_write_s390_timer @735
+    elfcore_write_s390_todcmp @736
+    elfcore_write_s390_todpreg @737
+    elfcore_write_xstatereg @738
+    enable_hook @739
+    exception_filter = exception_filter@4 @740
+    exception_filter@4 @741
+    filename_cmp @742
+    filename_eq @743
+    filename_hash @744
+    filename_ncmp @745
+    find @746
+    fnmatch @747
+    fpHeapAlloc @748 DATA
+    fpHeapFree @749 DATA
+    fpHeapReAlloc @750 DATA
+    fpLoadLibraryA @751 DATA
+    fpLoadLibraryW @752 DATA
+    g_output @753 DATA
+    generic_core_file_matches_executable_p @754
+    get_bc @755
+    getpwd @756
+    hashmap_create @757
+    hashmap_destroy @758
+    hashmap_get @759
+    hashmap_iterate @760
+    hashmap_put @761
+    hashmap_remove @762
+    hashmap_size @763
+    hex_init @764
+    htab_clear_slot @765
+    htab_collisions @766
+    htab_create @767
+    htab_create_alloc @768
+    htab_create_alloc_ex @769
+    htab_create_typed_alloc @770
+    htab_delete @771
+    htab_elements @772
+    htab_empty @773
+    htab_eq_pointer @774 DATA
+    htab_find @775
+    htab_find_slot @776
+    htab_find_slot_with_hash @777
+    htab_find_with_hash @778
+    htab_hash_pointer @779 DATA
+    htab_hash_string @780
+    htab_remove_elt @781
+    htab_remove_elt_with_hash @782
+    htab_set_functions_ex @783
+    htab_size @784
+    htab_traverse @785
+    htab_traverse_noresize @786
+    htab_try_create @787
+    i386_elf32_fbsd_vec @788 DATA
+    i386_elf32_nacl_vec @789 DATA
+    i386_elf32_sol2_vec @790 DATA
+    i386_elf32_vec @791 DATA
+    i386_elf32_vxworks_vec @792 DATA
+    i386_pe_vec @793 DATA
+    i386_pei_vec @794 DATA
+    iconv_canonicalize @795
+    ihex_vec @796 DATA
+    init_bfd_ctx @797
+    init_hook @798
+    is_gnu_v3_mangled_ctor @799
+    is_gnu_v3_mangled_dtor @800
+    iterative_hash @801
+    java_demangle_v3 @802
+    java_demangle_v3_callback @803
+    lbasename @804
+    libiberty_concat_ptr @805 DATA
+    libiberty_demanglers @806 DATA
+    libiberty_vprintf_buffer_size @807
+    libiconv @808
+    libiconv_close @809
+    libiconv_open @810
+    libiconv_open_into @811
+    libiconv_relocate @812
+    libiconv_set_relocation_prefix @813
+    libiconvctl @814
+    libiconvlist @815
+    libintl_dcgettext @816
+    libintl_dcigettext @817
+    libintl_dgettext @818
+    libintl_fprintf @819
+    libintl_fwprintf @820
+    libintl_gettext_extract_plural @821
+    libintl_gettext_free_exp @822
+    libintl_gettext_germanic_plural @823 DATA
+    libintl_gettextparse @824
+    libintl_hash_string @825
+    libintl_lock_destroy_func @826
+    libintl_lock_init_func @827
+    libintl_lock_lock_func @828
+    libintl_lock_unlock_func @829
+    libintl_nl_current_default_domain @830 DATA
+    libintl_nl_default_default_domain @831 DATA
+    libintl_nl_default_dirname @832 DATA
+    libintl_nl_domain_bindings @833 DATA
+    libintl_once_func @834
+    libintl_recursive_lock_destroy_func @835
+    libintl_recursive_lock_init_func @836
+    libintl_recursive_lock_lock_func @837
+    libintl_recursive_lock_unlock_func @838
+    libintl_relocate @839
+    libintl_rwlock_destroy_func @840
+    libintl_rwlock_init_func @841
+    libintl_rwlock_rdlock_func @842
+    libintl_rwlock_unlock_func @843
+    libintl_rwlock_wrlock_func @844
+    libintl_set_relocation_prefix @845
+    libintl_snprintf @846
+    libintl_sprintf @847
+    libintl_swprintf @848
+    libintl_vasnprintf @849
+    libintl_vasnwprintf @850
+    libintl_vfprintf @851
+    libintl_vfwprintf @852
+    libintl_vprintf @853
+    libintl_vsnprintf @854
+    libintl_vsprintf @855
+    libintl_vswprintf @856
+    libintl_vwprintf @857
+    libintl_wprintf @858
+    load_symbol @859
+    local_time @860
+    locale_charset @861
+    lookup_section @862
+    lrealpath @863
+    make_relative_prefix @864
+    make_relative_prefix_ignore_links @865
+    module_path @866
+    nacl_final_write_processing @867
+    nacl_modify_program_headers @868
+    nacl_modify_segment_map @869
+    objalloc_create @870
+    objalloc_free @871
+    objalloc_free_block @872
+    output_init @873
+    output_print @874
+    output_uninit @875
+    plugin_vec @876 DATA
+    read_signed_leb128 @877
+    read_unsigned_leb128 @878
+    real_fopen @879
+    real_fseek @880
+    real_ftell @881
+    reconcat @882
+    release_hook @883
+    release_set @884
+    safe_read_leb128 @885
+    set_cplus_marker_for_demangling @886
+    srec_vec @887 DATA
+    stpcpy @888
+    strnlen @889
+    symbolsrec_vec @890 DATA
+    tekhex_vec @891 DATA
+    time_buf @892 DATA
+    trace_file @893 DATA
+    uninit_hook @894
+    unix_lbasename @895
+    unlink_if_ordinary @896
+    unwrap_hash_lookup @897
+    vasprintf @898
+    verilog_vec @899 DATA
+    warn_deprecated @900
+    xcalloc @901
+    xexit @902
+    xmalloc @903
+    xmalloc_failed @904
+    xmalloc_set_program_name @905
+    xrealloc @906
+    xstrdup @907
+    xstrerror @908

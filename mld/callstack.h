@@ -65,6 +65,10 @@ void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
 
 void load_symbol(HINSTANCE retInstance);
 
+PCONTEXT current_context();
+
+void call_stack(PCONTEXT);
+
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 
 #endif

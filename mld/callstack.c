@@ -233,6 +233,28 @@ void load_symbol(HINSTANCE retInstance)
 	}
 }
 
+PCONTEXT current_context()
+{
+	bfd_init();
+	
+	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
+	HANDLE thread = GetCurrentThread();
+//	SuspendThread(thread);
+	pcontext->ContextFlags = CONTEXT_CONTROL;
+	GetThreadContext(thread, pcontext);
+	
+	return pcontext;
+}
+
+void call_stack(PCONTEXT pcontext)
+{
+	bfd_init();
+
+	struct bfd_set *set = calloc(1,sizeof(*set));
+	_backtrace(set , 128 , pcontext);
+	release_set(set);
+}
+
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
 	bfd_init();

@@ -1,5 +1,7 @@
 #include "hook.h"
 
+void *context_hashmap = NULL;
+
 /**
 * HeapAlloc
 */
@@ -7,10 +9,16 @@ typedef PVOID (WINAPI *HEAPALLOC)(HANDLE,DWORD,DWORD);
 HEAPALLOC fpHeapAlloc = NULL;
 PVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, DWORD dwBytes)
 {
-	PVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
 	disable_hook(MH_ALL_HOOKS);
-	printf("retPtr = %p dwBytes = %ld\n", retPtr, dwBytes);
+
+	PVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
+	PCONTEXT pcontext = current_context();
+	char *key_str = (char *)malloc(4);
+	sprintf(key_str, "%08X", (DWORD)retPtr);
+	hashmap_put(context_hashmap, key_str, pcontext);
+	
 	enable_hook(MH_ALL_HOOKS);
+	
 	return retPtr;
 }
 
@@ -21,7 +29,16 @@ typedef PVOID (WINAPI *HEAPREALLOC)(HANDLE,DWORD,PVOID,DWORD);
 HEAPREALLOC fpHeapReAlloc = NULL;
 PVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, PVOID lpMem, DWORD dwBytes)
 {
+	disable_hook(MH_ALL_HOOKS);
+	
 	PVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
+	PCONTEXT pcontext = current_context();
+	char *key_str = (char *)malloc(4);
+	sprintf(key_str, "%08X", (DWORD)retPtr);
+	hashmap_put(context_hashmap, key_str, pcontext);
+	
+	enable_hook(MH_ALL_HOOKS);
+	
 	return retPtr;
 }
 
@@ -32,7 +49,16 @@ typedef BOOL (WINAPI *HEAPFREE)(HANDLE,DWORD,PVOID);
 HEAPFREE fpHeapFree = NULL;
 BOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem)
 {
+	disable_hook(MH_ALL_HOOKS);
+
 	BOOL retFlg = fpHeapFree(hHeap, dwFlags, lpMem);
+	PCONTEXT pcontext = current_context();
+	char *key_str = (char *)malloc(4);
+	sprintf(key_str, "%08X", (DWORD)lpMem);
+	hashmap_remove(context_hashmap, key_str, NULL);
+	
+	enable_hook(MH_ALL_HOOKS);
+	
 	return retFlg;
 }
 
@@ -43,6 +69,8 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR);
 LOADLIBRARYA fpLoadLibraryA = NULL;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 {
+	disable_hook(MH_ALL_HOOKS);
+
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
 	
@@ -52,6 +80,8 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 		load_symbol(retInstance);		
 	}
 	
+	enable_hook(MH_ALL_HOOKS);
+
     return retInstance; 
 }
 
@@ -62,6 +92,8 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR);
 LOADLIBRARYW fpLoadLibraryW = NULL;
 HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 {
+	disable_hook(MH_ALL_HOOKS);
+
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryW(lpFileName);
 
@@ -71,6 +103,8 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 		load_symbol(retInstance);		
 	}
 	
+	enable_hook(MH_ALL_HOOKS);
+
     return retInstance; 
 }
 
@@ -79,10 +113,16 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 */
 BOOL init_hook()
 {
+	if(context_hashmap == NULL)
+	{
+		context_hashmap = malloc(sizeof(struct _Context) * HASHSIZE);
+	}
+	
 	if (MH_Initialize() != MH_OK)
 	{
 		return FALSE;
 	}
+	
 	return TRUE;
 }
 
@@ -90,11 +130,12 @@ BOOL init_hook()
 * ½â³ýhook 
 */
 BOOL uninit_hook()
-{
+{	
 	if (MH_Uninitialize() != MH_OK)
     {
         return FALSE;
     }
+    
     return TRUE;
 }
 
@@ -154,3 +195,12 @@ BOOL disable_hook(LPVOID pTarget)
     }
     return TRUE;
 }
+
+/**
+* ÊÍ·Åhook 
+*/
+void release_hook()
+{
+	output_print("leak count is %d\n", hashmap_size(context_hashmap));
+}
+
