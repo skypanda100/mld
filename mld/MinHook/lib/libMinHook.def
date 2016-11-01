@@ -1,0 +1,39 @@
+EXPORTS
+    AllocateBuffer @1
+    CreateTrampolineFunction @2
+    FreeBuffer @3
+    InitializeBuffer @4
+    IsExecutableAddress @5
+    MH_ApplyQueued = MH_ApplyQueued@0 @6
+    MH_ApplyQueued@0 @7
+    MH_CreateHook = MH_CreateHook@12 @8
+    MH_CreateHook@12 @9
+    MH_CreateHookApi = MH_CreateHookApi@16 @10
+    MH_CreateHookApi@16 @11
+    MH_CreateHookApiEx = MH_CreateHookApiEx@20 @12
+    MH_CreateHookApiEx@20 @13
+    MH_DisableHook = MH_DisableHook@4 @14
+    MH_DisableHook@4 @15
+    MH_EnableHook = MH_EnableHook@4 @16
+    MH_EnableHook@4 @17
+    MH_Initialize = MH_Initialize@0 @18
+    MH_Initialize@0 @19
+    MH_QueueDisableHook = MH_QueueDisableHook@4 @20
+    MH_QueueDisableHook@4 @21
+    MH_QueueEnableHook = MH_QueueEnableHook@4 @22
+    MH_QueueEnableHook@4 @23
+    MH_RemoveHook = MH_RemoveHook@4 @24
+    MH_RemoveHook@4 @25
+    MH_StatusToString = MH_StatusToString@4 @26
+    MH_StatusToString@4 @27
+    MH_Uninitialize = MH_Uninitialize@0 @28
+    MH_Uninitialize@0 @29
+    UninitializeBuffer @30
+    g_hHeap @31 DATA
+    g_hooks @32 DATA
+    g_isLocked @33 DATA
+    g_pMemoryBlocks @34 DATA
+    hde32_disasm @35
+    hde32_table @36 DATA
+    hde64_disasm @37
+    hde64_table @38 DATA
