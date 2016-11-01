@@ -22,7 +22,27 @@ void insert_hash(DWORD addr, PCONTEXT pcontext)
 {
 	int index = search_hash(addr);
 	if(index == -1){
-		
+		for(int i = 0;i < HASHSIZE;i++)
+		{
+			struct _Context *pContext = contexts[i];
+			if(pContext == NULL)
+			{
+				pContext = (struct _Context*)malloc(sizeof(struct _Context));
+				pContext.addr = addr;
+				pContext.pcontext = pcontext;
+				pContext.next = NULL;
+				contexts[i] = pContext;
+				
+				if(i > 0 )
+				{
+					contexts[i - 1].next = pContext;
+				}
+				
+				break;
+			}
+		}
+	}else{
+		contexts[index].pcontext = pcontext;
 	}
 }
 
