@@ -28,15 +28,15 @@ static void init_all()
 	
 	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
 	{
-		load_symbol(NULL);		
-	}
+		load_symbol(MH_ALL_HOOKS);		
+	}	
 }
 
 static void uninit_all()
 {
 	SetUnhandledExceptionFilter(g_prev);
 	
-	disable_hook(NULL);
+	disable_hook(MH_ALL_HOOKS);
 	
 	output_uninit();
 }

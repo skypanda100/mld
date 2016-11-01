@@ -1,6 +1,42 @@
 #include "hook.h"
 
 /**
+* HeapAlloc
+*/
+typedef PVOID (WINAPI *HEAPALLOC)(HANDLE,DWORD,DWORD);
+HEAPALLOC fpHeapAlloc = NULL;
+PVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, DWORD dwBytes)
+{
+	PVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
+	disable_hook(MH_ALL_HOOKS);
+	printf("retPtr = %p dwBytes = %ld\n", retPtr, dwBytes);
+	enable_hook(MH_ALL_HOOKS);
+	return retPtr;
+}
+
+/**
+* HeapReAlloc
+*/
+typedef PVOID (WINAPI *HEAPREALLOC)(HANDLE,DWORD,PVOID,DWORD);
+HEAPREALLOC fpHeapReAlloc = NULL;
+PVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, PVOID lpMem, DWORD dwBytes)
+{
+	PVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
+	return retPtr;
+}
+
+/**
+* HeapFree
+*/
+typedef BOOL (WINAPI *HEAPFREE)(HANDLE,DWORD,PVOID);
+HEAPFREE fpHeapFree = NULL;
+BOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem)
+{
+	BOOL retFlg = fpHeapFree(hHeap, dwFlags, lpMem);
+	return retFlg;
+}
+
+/**
 * LoadLibraryA
 */
 typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR); 
@@ -67,6 +103,21 @@ BOOL uninit_hook()
 */
 BOOL create_hook()
 {
+	if (MH_CreateHookApi(L"kernel32", "HeapAlloc", &DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != MH_OK)
+	{
+		return FALSE;
+	}
+
+	if (MH_CreateHookApi(L"kernel32", "HeapReAlloc", &DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != MH_OK)
+	{
+		return FALSE;
+	}
+	
+	if (MH_CreateHookApi(L"kernel32", "HeapFree", &DetourHeapFree, (LPVOID)&fpHeapFree) != MH_OK)
+	{
+		return FALSE;
+	}
+	
 	if (MH_CreateHookApi(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != MH_OK)
     {
         return FALSE;
