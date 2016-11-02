@@ -32,7 +32,6 @@ main()
 		}
 		FreeLibrary(sampledll);
 	}
-
 	mld_end();
 	return 0;
 }

@@ -1,14 +1,13 @@
 #include "hook.h"
 
 map_t context_hashmap = NULL;
-
 /**
 * malloc
 */
 typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
 MALLOC fpMalloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
-{
+{	
 	void *retPtr = fpMalloc(size);
 
 	disable_hook(MH_ALL_HOOKS);
@@ -27,7 +26,7 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
 REALLOC fpRealloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
-{		
+{	
 	void *retPtr = fpRealloc(ptr, size);
 	
 	disable_hook(MH_ALL_HOOKS);
@@ -64,7 +63,6 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR);
 LOADLIBRARYA fpLoadLibraryA = NULL;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 {
-
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
 
@@ -110,7 +108,7 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 BOOL init_hook()
 {
 	init_context();
-	
+		
 	if (MH_Initialize() != MH_OK)
 	{
 		return FALSE;
@@ -151,7 +149,7 @@ BOOL create_hook()
 	{
 		return FALSE;
 	}
-
+	
 	if (MH_CreateHookApi(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != MH_OK)
     {
         return FALSE;
@@ -247,12 +245,12 @@ void del_context(DWORD addr)
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 	
-	//value
-	struct Context_Element *context_element = NULL;
-	if(hashmap_get(context_hashmap, key_str, (any_t)&context_element) == MAP_OK){
-		free(context_element->call_str);
-		free(context_element);
-	}
+//	//value
+//	struct Context_Element *context_element = NULL;
+//	if(hashmap_get(context_hashmap, key_str, (any_t)&context_element) == MAP_OK){
+//		free(context_element->call_str);
+//		free(context_element);
+//	}
 	hashmap_remove(context_hashmap, key_str);
 }
 
