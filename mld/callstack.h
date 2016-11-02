@@ -1,7 +1,7 @@
 #ifndef CALLSTACK
 #define CALLSTACK
 
-#define PACKAGE "your-program-name"
+#define PACKAGE "mld"
 #define PACKAGE_VERSION "0.1"
 
 #include <windows.h>

@@ -29,9 +29,6 @@ main()
 //		FreeLibrary(sampledll);
 //	}
 //	bar();
-
-	free(leak);
-	
 	mld_end();
 	return 0;
 }

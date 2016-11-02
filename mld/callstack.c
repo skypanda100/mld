@@ -240,8 +240,7 @@ PCONTEXT current_context()
 	
 	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
 	HANDLE thread = GetCurrentThread();
-//	SuspendThread(thread);
-	pcontext->ContextFlags = CONTEXT_CONTROL;
+	pcontext->ContextFlags = CONTEXT_FULL;
 	GetThreadContext(thread, pcontext);
 	
 	return pcontext;
@@ -252,7 +251,7 @@ void call_stack(PCONTEXT pcontext)
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	_backtrace(set , 128 , pcontext);
+	_backtrace(set, 128, pcontext);
 	release_set(set);
 }
 

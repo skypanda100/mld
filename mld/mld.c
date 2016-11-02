@@ -9,19 +9,19 @@ static LPTOP_LEVEL_EXCEPTION_FILTER g_prev = NULL;
 static void init_all()
 {
 	g_prev = SetUnhandledExceptionFilter(exception_filter);
-
+	
+	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
+	{
+		load_symbol(NULL);		
+	}
+	
 	output_init();
 	 
 	init_hook();
 	
 	create_hook();
-	
+		
 	enable_hook(MH_ALL_HOOKS);
-
-	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
-	{
-		load_symbol(NULL);		
-	}
 }
 
 static void uninit_all()
