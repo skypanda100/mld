@@ -59,7 +59,7 @@ struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err);
 
 void release_set(struct bfd_set *set);
 
-void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context);
+void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str);
 
 void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
 
@@ -67,7 +67,7 @@ void load_symbol(HINSTANCE retInstance);
 
 PCONTEXT current_context();
 
-void call_stack(PCONTEXT);
+void call_stack(PCONTEXT, char *);
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 

@@ -124,7 +124,7 @@ void release_set(struct bfd_set *set)
 	}
 }
 
-void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context)
+void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str)
 {
 	char procname[MAX_PATH];
 	GetModuleFileNameA(NULL, procname, sizeof procname);
@@ -193,19 +193,38 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context)
 		}
 		
 		if (func == NULL) {
-			output_print("0x%08x : %s : %s %s \n",
-				frame.AddrPC.Offset,
-				module_name,
-				file,
-				bfd_errors[err]);
+			if(call_str == NULL){
+				output_print("0x%08x : %s : %s %s \n",
+					frame.AddrPC.Offset,
+					module_name,
+					file,
+					bfd_errors[err]);				
+			}else{
+				sprintf(call_str + strlen(call_str)
+					, "0x%08x : %s : %s %s \n"
+					, frame.AddrPC.Offset
+					, module_name
+					, file
+					, bfd_errors[err]);
+			}
 		}
 		else {
-			output_print("0x%08x : %s : %s (%d) : in function (%s) \n",
-				frame.AddrPC.Offset,
-				module_name,
-				file,
-				line,
-				func);
+			if(call_str == NULL){
+				output_print("0x%08x : %s : %s (%d) : in function (%s) \n",
+					frame.AddrPC.Offset,
+					module_name,
+					file,
+					line,
+					func);
+			}else{
+				sprintf(call_str + strlen(call_str)
+					, "0x%08x : %s : %s (%d) : in function (%s) \n"
+					, frame.AddrPC.Offset
+					, module_name
+					, file
+					, line
+					, func);
+			}
 		}
 	}
 }
@@ -246,12 +265,12 @@ PCONTEXT current_context()
 	return pcontext;
 }
 
-void call_stack(PCONTEXT pcontext)
+void call_stack(PCONTEXT pcontext, char *call_str)
 {
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	_backtrace(set, 128, pcontext);
+	_backtrace(set, 128, pcontext, call_str);
 	release_set(set);
 }
 
@@ -261,7 +280,7 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 
 	bfd_init();
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	_backtrace(set , 128 , info->ContextRecord);
+	_backtrace(set , 128 , info->ContextRecord, NULL);
 	release_set(set);
 		
 	return EXCEPTION_CONTINUE_SEARCH;

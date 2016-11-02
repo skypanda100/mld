@@ -22,3 +22,28 @@
 ------------------------------ memory leak : address = 0x00718CF0 size = 555 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
+******************************************************************
+*******                 2016-11-02 14:56:16                *******
+******************************************************************
+------------------------------ memory leak : address = 0x00B18CF0 size = 555 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x6f8416a8 : [unknown module] : [unknown file]  
+0x0040149a : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (23) : in function (main) 
+0x0040198b : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x774a9902 : [unknown module] : [unknown file]  
+0x774a98d5 : [unknown module] : [unknown file]  
+
+******************************************************************
+*******                 2016-11-02 15:01:21                *******
+******************************************************************
+------------------------------ memory leak (block 1): address = 0x00618CF0 size = 555 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x6f8416db : [unknown module] : [unknown file]  
+0x0040149a : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (23) : in function (main) 
+0x0040198b : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x774a9902 : [unknown module] : [unknown file]  
+0x774a98d5 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (count 1): total size = 555 ------------------------------

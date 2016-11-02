@@ -190,10 +190,18 @@ void init_context()
 /**
 * ÊÍ·Åhook 
 */
+static int leak_count = 0;
+static ULONG leak_total = 0;
+
 void release_hook()
 {	
 	hashmap_iterate(context_hashmap, &loop_context, NULL);
 	uninit_context();
+	output_print("------------------------------ memory leak (count %d): total size = %ld ------------------------------\n"
+		, leak_count
+		, leak_total);
+	leak_count = 0;
+	leak_total = 0;
 }
 
 /**
@@ -209,7 +217,8 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	struct Context_Element *context_element = (struct Context_Element *)malloc(sizeof(struct Context_Element));
 	context_element->addr = addr;
 	context_element->size = size;
-	context_element->pcontext = pcontext;
+	memset(context_element->call_str, '\0', BACKTRACELEN);
+	call_stack(pcontext, context_element->call_str);
 	
 	hashmap_put(context_hashmap, key_str, context_element);
 }
@@ -234,11 +243,13 @@ int loop_context(any_t item, any_t data)
 	struct Context_Element *context_element = (struct Context_Element *)data;
 	if(context_element != NULL)
 	{
-		output_print("------------------------------ memory leak : address = 0x%08X size = %ld ------------------------------\n"
+		leak_count++;
+		leak_total += context_element->size;
+		output_print("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n%s\n"
+		, leak_count
 		, context_element->addr
-		, context_element->size);
-		output_print("[callstack]\n");
-		call_stack(context_element->pcontext);
+		, context_element->size
+		, context_element->call_str);
 	}
 	return MAP_OK;
 }
