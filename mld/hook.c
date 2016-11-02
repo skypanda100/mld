@@ -1,6 +1,6 @@
 #include "hook.h"
 
-void *context_hashmap = NULL;
+map_t context_hashmap = NULL;
 
 /**
 * HeapAlloc
@@ -8,15 +8,12 @@ void *context_hashmap = NULL;
 typedef PVOID (WINAPI *HEAPALLOC)(HANDLE,DWORD,DWORD);
 HEAPALLOC fpHeapAlloc = NULL;
 PVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, DWORD dwBytes)
-{
-	disable_hook(MH_ALL_HOOKS);
-
+{	
 	PVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
+
+	disable_hook(MH_ALL_HOOKS);
 	PCONTEXT pcontext = current_context();
-	char *key_str = (char *)malloc(4);
-	sprintf(key_str, "%08X", (DWORD)retPtr);
-	hashmap_put(context_hashmap, key_str, pcontext);
-	
+	add_context((DWORD)retPtr, dwBytes, pcontext);
 	enable_hook(MH_ALL_HOOKS);
 	
 	return retPtr;
@@ -28,15 +25,12 @@ PVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, DWORD dwBytes)
 typedef PVOID (WINAPI *HEAPREALLOC)(HANDLE,DWORD,PVOID,DWORD);
 HEAPREALLOC fpHeapReAlloc = NULL;
 PVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, PVOID lpMem, DWORD dwBytes)
-{
-	disable_hook(MH_ALL_HOOKS);
-	
+{	
 	PVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
-	PCONTEXT pcontext = current_context();
-	char *key_str = (char *)malloc(4);
-	sprintf(key_str, "%08X", (DWORD)retPtr);
-	hashmap_put(context_hashmap, key_str, pcontext);
 	
+	disable_hook(MH_ALL_HOOKS);
+	PCONTEXT pcontext = current_context();
+	add_context((DWORD)retPtr, dwBytes, pcontext);
 	enable_hook(MH_ALL_HOOKS);
 	
 	return retPtr;
@@ -49,14 +43,10 @@ typedef BOOL (WINAPI *HEAPFREE)(HANDLE,DWORD,PVOID);
 HEAPFREE fpHeapFree = NULL;
 BOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem)
 {
-	disable_hook(MH_ALL_HOOKS);
-
 	BOOL retFlg = fpHeapFree(hHeap, dwFlags, lpMem);
-	PCONTEXT pcontext = current_context();
-	char *key_str = (char *)malloc(4);
-	sprintf(key_str, "%08X", (DWORD)lpMem);
-	hashmap_remove(context_hashmap, key_str, NULL);
-	
+
+	disable_hook(MH_ALL_HOOKS);
+	del_context((DWORD)lpMem);	
 	enable_hook(MH_ALL_HOOKS);
 	
 	return retFlg;
@@ -69,17 +59,15 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR);
 LOADLIBRARYA fpLoadLibraryA = NULL;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 {
-	disable_hook(MH_ALL_HOOKS);
-
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
-	
+
+	disable_hook(MH_ALL_HOOKS);
 	//loadsymbol
 	if (retInstance != NULL)
 	{
 		load_symbol(retInstance);		
 	}
-	
 	enable_hook(MH_ALL_HOOKS);
 
     return retInstance; 
@@ -92,17 +80,15 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR);
 LOADLIBRARYW fpLoadLibraryW = NULL;
 HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 {
-	disable_hook(MH_ALL_HOOKS);
-
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryW(lpFileName);
 
+	disable_hook(MH_ALL_HOOKS);
 	//loadsymbol
 	if (retInstance != NULL)
 	{
 		load_symbol(retInstance);		
 	}
-	
 	enable_hook(MH_ALL_HOOKS);
 
     return retInstance; 
@@ -113,10 +99,7 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 */
 BOOL init_hook()
 {
-	if(context_hashmap == NULL)
-	{
-		context_hashmap = malloc(sizeof(struct _Context) * HASHSIZE);
-	}
+	init_context();
 	
 	if (MH_Initialize() != MH_OK)
 	{
@@ -197,10 +180,77 @@ BOOL disable_hook(LPVOID pTarget)
 }
 
 /**
+* 初始化_Context 
+*/
+void init_context()
+{
+	if(context_hashmap == NULL)
+	{
+		context_hashmap = hashmap_new();
+	}
+}
+
+/**
 * 释放hook 
 */
 void release_hook()
+{	
+	hashmap_iterate(context_hashmap, &loop_context, NULL);
+	uninit_context();
+}
+
+/**
+* 添加_Context 
+*/
+void add_context(DWORD addr, DWORD size, PCONTEXT pcontext)
 {
-	output_print("leak count is %d\n", hashmap_size(context_hashmap));
+	//key
+	char *key_str = (char *)malloc(KEYLEN);
+	sprintf(key_str, "%08X", addr);
+
+	//value
+	struct _Context *_context = (struct _Context *)malloc(sizeof(struct _Context));
+	_context->addr = addr;
+	_context->size = size;
+	_context->pcontext = pcontext;
+	
+	hashmap_put(context_hashmap, key_str, _context);
+}
+
+/**
+* 删除_Context 
+*/
+void del_context(DWORD addr)
+{
+	//key
+	char *key_str = (char *)malloc(KEYLEN);
+	sprintf(key_str, "%08X", addr);
+	
+	hashmap_remove(context_hashmap, key_str);
+}
+
+/**
+* 遍历_Context
+*/
+int loop_context(any_t item, any_t data)
+{
+	output_print("--------------------------------------\n");
+	struct _Context *_context = (struct _Context *)data;
+	if(_context != NULL)
+	{
+		output_print("addr : %08X\n", _context->addr);
+		output_print("size : %ld\n", _context->size);
+		output_print("callstack : \n");
+//		call_stack(_context->pcontext);
+	}
+	return MAP_OK;
+}
+
+/**
+* 销毁_Context 
+*/
+void uninit_context()
+{
+	hashmap_free(context_hashmap);
 }
 
