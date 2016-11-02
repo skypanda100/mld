@@ -234,14 +234,14 @@ void del_context(DWORD addr)
 */
 int loop_context(any_t item, any_t data)
 {
-	output_print("--------------------------------------\n");
 	struct _Context *_context = (struct _Context *)data;
 	if(_context != NULL)
 	{
-		output_print("addr : %08X\n", _context->addr);
-		output_print("size : %ld\n", _context->size);
-		output_print("callstack : \n");
-//		call_stack(_context->pcontext);
+		output_print("--------------------------------------\n");
+		output_print("[address]\n0x%08X\n", _context->addr);
+		output_print("[size]\n%ld\n", _context->size);
+		output_print("[callstack]\n");
+		call_stack(_context->pcontext);
 	}
 	return MAP_OK;
 }
