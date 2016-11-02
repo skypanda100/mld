@@ -9,7 +9,7 @@
 #define HASHSIZE 1024*4
 #define KEYLEN	8 + 1
 
-struct _Context
+struct Context_Element
 {
 	DWORD addr;
 	DWORD size;
@@ -30,7 +30,7 @@ void release_hook();
 
 void init_context();
 
-void add_context(DWORD addr, DWORD size, PCONTEXT pcontext);
+void add_context(DWORD addr, size_t size, PCONTEXT pcontext);
 
 void del_context(DWORD addr);
 

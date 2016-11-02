@@ -3,54 +3,50 @@
 map_t context_hashmap = NULL;
 
 /**
-* HeapAlloc
+* malloc
 */
-typedef PVOID (WINAPI *HEAPALLOC)(HANDLE,DWORD,DWORD);
-HEAPALLOC fpHeapAlloc = NULL;
-PVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, DWORD dwBytes)
-{	
-	PVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
-
-	disable_hook(MH_ALL_HOOKS);
-	PCONTEXT pcontext = current_context();
-	add_context((DWORD)retPtr, dwBytes, pcontext);
-	enable_hook(MH_ALL_HOOKS);
-	
-	return retPtr;
-}
-
-/**
-* HeapReAlloc
-*/
-typedef PVOID (WINAPI *HEAPREALLOC)(HANDLE,DWORD,PVOID,DWORD);
-HEAPREALLOC fpHeapReAlloc = NULL;
-PVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, PVOID lpMem, DWORD dwBytes)
-{	
-	PVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
-	
-	disable_hook(MH_ALL_HOOKS);
-	PCONTEXT pcontext = current_context();
-	add_context((DWORD)retPtr, dwBytes, pcontext);
-	enable_hook(MH_ALL_HOOKS);
-	
-	return retPtr;
-}
-
-/**
-* HeapFree
-*/
-typedef BOOL (WINAPI *HEAPFREE)(HANDLE,DWORD,PVOID);
-HEAPFREE fpHeapFree = NULL;
-BOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem)
+typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
+MALLOC fpMalloc = NULL;
+_CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 {
-	BOOL retFlg = fpHeapFree(hHeap, dwFlags, lpMem);
-
+	void *retPtr = fpMalloc(size);
 	disable_hook(MH_ALL_HOOKS);
-	printf("free:0x%08X\n", (DWORD)lpMem);
-	del_context((DWORD)lpMem);	
+	PCONTEXT pcontext = current_context();
+	add_context((DWORD)retPtr, size, pcontext);
 	enable_hook(MH_ALL_HOOKS);
 	
-	return retFlg;
+	return retPtr;
+}
+
+/**
+* realloc
+*/
+typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
+REALLOC fpRealloc = NULL;
+_CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
+{
+	void *retPtr = fpRealloc(ptr, size);
+	disable_hook(MH_ALL_HOOKS);
+	PCONTEXT pcontext = current_context();
+	del_context((DWORD)ptr);
+	add_context((DWORD)retPtr, size, pcontext);
+	enable_hook(MH_ALL_HOOKS);
+	
+	return retPtr;
+}
+
+/**
+* free
+*/
+typedef _CRTIMP __cdecl void (*FREE)(void *);
+FREE fpFree = NULL;
+_CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr)
+{
+	disable_hook(MH_ALL_HOOKS);
+	del_context((DWORD)ptr);
+	enable_hook(MH_ALL_HOOKS);
+	
+	fpFree(ptr);
 }
 
 /**
@@ -128,21 +124,21 @@ BOOL uninit_hook()
 */
 BOOL create_hook()
 {
-	if (MH_CreateHookApi(L"kernel32", "HeapAlloc", &DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != MH_OK)
+	if (MH_CreateHookApi(L"msvcrt", "malloc", &DetourMalloc, (LPVOID)&fpMalloc) != MH_OK)
 	{
 		return FALSE;
 	}
 
-	if (MH_CreateHookApi(L"kernel32", "HeapReAlloc", &DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != MH_OK)
+	if (MH_CreateHookApi(L"msvcrt", "realloc", &DetourRealloc, (LPVOID)&fpRealloc) != MH_OK)
 	{
 		return FALSE;
 	}
-	
-	if (MH_CreateHookApi(L"kernel32", "HeapFree", &DetourHeapFree, (LPVOID)&fpHeapFree) != MH_OK)
+
+	if (MH_CreateHookApi(L"msvcrt", "free", &DetourFree, (LPVOID)&fpFree) != MH_OK)
 	{
 		return FALSE;
 	}
-	
+
 	if (MH_CreateHookApi(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != MH_OK)
     {
         return FALSE;
@@ -181,7 +177,7 @@ BOOL disable_hook(LPVOID pTarget)
 }
 
 /**
-* 初始化_Context 
+* 初始化Context_Element
 */
 void init_context()
 {
@@ -201,27 +197,25 @@ void release_hook()
 }
 
 /**
-* 添加_Context 
+* 添加Context_Element
 */
-void add_context(DWORD addr, DWORD size, PCONTEXT pcontext)
+void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 {
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 
 	//value
-	struct _Context *_context = (struct _Context *)malloc(sizeof(struct _Context));
-	_context->addr = addr;
-	_context->size = size;
-	_context->pcontext = pcontext;
+	struct Context_Element *context_element = (struct Context_Element *)malloc(sizeof(struct Context_Element));
+	context_element->addr = addr;
+	context_element->size = size;
+	context_element->pcontext = pcontext;
 	
-	hashmap_put(context_hashmap, key_str, _context);
-	
-//	printf("alloc:%s %ld\n", key_str, size);
+	hashmap_put(context_hashmap, key_str, context_element);
 }
 
 /**
-* 删除_Context 
+* 删除Context_Element
 */
 void del_context(DWORD addr)
 {
@@ -229,28 +223,28 @@ void del_context(DWORD addr)
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 	
-	hashmap_remove(context_hashmap, key_str);	
+	hashmap_remove(context_hashmap, key_str);
 }
 
 /**
-* 遍历_Context
+* 遍历Context_Element
 */
 int loop_context(any_t item, any_t data)
 {
-	struct _Context *_context = (struct _Context *)data;
-	if(_context != NULL)
+	struct Context_Element *context_element = (struct Context_Element *)data;
+	if(context_element != NULL)
 	{
 		output_print("------------------------------ memory leak : address = 0x%08X size = %ld ------------------------------\n"
-		, _context->addr
-		, _context->size);
+		, context_element->addr
+		, context_element->size);
 		output_print("[callstack]\n");
-		call_stack(_context->pcontext);
+		call_stack(context_element->pcontext);
 	}
 	return MAP_OK;
 }
 
 /**
-* 销毁_Context 
+* 销毁Context_Element
 */
 void uninit_context()
 {
