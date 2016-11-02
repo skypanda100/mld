@@ -46,6 +46,7 @@ BOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, PVOID lpMem)
 	BOOL retFlg = fpHeapFree(hHeap, dwFlags, lpMem);
 
 	disable_hook(MH_ALL_HOOKS);
+	printf("free:0x%08X\n", (DWORD)lpMem);
 	del_context((DWORD)lpMem);	
 	enable_hook(MH_ALL_HOOKS);
 	
@@ -215,6 +216,8 @@ void add_context(DWORD addr, DWORD size, PCONTEXT pcontext)
 	_context->pcontext = pcontext;
 	
 	hashmap_put(context_hashmap, key_str, _context);
+	
+//	printf("alloc:%s %ld\n", key_str, size);
 }
 
 /**
@@ -226,7 +229,7 @@ void del_context(DWORD addr)
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 	
-	hashmap_remove(context_hashmap, key_str);
+	hashmap_remove(context_hashmap, key_str);	
 }
 
 /**
@@ -237,9 +240,9 @@ int loop_context(any_t item, any_t data)
 	struct _Context *_context = (struct _Context *)data;
 	if(_context != NULL)
 	{
-		output_print("--------------------------------------\n");
-		output_print("[address]\n0x%08X\n", _context->addr);
-		output_print("[size]\n%ld\n", _context->size);
+		output_print("------------------------------ memory leak : address = 0x%08X size = %ld ------------------------------\n"
+		, _context->addr
+		, _context->size);
 		output_print("[callstack]\n");
 		call_stack(_context->pcontext);
 	}

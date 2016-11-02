@@ -1,1953 +1,808 @@
+------------------------------ exception ------------------------------
+[callstack]
+0x7749e041 : [unknown module] : [unknown file]  
+0x5236a25d : [unknown module] : [unknown file]  
+0x004014b8 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (33) : in function (main) 
+0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x774a9902 : [unknown module] : [unknown file]  
+0x774a98d5 : [unknown module] : [unknown file]  
 ******************************************************************
-*******                 2016-11-02 11:38:18                *******
+*******                 2016-11-02 13:32:16                *******
 ******************************************************************
---------------------------------------
-[address]
-0x00644B98
-[size]
-8
+------------------------------ memory leak : address = 0x00669950 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644918
-[size]
-8
+------------------------------ memory leak : address = 0x00642078 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004D8B48
-[size]
-16
+------------------------------ memory leak : address = 0x006478E0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x75fe124c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644978
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EEB8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3A8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B448
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A48
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DD0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B458
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B58
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DE2E8
-[size]
-32
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0028f688 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2E8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2D8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F118
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFC8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066ECA0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DF870
-[size]
-64
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x73d70000 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B358
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B48
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFE8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448C8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AE8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC80
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D40
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B0C0
-[size]
-1016
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0028f5e8 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFB8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0E8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B418
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B348
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B18
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A88
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF98
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AC8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF28
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B38
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A68
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695CC8
-[size]
-1016
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0028f5e8 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1E8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3C8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF58
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B268
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695CE0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EEC8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DE2C0
-[size]
-32
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0028f688 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644988
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A18
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B338
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D60
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641B48
-[size]
-128
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B0F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B178
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EED8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3D8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F138
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F078
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644998
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A38
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF88
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F028
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D20
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DE0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644858
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449E8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02531DE0
-[size]
-4
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x02510150 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B258
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE28
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B278
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFD8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B478
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE38
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AF8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EEE8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02532268
-[size]
-532
+------------------------------ memory leak : address = 0x004A24A8 size = 532 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
 0x0028cfe4 : [unknown module] : [unknown file]  
-0x006462c0 : [unknown module] : [unknown file]  
-0x006838c0 : [unknown module] : [unknown file]  
-0x006400c4 : [unknown module] : [unknown file]  
-0xa17d9303 : [unknown module] : [unknown file]  
-0x08068209 : [unknown module] : [unknown file]  
-0x0064aa88 : [unknown module] : [unknown file]  
-0x0064fdd8 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449B8
-[size]
-8
+------------------------------ memory leak : address = 0x00662BB8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0252B420
-[size]
-8
+------------------------------ memory leak : address = 0x0064BE10 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00649F50 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006414E8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00648090 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00650EC8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00653D78 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DCB50 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065F210 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0066B740 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D72E8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00665228 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00642C00 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00659D80 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064D8F8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065FD98 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D3F90 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065EA60 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0066D600 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064A328 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DC3A0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00651A50 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D89F8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0049B4C0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
 0x76344236 : [unknown module] : [unknown file]  
 0x0028f990 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DF648
-[size]
-538
+------------------------------ memory leak : address = 0x00652200 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0028ed7c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC40
-[size]
-8
+------------------------------ memory leak : address = 0x007A4DF8 size = 520 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDE8
-[size]
-8
+------------------------------ memory leak : address = 0x003D76C0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DB0
-[size]
-8
+------------------------------ memory leak : address = 0x00664A78 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B118
-[size]
-8
+------------------------------ memory leak : address = 0x003DEA10 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F098
-[size]
-8
+------------------------------ memory leak : address = 0x006433B0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B168
-[size]
-8
+------------------------------ memory leak : address = 0x006614A8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DA0
-[size]
-8
+------------------------------ memory leak : address = 0x003D9958 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E30
-[size]
-8
+------------------------------ memory leak : address = 0x00651678 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE88
-[size]
-8
+------------------------------ memory leak : address = 0x0066BB18 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B78
-[size]
-8
+------------------------------ memory leak : address = 0x003D4368 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644878
-[size]
-8
+------------------------------ memory leak : address = 0x00658A48 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF08
-[size]
-8
+------------------------------ memory leak : address = 0x003DD300 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02530A38
-[size]
-80
+------------------------------ memory leak : address = 0x00664E50 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x00340036 : [unknown module] : [unknown file]  
-0x00320033 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006838C0
-[size]
-2048
+------------------------------ memory leak : address = 0x00643F38 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B378
-[size]
-8
+------------------------------ memory leak : address = 0x003D8DD0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B88
-[size]
-8
+------------------------------ memory leak : address = 0x003D9D30 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0A8
-[size]
-8
+------------------------------ memory leak : address = 0x00646980 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A78
-[size]
-8
+------------------------------ memory leak : address = 0x0065F5E8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B398
-[size]
-8
+------------------------------ memory leak : address = 0x00660CF8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644828
-[size]
-8
+------------------------------ memory leak : address = 0x00661C58 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E00
-[size]
-8
+------------------------------ memory leak : address = 0x0065CBA0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B08
-[size]
-8
+------------------------------ memory leak : address = 0x00663740 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE98
-[size]
-8
+------------------------------ memory leak : address = 0x006646A0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B188
-[size]
-8
+------------------------------ memory leak : address = 0x00640D38 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644BB8
-[size]
-8
+------------------------------ memory leak : address = 0x00649B78 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D80
-[size]
-8
+------------------------------ memory leak : address = 0x003DAC90 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDA8
-[size]
-8
+------------------------------ memory leak : address = 0x00648C18 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644848
-[size]
-8
+------------------------------ memory leak : address = 0x003D8620 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004D8B18
-[size]
-16
+------------------------------ memory leak : address = 0x003DB818 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x75fe124c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EEF8
-[size]
-8
+------------------------------ memory leak : address = 0x0066C2C8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B318
-[size]
-8
+------------------------------ memory leak : address = 0x003D8248 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFF8
-[size]
-8
+------------------------------ memory leak : address = 0x00657710 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EFA8
-[size]
-8
+------------------------------ memory leak : address = 0x0065ACE0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE18
-[size]
-8
+------------------------------ memory leak : address = 0x003DA4E0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B138
-[size]
-8
+------------------------------ memory leak : address = 0x003DDE88 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D70
-[size]
-8
+------------------------------ memory leak : address = 0x00657338 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449A8
-[size]
-8
+------------------------------ memory leak : address = 0x0065A908 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2C8
-[size]
-8
+------------------------------ memory leak : address = 0x0066BEF0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641C20
-[size]
-8
+------------------------------ memory leak : address = 0x0066A8B0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF18
-[size]
-8
+------------------------------ memory leak : address = 0x007A4840 size = 522 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE08
-[size]
-8
+0x003d0000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00655850 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695CF0
-[size]
-8
+------------------------------ memory leak : address = 0x003D9580 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02531CC0
-[size]
-280
+------------------------------ memory leak : address = 0x003D1C28 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F158
-[size]
-8
+------------------------------ memory leak : address = 0x004A1FA0 size = 520 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448D8
-[size]
-8
+0xfeeefeee : [unknown module] : [unknown file]  
+0x00671a90 : [unknown module] : [unknown file]  
+0x774fa322 : [unknown module] : [unknown file]  
+0x18043055 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00640960 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x025107D0
-[size]
-109640
+------------------------------ memory leak : address = 0x0066A4D8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x7634cebd : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644888
-[size]
-8
+------------------------------ memory leak : address = 0x006642C8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644928
-[size]
-8
+------------------------------ memory leak : address = 0x003DA8B8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064FDB0
-[size]
-28
+------------------------------ memory leak : address = 0x00643B60 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x00010000 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF68
-[size]
-8
+------------------------------ memory leak : address = 0x00656B88 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B428
-[size]
-8
+------------------------------ memory leak : address = 0x00658E20 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AB8
-[size]
-8
+------------------------------ memory leak : address = 0x00661880 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B68
-[size]
-8
+------------------------------ memory leak : address = 0x00671A98 size = 555 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE58
-[size]
-8
+0x6f842736 : [unknown module] : [unknown file]  
+0x004014ad : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (36) : in function (main) 
+0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x774a9902 : [unknown module] : [unknown file]  
+0x774a98d5 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006591F8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F068
-[size]
-8
+------------------------------ memory leak : address = 0x00480860 size = 109640 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004D8B30
-[size]
-16
+0x0028fc44 : [unknown module] : [unknown file]  
+0x0100305c : [unknown module] : [unknown file]  
+0xffeeffee : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00671440 size = 576 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x75fe124c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B388
-[size]
-8
+------------------------------ memory leak : address = 0x0066AC88 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02532488
-[size]
-80
+------------------------------ memory leak : address = 0x006627E0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B148
-[size]
-8
+------------------------------ memory leak : address = 0x00641C98 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F128
-[size]
-8
+------------------------------ memory leak : address = 0x0064F7B8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F038
-[size]
-8
+------------------------------ memory leak : address = 0x0064DCD0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF48
-[size]
-8
+------------------------------ memory leak : address = 0x003DB068 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D10
-[size]
-8
+------------------------------ memory leak : address = 0x00655C28 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC30
-[size]
-8
+------------------------------ memory leak : address = 0x0064FF68 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0252B430
-[size]
-82
+------------------------------ memory leak : address = 0x003DF1C0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00673E20 size = 2048 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x01000000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DD6D8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00660548 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D58A0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DFEE8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006461D0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064AEB0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065B0B8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A1E10 size = 280 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065BC40 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A26F8 size = 80 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DE260 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006595D0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A2258 size = 532 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x0028cfe4 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0049B500 size = 82 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
 0x0028fca8 : [unknown module] : [unknown file]  
 0x7634cd89 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F008
-[size]
-8
+------------------------------ memory leak : address = 0x006446E8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644938
-[size]
-8
+------------------------------ memory leak : address = 0x0065DB00 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1D8
-[size]
-8
+------------------------------ memory leak : address = 0x00675CF0 size = 2048 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F048
-[size]
-8
+0x01000000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0066B368 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B308
-[size]
-8
+------------------------------ memory leak : address = 0x00641110 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644908
-[size]
-8
+------------------------------ memory leak : address = 0x00660170 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D50
-[size]
-8
+------------------------------ memory leak : address = 0x003D7A98 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644818
-[size]
-8
+------------------------------ memory leak : address = 0x00656000 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02510590
-[size]
-564
+------------------------------ memory leak : address = 0x00662030 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x774a038a : [unknown module] : [unknown file]  
-0x004dc1e0 : [unknown module] : [unknown file]  
-0x0028f5ea : [unknown module] : [unknown file]  
-0x004dc160 : [unknown module] : [unknown file]  
-0x77570214 : [unknown module] : [unknown file]  
-0x004dc168 : [unknown module] : [unknown file]  
-0x7757021c : [unknown module] : [unknown file]  
-0x004dc0f0 : [unknown module] : [unknown file]  
-0x73d70000 : [unknown module] : [unknown file]  
-0x73d713ce : [unknown module] : [unknown file]  
-0x000eb000 : [unknown module] : [unknown file]  
-0x0040003e : D:\Dev c++\workspace\mld\exe\sample.exe : [unknown file]  
-0x004df870 : [unknown module] : [unknown file]  
-0x00180016 : [unknown module] : [unknown file]  
-0x0057005c : [unknown module] : [unknown file]  
-0x006e0069 : [unknown module] : [unknown file]  
-0x006f0064 : [unknown module] : [unknown file]  
-0x00730077 : [unknown module] : [unknown file]  
-0x0073005c : [unknown module] : [unknown file]  
-0x00730079 : [unknown module] : [unknown file]  
-0x006f0077 : [unknown module] : [unknown file]  
-0x00360077 : [unknown module] : [unknown file]  
-0x005c0034 : [unknown module] : [unknown file]  
-0x00620064 : [unknown module] : [unknown file]  
-0x00680067 : [unknown module] : [unknown file]  
-0x006c0065 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006A5F18
-[size]
-4276
+------------------------------ memory leak : address = 0x0064EC30 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0028e1f8 : [unknown module] : [unknown file]  
-0x774e5845 : [unknown module] : [unknown file]  
-0x76358cd5 : [unknown module] : [unknown file]  
-0x0028f8b8 : [unknown module] : [unknown file]  
-0x01004b35 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064C5C0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065D350 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00648468 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006525D8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00645648 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00669D28 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00663EF0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D4E90 size = 128 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065E2B0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064D148 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00644310 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00671050 size = 28 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x00010000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00642450 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DFE18 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00666188 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DF598 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00665600 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064F008 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006512A0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DF970 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064F3E0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006465A8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006418C0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065EE38 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A2780 size = 520 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x0028f33c : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DC778 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A0B48 size = 80 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x00340036 : [unknown module] : [unknown file]  
+0x00320033 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00644AC0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065F9C0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064CD70 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x004A1F60 size = 4 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x003d0000 : [unknown module] : [unknown file]  
+0x0100305c : [unknown module] : [unknown file]  
 0xffeeffee : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644BA8
-[size]
-8
+------------------------------ memory leak : address = 0x00650718 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DE310
-[size]
-32
+------------------------------ memory leak : address = 0x006497A0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0028f71c : [unknown module] : [unknown file]  
-0x76e9389e : [unknown module] : [unknown file]  
-0x75fd6d2f : [unknown module] : [unknown file]  
-0x75fc3081 : [unknown module] : [unknown file]  
-0x7634cef9 : [unknown module] : [unknown file]  
-0x7634cd89 : [unknown module] : [unknown file]  
-0x76376c63 : [unknown module] : [unknown file]  
-0xffffffff : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B248
-[size]
-8
+------------------------------ memory leak : address = 0x003D6B38 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DF0
-[size]
-8
+------------------------------ memory leak : address = 0x00648FF0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641BE0
-[size]
-8
+------------------------------ memory leak : address = 0x003D6760 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DC1E0
-[size]
-120
+------------------------------ memory leak : address = 0x004A21E0 size = 64 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B0D8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B228
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1B8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066ECB0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641C00
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B488
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641BD0
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DA958
-[size]
-80
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F058
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B158
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F108
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02530A90
-[size]
-4648
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449D8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644948
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F148
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644BD8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AA8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDF8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644968
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F168
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B328
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644898
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1F8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EEA8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE48
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE68
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B368
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644B28
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDD8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B468
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E10
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F018
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004D8B00
-[size]
-16
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x75fe124c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A08
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0B8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B438
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644808
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B208
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2A8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1C8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x004DE338
-[size]
-32
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B218
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDC8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448E8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006447F0
-[size]
-1016
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0044005c : D:\Dev c++\workspace\mld\exe\sample.exe : [unknown file]  
-0x0072006f : [unknown module] : [unknown file]  
-0x0073006b : [unknown module] : [unknown file]  
-0x00610070 : [unknown module] : [unknown file]  
-0x00650063 : [unknown module] : [unknown file]  
-0x006d005c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B1A8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0C8
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B288
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B238
-[size]
-8
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E50
-[size]
-4
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x0028f354 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02532000
-[size]
-64
-[callstack]
-0x77490c52 : [unknown module] : [unknown file]  
-0x6f8416cf : [unknown module] : [unknown file]  
+0x6f8416e2 : [unknown module] : [unknown file]  
 0x6f841321 : [unknown module] : [unknown file]  
-0x02532000 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02531DF0
-[size]
-520
+0x004a21e0 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DFD48 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x00200000 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644868
-[size]
-8
+------------------------------ memory leak : address = 0x0065C3F0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644838
-[size]
-8
+------------------------------ memory leak : address = 0x00645DF8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A58
-[size]
-8
+------------------------------ memory leak : address = 0x00653160 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D90
-[size]
-8
+------------------------------ memory leak : address = 0x00654CD8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448F8
-[size]
-8
+------------------------------ memory leak : address = 0x0064FB90 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644AD8
-[size]
-8
+------------------------------ memory leak : address = 0x003D4740 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D30
-[size]
-8
+------------------------------ memory leak : address = 0x006529B0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC90
-[size]
-8
+------------------------------ memory leak : address = 0x004A0BD0 size = 4648 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B4A8
-[size]
-8
+------------------------------ memory leak : address = 0x0064D520 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E20
-[size]
-8
+------------------------------ memory leak : address = 0x0066A100 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC70
-[size]
-8
+------------------------------ memory leak : address = 0x0066C6A0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448B8
-[size]
-8
+------------------------------ memory leak : address = 0x00645A20 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3B8
-[size]
-8
+------------------------------ memory leak : address = 0x0065B868 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EE78
-[size]
-8
+------------------------------ memory leak : address = 0x00665DB0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006449C8
-[size]
-8
+------------------------------ memory leak : address = 0x00658670 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641C30
-[size]
-8
+------------------------------ memory leak : address = 0x00672EB8 size = 2048 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695DC0
-[size]
-8
+0x01000000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065CF78 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0252B490
-[size]
-21920
+------------------------------ memory leak : address = 0x00643788 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064A700 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00656F60 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0049B590 size = 21920 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
 0x7fffffff : [unknown module] : [unknown file]  
 0x7634cf1f : [unknown module] : [unknown file]  
-0x00642ab4 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064FD90
-[size]
-24
+0x003d2b47 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065B490 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DE638 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065DED8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006539A0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00642FD8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DCF28 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064E480 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00658298 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065D728 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006610D0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065C018 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0066E108 size = 4 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x0028f354 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00648840 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064E0A8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00653538 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00647130 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00662408 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0066CA78 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00646D58 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064AAD8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D6388 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00662F90 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DEDE8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DBFC8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00650AF0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003D5FB0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006659D8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00651E28 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x003DB440 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064C998 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065A530 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064B288 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00647508 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00655478 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064BA38 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00654900 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0064B660 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065A158 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x0065C7C8 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00660920 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00670C68 size = 24 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
 0xffffffff : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B3E8
-[size]
-8
+------------------------------ memory leak : address = 0x0066D228 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF38
-[size]
-8
+------------------------------ memory leak : address = 0x0066CE50 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F178
-[size]
-8
+------------------------------ memory leak : address = 0x00644E98 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x025324E0
-[size]
-520
+------------------------------ memory leak : address = 0x0064C1E8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0028f33c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B198
-[size]
-8
+------------------------------ memory leak : address = 0x00663368 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EDB8
-[size]
-8
+------------------------------ memory leak : address = 0x00666560 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F0D8
-[size]
-8
+------------------------------ memory leak : address = 0x0064E858 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B0E8
-[size]
-8
+------------------------------ memory leak : address = 0x003D4B18 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B298
-[size]
-8
+------------------------------ memory leak : address = 0x003DA108 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC20
-[size]
-8
+------------------------------ memory leak : address = 0x00650340 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006448A8
-[size]
-8
+------------------------------ memory leak : address = 0x00671A50 size = 4276 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695D00
-[size]
-8
+------------------------------ memory leak : address = 0x00654150 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641C10
-[size]
-8
+------------------------------ memory leak : address = 0x006599A8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00695E40
-[size]
-8
+------------------------------ memory leak : address = 0x0065E688 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A98
-[size]
-8
+------------------------------ memory leak : address = 0x003DDAB0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064ED90
-[size]
-1016
+------------------------------ memory leak : address = 0x003D7E70 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0044005c : D:\Dev c++\workspace\mld\exe\sample.exe : [unknown file]  
-0x0072006f : [unknown module] : [unknown file]  
-0x0073006b : [unknown module] : [unknown file]  
-0x00610070 : [unknown module] : [unknown file]  
-0x00650063 : [unknown module] : [unknown file]  
-0x006d005c : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B2B8
-[size]
-8
+------------------------------ memory leak : address = 0x003D5548 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC60
-[size]
-8
+------------------------------ memory leak : address = 0x003D91A8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644BC8
-[size]
-8
+------------------------------ memory leak : address = 0x00652D88 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644958
-[size]
-8
+------------------------------ memory leak : address = 0x006493C8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x006A58D0
-[size]
-555
+------------------------------ memory leak : address = 0x00657EC0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x6f84275e : [unknown module] : [unknown file]  
-0x004014a2 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (34) : in function (main) 
-0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
-0x774a9902 : [unknown module] : [unknown file]  
-0x774a98d5 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B498
-[size]
-8
+------------------------------ memory leak : address = 0x006567B0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B108
-[size]
-8
+------------------------------ memory leak : address = 0x00642828 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064EF78
-[size]
-8
+------------------------------ memory leak : address = 0x003D6F10 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0066EC50
-[size]
-8
+------------------------------ memory leak : address = 0x00645270 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B128
-[size]
-8
+------------------------------ memory leak : address = 0x003D5BF8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00644A28
-[size]
-8
+------------------------------ memory leak : address = 0x00647CB8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x00641BF0
-[size]
-8
+------------------------------ memory leak : address = 0x003DBBF0 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0064F088
-[size]
-8
+------------------------------ memory leak : address = 0x00654528 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x0067B408
-[size]
-8
+------------------------------ memory leak : address = 0x006563D8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
---------------------------------------
-[address]
-0x02532048
-[size]
-532
+------------------------------ memory leak : address = 0x00657AE8 size = 8 ------------------------------
 [callstack]
 0x77490c52 : [unknown module] : [unknown file]  
-0x0028cfe4 : [unknown module] : [unknown file]  
-0x006462c0 : [unknown module] : [unknown file]  
-0x006b3900 : [unknown module] : [unknown file]  
-0x006400c4 : [unknown module] : [unknown file]  
-0xa17d9303 : [unknown module] : [unknown file]  
-0x08068209 : [unknown module] : [unknown file]  
-0x0064aa88 : [unknown module] : [unknown file]  
-0x0064fdd8 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x006550B0 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00674D88 size = 2048 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  
+0x01000000 : [unknown module] : [unknown file]  
+------------------------------ memory leak : address = 0x00663B18 size = 8 ------------------------------
+[callstack]
+0x77490c52 : [unknown module] : [unknown file]  

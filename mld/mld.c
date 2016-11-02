@@ -12,20 +12,11 @@ static void init_all()
 
 	output_init();
 	 
-	if (!init_hook())
-	{
-		output_print("init_hook is not ok\n");
-	}
+	init_hook();
 	
-	if (!create_hook())
-	{
-		output_print("create_hook is not ok\n");
-	}
+	create_hook();
 	
-	if (!enable_hook(MH_ALL_HOOKS))
-	{
-		output_print("enable_hook is not ok\n");
-	}
+	enable_hook(MH_ALL_HOOKS);
 
 	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
 	{
@@ -43,7 +34,6 @@ static void uninit_all()
 	
 	output_uninit();
 }
-
 
 void __stdcall mld_begin()
 {

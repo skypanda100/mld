@@ -191,6 +191,7 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context)
 				file = "[unknown file]";
 			}
 		}
+		
 		if (func == NULL) {
 			output_print("0x%08x : %s : %s %s \n",
 				frame.AddrPC.Offset,
@@ -257,6 +258,8 @@ void call_stack(PCONTEXT pcontext)
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
+	output_print("------------------------------ exception ------------------------------\n[callstack]\n");
+
 	bfd_init();
 	struct bfd_set *set = calloc(1,sizeof(*set));
 	_backtrace(set , 128 , info->ContextRecord);
