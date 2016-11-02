@@ -10,9 +10,12 @@ MALLOC fpMalloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 {
 	void *retPtr = fpMalloc(size);
+
 	disable_hook(MH_ALL_HOOKS);
+
 	PCONTEXT pcontext = current_context();
 	add_context((DWORD)retPtr, size, pcontext);
+	
 	enable_hook(MH_ALL_HOOKS);
 	
 	return retPtr;
@@ -24,12 +27,15 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
 REALLOC fpRealloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
-{
+{		
 	void *retPtr = fpRealloc(ptr, size);
+	
 	disable_hook(MH_ALL_HOOKS);
+
 	PCONTEXT pcontext = current_context();
 	del_context((DWORD)ptr);
 	add_context((DWORD)retPtr, size, pcontext);
+	
 	enable_hook(MH_ALL_HOOKS);
 	
 	return retPtr;
@@ -43,7 +49,9 @@ FREE fpFree = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr)
 {
 	disable_hook(MH_ALL_HOOKS);
+	
 	del_context((DWORD)ptr);
+	
 	enable_hook(MH_ALL_HOOKS);
 	
 	fpFree(ptr);
@@ -56,15 +64,18 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR);
 LOADLIBRARYA fpLoadLibraryA = NULL;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 {
+
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
 
 	disable_hook(MH_ALL_HOOKS);
+
 	//loadsymbol
 	if (retInstance != NULL)
 	{
 		load_symbol(retInstance);		
 	}
+	
 	enable_hook(MH_ALL_HOOKS);
 
     return retInstance; 
@@ -81,11 +92,13 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 	HINSTANCE retInstance = fpLoadLibraryW(lpFileName);
 
 	disable_hook(MH_ALL_HOOKS);
+
 	//loadsymbol
 	if (retInstance != NULL)
 	{
 		load_symbol(retInstance);		
 	}
+	
 	enable_hook(MH_ALL_HOOKS);
 
     return retInstance; 
@@ -197,7 +210,7 @@ void release_hook()
 {	
 	hashmap_iterate(context_hashmap, &loop_context, NULL);
 	uninit_context();
-	output_print("------------------------------ memory leak (count %d): total size = %ld ------------------------------\n"
+	output_print("\n------------------------------ memory leak (count %d): total size = %ld ------------------------------\n"
 		, leak_count
 		, leak_total);
 	leak_count = 0;
@@ -217,9 +230,11 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	struct Context_Element *context_element = (struct Context_Element *)malloc(sizeof(struct Context_Element));
 	context_element->addr = addr;
 	context_element->size = size;
+	context_element->call_str = (char *)malloc(BACKTRACELEN);
 	memset(context_element->call_str, '\0', BACKTRACELEN);
 	call_stack(pcontext, context_element->call_str);
-	
+	context_element->call_str[BACKTRACELEN - 1] = '\0';
+
 	hashmap_put(context_hashmap, key_str, context_element);
 }
 
@@ -232,6 +247,12 @@ void del_context(DWORD addr)
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 	
+	//value
+	struct Context_Element *context_element = NULL;
+	if(hashmap_get(context_hashmap, key_str, (any_t)&context_element) == MAP_OK){
+		free(context_element->call_str);
+		free(context_element);
+	}
 	hashmap_remove(context_hashmap, key_str);
 }
 

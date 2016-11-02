@@ -16,7 +16,7 @@ void output_init()
 {
 	if (trace_file == NULL) 
 	{
-		trace_file = fopen("trace.log", "a");
+		trace_file = fopen("trace.log", "w");
 		output_print("******************************************************************\n"
 				     "*******                 %s                *******\n"
 				     "******************************************************************\n"

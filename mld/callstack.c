@@ -270,7 +270,7 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	_backtrace(set, 128, pcontext, call_str);
+	_backtrace(set, 10, pcontext, call_str);
 	release_set(set);
 }
 

@@ -6,15 +6,14 @@
 #include "callstack.h"
 #include "hashmap.h"
 
-#define HASHSIZE 1024*4
 #define KEYLEN	8 + 1
-#define BACKTRACELEN 1024 + 1
+#define BACKTRACELEN 1024*4 + 1
 
 struct Context_Element
 {
 	DWORD addr;
 	DWORD size;
-	char call_str[BACKTRACELEN];
+	char* call_str;
 };
 
 BOOL init_hook();

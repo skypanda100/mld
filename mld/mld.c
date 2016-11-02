@@ -32,6 +32,8 @@ static void uninit_all()
 	
 	release_hook();
 	
+	uninit_hook();
+	
 	output_uninit();
 }
 

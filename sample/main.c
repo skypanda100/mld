@@ -20,15 +20,19 @@ main()
 {
 	LoadLibraryA("mld.dll");
 	mld_begin();
-	char *leak = malloc(555);
 
-//	if(sampledll != NULL){
-//		typedef int(*HelloFunc)();
-//		HelloFunc helloFunc = (HelloFunc)GetProcAddress(sampledll,"HelloWorld");
-//		helloFunc();
-//		FreeLibrary(sampledll);
-//	}
-//	bar();
+	char *leak = (char *)malloc(555);
+//	free(leak);
+	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
+	if(sampledll != NULL){
+		typedef void (*MEMORY_LEAK_TEST)();
+		MEMORY_LEAK_TEST memory_leak_func = (MEMORY_LEAK_TEST)GetProcAddress(sampledll,"HelloWorld");
+		if(memory_leak_func != NULL){
+			memory_leak_func();
+		}
+		FreeLibrary(sampledll);
+	}
+
 	mld_end();
 	return 0;
 }
