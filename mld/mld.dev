@@ -4,14 +4,14 @@ Name=mld
 Type=3
 Ver=2
 ObjFiles=
-Includes=./MinHook/include;./MinHook/src/hde;./MinHook/src
+Includes=./MinHook/include
 Libs=
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
 Compiler=-DBUILDING_DLL=1_@@_
 CppCompiler=-DBUILDING_DLL=1_@@_
-Linker=D:/MinGW/lib/libbfd.a_@@_D:/MinGW/lib/libiberty.a_@@_D:/MinGW/lib/libimagehlp.a_@@_D:/MinGW/lib/libintl.a_@@_D:/MinGW/lib/libiconv.a_@@__@@_
+Linker=D:/MinGW/lib/libbfd.a_@@_D:/MinGW/lib/libiberty.a_@@_D:/MinGW/lib/libimagehlp.a_@@_D:/MinGW/lib/libintl.a_@@_D:/MinGW/lib/libiconv.a_@@_./MinHook/lib/MinHook.a_@@_
 IsCpp=0
 Icon=
 ExeOutput=../exe
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=12
 CompilerSettings=0000000100000000001000000
-UnitCount=23
+UnitCount=11
 
 [VersionInfo]
 Major=1
@@ -131,7 +131,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=MinHook\src\buffer.c
+FileName=hook.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -141,7 +141,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=MinHook\src\buffer.h
+FileName=hook.h
 CompileCpp=0
 Folder=
 Compile=1
