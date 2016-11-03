@@ -4,11 +4,11 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = ../obj/mld.o ../obj/callstack.o ../obj/print.o ../obj/hashmap.o ../obj/buffer.o ../obj/hook.o ../obj/trampoline.o ../obj/hde32.o ../obj/hde64.o ../obj/mhook.o
-LINKOBJ  = ../obj/mld.o ../obj/callstack.o ../obj/print.o ../obj/hashmap.o ../obj/buffer.o ../obj/hook.o ../obj/trampoline.o ../obj/hde32.o ../obj/hde64.o ../obj/mhook.o
-LIBS     = -L"D:/mingw/lib" -L"D:/mingw/mingw32/lib" -static-libgcc D:/MinGW/lib/libbfd.a D:/MinGW/lib/libiberty.a D:/MinGW/lib/libimagehlp.a D:/MinGW/lib/libintl.a D:/MinGW/lib/libiconv.a -m32 -g3
-INCS     = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include" -I"./MinHook/include" -I"./MinHook/src/hde" -I"./MinHook/src"
-CXXINCS  = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include/c++" -I"./MinHook/include" -I"./MinHook/src/hde" -I"./MinHook/src"
+OBJ      = ../obj/mld.o ../obj/callstack.o ../obj/print.o ../obj/hashmap.o ../obj/hook.o
+LINKOBJ  = ../obj/mld.o ../obj/callstack.o ../obj/print.o ../obj/hashmap.o ../obj/hook.o
+LIBS     = -L"D:/mingw/lib" -L"D:/mingw/mingw32/lib" -static-libgcc D:/MinGW/lib/libbfd.a D:/MinGW/lib/libiberty.a D:/MinGW/lib/libimagehlp.a D:/MinGW/lib/libintl.a D:/MinGW/lib/libiconv.a ./MinHook/lib/MinHook.a -m32 -g3
+INCS     = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include" -I"./MinHook/include"
+CXXINCS  = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include/c++" -I"./MinHook/include"
 BIN      = ../exe/mld.dll
 CXXFLAGS = $(CXXINCS) -m32 -g3 -DBUILDING_DLL=1
 CFLAGS   = $(INCS) -m32 -g3 -DBUILDING_DLL=1
@@ -38,20 +38,5 @@ $(BIN): $(LINKOBJ)
 ../obj/hashmap.o: hashmap.c
 	$(CC) -c hashmap.c -o ../obj/hashmap.o $(CFLAGS)
 
-../obj/buffer.o: MinHook/src/buffer.c
-	$(CC) -c MinHook/src/buffer.c -o ../obj/buffer.o $(CFLAGS)
-
-../obj/hook.o: MinHook/src/hook.c
-	$(CC) -c MinHook/src/hook.c -o ../obj/hook.o $(CFLAGS)
-
-../obj/trampoline.o: MinHook/src/trampoline.c
-	$(CC) -c MinHook/src/trampoline.c -o ../obj/trampoline.o $(CFLAGS)
-
-../obj/hde32.o: MinHook/src/hde/hde32.c
-	$(CC) -c MinHook/src/hde/hde32.c -o ../obj/hde32.o $(CFLAGS)
-
-../obj/hde64.o: MinHook/src/hde/hde64.c
-	$(CC) -c MinHook/src/hde/hde64.c -o ../obj/hde64.o $(CFLAGS)
-
-../obj/mhook.o: mhook.c
-	$(CC) -c mhook.c -o ../obj/mhook.o $(CFLAGS)
+../obj/hook.o: hook.c
+	$(CC) -c hook.c -o ../obj/hook.o $(CFLAGS)
