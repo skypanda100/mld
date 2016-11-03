@@ -267,6 +267,8 @@ PCONTEXT current_context()
 
 void call_stack(PCONTEXT pcontext, char *call_str)
 {
+	SymInitialize(GetCurrentProcess(), 0, true);
+
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
@@ -276,6 +278,8 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
+	SymInitialize(GetCurrentProcess(), 0, true);
+
 	output_print("------------------------------ exception ------------------------------\n[callstack]\n");
 
 	bfd_init();

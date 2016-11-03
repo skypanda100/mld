@@ -10,10 +10,10 @@ static void init_all()
 {
 	g_prev = SetUnhandledExceptionFilter(exception_filter);
 	
-	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
-	{
-		load_symbol(NULL);		
-	}
+//	if (SymInitialize(GetCurrentProcess(), 0, FALSE) == TRUE)
+//	{
+//		load_symbol(NULL);		
+//	}
 	
 	output_init();
 	 

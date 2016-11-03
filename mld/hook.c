@@ -1,14 +1,17 @@
 #include "hook.h"
 
 map_t context_hashmap = NULL;
-CRITICAL_SECTION cs;
+CRITICAL_SECTION mem_cs;
+
 /**
 * malloc
 */
 typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
 MALLOC fpMalloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
-{		
+{
+	EnterCriticalSection(&mem_cs);
+
 	void *retPtr = fpMalloc(size);
 
 	disable_hook(MH_ALL_HOOKS);
@@ -17,6 +20,8 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 	add_context((DWORD)retPtr, size, pcontext);
 	
 	enable_hook(MH_ALL_HOOKS);
+
+	LeaveCriticalSection(&mem_cs);
 	
 	return retPtr;
 }
@@ -27,7 +32,9 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
 REALLOC fpRealloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
-{	
+{
+	EnterCriticalSection(&mem_cs);
+
 	void *retPtr = fpRealloc(ptr, size);
 
 	disable_hook(MH_ALL_HOOKS);
@@ -37,6 +44,8 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
 	add_context((DWORD)retPtr, size, pcontext);
 	
 	enable_hook(MH_ALL_HOOKS);
+
+	LeaveCriticalSection(&mem_cs);
 	
 	return retPtr;
 }
@@ -48,59 +57,17 @@ typedef _CRTIMP __cdecl void (*FREE)(void *);
 FREE fpFree = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr)
 {
+	EnterCriticalSection(&mem_cs);
+
 	disable_hook(MH_ALL_HOOKS);
 	
 	del_context((DWORD)ptr);
 	
 	enable_hook(MH_ALL_HOOKS);
+
+	LeaveCriticalSection(&mem_cs);
 	
 	fpFree(ptr);
-}
-
-/**
-* LoadLibraryA
-*/
-typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR); 
-LOADLIBRARYA fpLoadLibraryA = NULL;
-HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
-{
-	//loadlibrary 
-	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
-
-	disable_hook(MH_ALL_HOOKS);
-
-	//loadsymbol
-	if (retInstance != NULL)
-	{
-		load_symbol(retInstance);	
-	}
-	
-	enable_hook(MH_ALL_HOOKS);
-
-    return retInstance; 
-}
-
-/**
-* LoadLibraryW
-*/
-typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR); 
-LOADLIBRARYW fpLoadLibraryW = NULL;
-HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
-{
-	//loadlibrary 
-	HINSTANCE retInstance = fpLoadLibraryW(lpFileName);
-
-	disable_hook(MH_ALL_HOOKS);
-
-	//loadsymbol
-	if (retInstance != NULL)
-	{
-		load_symbol(retInstance);
-	}
-	
-	enable_hook(MH_ALL_HOOKS);
-
-    return retInstance; 
 }
 
 /**
@@ -110,7 +77,7 @@ BOOL init_hook()
 {
 	init_context();
 	
-	InitializeCriticalSection(&cs);
+	InitializeCriticalSection(&mem_cs);
 	
 	if (MH_Initialize() != MH_OK)
 	{
@@ -152,16 +119,6 @@ BOOL create_hook()
 	{
 		return FALSE;
 	}
-	
-	if (MH_CreateHookApi(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != MH_OK)
-    {
-        return FALSE;
-    }
-    
-	if (MH_CreateHookApi(L"kernel32", "LoadLibraryW", &DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != MH_OK)
-    {
-        return FALSE;
-    }
     
     return TRUE;
 }
@@ -223,8 +180,6 @@ void release_hook()
 */
 void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 {
-	EnterCriticalSection(&cs);
-
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
@@ -239,8 +194,6 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	context_element->call_str[BACKTRACELEN - 1] = '\0';
 
 	hashmap_put(context_hashmap, key_str, context_element);
-	
-	LeaveCriticalSection(&cs);
 }
 
 /**
@@ -248,15 +201,11 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 */
 void del_context(DWORD addr)
 {
-	EnterCriticalSection(&cs);
-	
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 
 	hashmap_remove(context_hashmap, key_str);
-	
-	LeaveCriticalSection(&cs);
 }
 
 /**
