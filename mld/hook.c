@@ -1,13 +1,14 @@
 #include "hook.h"
 
 map_t context_hashmap = NULL;
+CRITICAL_SECTION cs;
 /**
 * malloc
 */
 typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
 MALLOC fpMalloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
-{	
+{		
 	void *retPtr = fpMalloc(size);
 
 	disable_hook(MH_ALL_HOOKS);
@@ -28,7 +29,7 @@ REALLOC fpRealloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
 {	
 	void *retPtr = fpRealloc(ptr, size);
-	
+
 	disable_hook(MH_ALL_HOOKS);
 
 	PCONTEXT pcontext = current_context();
@@ -71,7 +72,7 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 	//loadsymbol
 	if (retInstance != NULL)
 	{
-		load_symbol(retInstance);		
+		load_symbol(retInstance);	
 	}
 	
 	enable_hook(MH_ALL_HOOKS);
@@ -94,7 +95,7 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 	//loadsymbol
 	if (retInstance != NULL)
 	{
-		load_symbol(retInstance);		
+		load_symbol(retInstance);
 	}
 	
 	enable_hook(MH_ALL_HOOKS);
@@ -108,7 +109,9 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 BOOL init_hook()
 {
 	init_context();
-		
+	
+	InitializeCriticalSection(&cs);
+	
 	if (MH_Initialize() != MH_OK)
 	{
 		return FALSE;
@@ -220,6 +223,8 @@ void release_hook()
 */
 void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 {
+	EnterCriticalSection(&cs);
+
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
@@ -234,6 +239,8 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	context_element->call_str[BACKTRACELEN - 1] = '\0';
 
 	hashmap_put(context_hashmap, key_str, context_element);
+	
+	LeaveCriticalSection(&cs);
 }
 
 /**
@@ -241,17 +248,15 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 */
 void del_context(DWORD addr)
 {
+	EnterCriticalSection(&cs);
+	
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
-	
-//	//value
-//	struct Context_Element *context_element = NULL;
-//	if(hashmap_get(context_hashmap, key_str, (any_t)&context_element) == MAP_OK){
-//		free(context_element->call_str);
-//		free(context_element);
-//	}
+
 	hashmap_remove(context_hashmap, key_str);
+	
+	LeaveCriticalSection(&cs);
 }
 
 /**
