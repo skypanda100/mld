@@ -1,15 +1,223 @@
 ******************************************************************
-*******                 2016-11-03 20:56:23                *******
+*******                 2016-11-03 21:57:35                *******
 ******************************************************************
------------------------------- memory leak (block 1): address = 0x00FD23B8 size = 555 ------------------------------
+------------------------------ memory leak (block 1): address = 0x02B5F9D0 size = 128 ------------------------------
 [callstack]
 0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
-0x6f84165a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/hook.c (194) : in function (add_context) 
-0x6f841312 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/hook.c (22) : in function (DetourMalloc) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x777b100b : [unknown module] : [unknown file]  
+0x777b11a7 : [unknown module] : [unknown file]  
+0x777b1324 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 2): address = 0x02CE0D98 size = 252 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74c027a5 : [unknown module] : [unknown file]  
+0x74be2a16 : [unknown module] : [unknown file]  
+0x74bfa5d6 : [unknown module] : [unknown file]  
+0x74bfa4af : [unknown module] : [unknown file]  
+0x74be44c9 : [unknown module] : [unknown file]  
+0x74bdfbcf : [unknown module] : [unknown file]  
+0x74be8aa9 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 3): address = 0x02BF9970 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x76acd92b : [unknown module] : [unknown file]  
+0x76acdac7 : [unknown module] : [unknown file]  
+0x76acdc44 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 4): address = 0x00F12B10 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x6fed552b : [unknown module] : [unknown file]  
+0x6fed56c7 : [unknown module] : [unknown file]  
+0x6fed5844 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 5): address = 0x0407EB10 size = 4388 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74be282c : [unknown module] : [unknown file]  
+0x74c0f2ce : [unknown module] : [unknown file]  
+0x74be4689 : [unknown module] : [unknown file]  
+0x74bdfbcf : [unknown module] : [unknown file]  
+0x74be8aa9 : [unknown module] : [unknown file]  
+0x74be0bc6 : [unknown module] : [unknown file]  
+0x77c666c2 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 6): address = 0x02BF8DE0 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x76d1e6eb : [unknown module] : [unknown file]  
+0x76d1e887 : [unknown module] : [unknown file]  
+0x76d1ea04 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 7): address = 0x02C0B310 size = 6192 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74c08dd6 : [unknown module] : [unknown file]  
+0x74be1ccf : [unknown module] : [unknown file]  
+0x74be1adb : [unknown module] : [unknown file]  
+0x74be3253 : [unknown module] : [unknown file]  
+0x74be8ad7 : [unknown module] : [unknown file]  
+0x74be0bc6 : [unknown module] : [unknown file]  
+0x77c666c2 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 8): address = 0x04116EE8 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x6e7fe7cb : [unknown module] : [unknown file]  
+0x6e7fe967 : [unknown module] : [unknown file]  
+0x6e7feae4 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 9): address = 0x03FE0E80 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x77024abb : [unknown module] : [unknown file]  
+0x77024c57 : [unknown module] : [unknown file]  
+0x77024dd4 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 10): address = 0x02D80D00 size = 256 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845286 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (46) : in function (DetourRealloc) 
+0x74d37e6f : C:\WINDOWS\System32\msvcrt.dll : realloc (No symbols) 
+0x74d47350 : C:\WINDOWS\System32\msvcrt.dll : _dllonexit (No symbols) 
+0x74d472e7 : C:\WINDOWS\System32\msvcrt.dll : _dllonexit (No symbols) 
+0x74f68f1a : [unknown module] : [unknown file] (No symbols) 
+0x74f68f66 : [unknown module] : [unknown file] (No symbols) 
+0x74e579e5 : [unknown module] : [unknown file] (No symbols) 
+0x74f688dc : [unknown module] : [unknown file] (No symbols) 
+
+------------------------------ memory leak (block 11): address = 0x02B6ECC0 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x6ec169bb : [unknown module] : [unknown file]  
+0x6ec16b57 : [unknown module] : [unknown file]  
+0x6ec16cd0 : [unknown module] : [unknown file]  
+0x6ec13d9f : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 12): address = 0x02BD5D20 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74be491b : [unknown module] : [unknown file]  
+0x74be4ab7 : [unknown module] : [unknown file]  
+0x74be4c34 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+
+------------------------------ memory leak (block 13): address = 0x04327608 size = 64 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74bfe30b : [unknown module] : [unknown file]  
+0x74bfe16e : [unknown module] : [unknown file]  
+0x74be3dc1 : [unknown module] : [unknown file]  
+0x74be1d1b : [unknown module] : [unknown file]  
+0x74be1adb : [unknown module] : [unknown file]  
+0x74be3253 : [unknown module] : [unknown file]  
+0x74be8748 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 14): address = 0x02B42E18 size = 512 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845286 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (46) : in function (DetourRealloc) 
+0x74c0224a : [unknown module] : [unknown file]  
+0x74bea7ef : [unknown module] : [unknown file]  
+0x74be1ccf : [unknown module] : [unknown file]  
+0x74be1adb : [unknown module] : [unknown file]  
+0x74be3253 : [unknown module] : [unknown file]  
+0x74be8ad7 : [unknown module] : [unknown file]  
+0x74be0bc6 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 15): address = 0x043257F0 size = 64 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x74bfe30b : [unknown module] : [unknown file]  
+0x74bfe16e : [unknown module] : [unknown file]  
+0x74be3d77 : [unknown module] : [unknown file]  
+0x74be1d1b : [unknown module] : [unknown file]  
+0x74be1adb : [unknown module] : [unknown file]  
+0x74be3253 : [unknown module] : [unknown file]  
+0x74be8ad7 : [unknown module] : [unknown file]  
+
+------------------------------ memory leak (block 16): address = 0x00F12328 size = 555 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
 0x0040149a : E:\WorkSpace\DevCpp\mld\exe\sample.exe : E:\WorkSpace\DevCpp\mld\sample/main.c (24) : in function (main) 
 0x0040126d : E:\WorkSpace\DevCpp\mld\exe\sample.exe : main.c  
 0x77e20609 : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlSubscribeWnfStateChangeNotification (No symbols) 
 0x77e205d4 : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlSubscribeWnfStateChangeNotification (No symbols) 
 
+------------------------------ memory leak (block 17): address = 0x02BD5C98 size = 128 ------------------------------
+[callstack]
+0x77e2ea6c : C:\WINDOWS\SYSTEM32\ntdll.dll : NtGetContextThread (No symbols) 
+0x6f84554a : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (196) : in function (add_context) 
+0x6f845202 : E:\WorkSpace\DevCpp\mld\exe\mld.dll : E:\WorkSpace\DevCpp\mld\mld/mhook.c (22) : in function (DetourMalloc) 
+0x7462157b : [unknown module] : [unknown file]  
+0x74621717 : [unknown module] : [unknown file]  
+0x74621894 : [unknown module] : [unknown file]  
+0x77e2dbbe : C:\WINDOWS\SYSTEM32\ntdll.dll : RtlDecompressBuffer (No symbols) 
+0x77e006a6 : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownThread (No symbols) 
+0x77dea35c : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
+0x77dea1fb : C:\WINDOWS\SYSTEM32\ntdll.dll : LdrShutdownProcess (No symbols) 
 
------------------------------- memory leak (count 1): total size = 555 ------------------------------
+
+------------------------------ memory leak (count 17): total size = 13435 ------------------------------
