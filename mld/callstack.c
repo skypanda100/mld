@@ -272,8 +272,10 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	_backtrace(set, 10, pcontext, call_str);
+	_backtrace(set, 128, pcontext, call_str);
 	release_set(set);
+	
+//	SymCleanup(GetCurrentProcess());
 }
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
@@ -286,6 +288,8 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 	struct bfd_set *set = calloc(1,sizeof(*set));
 	_backtrace(set , 128 , info->ContextRecord, NULL);
 	release_set(set);
-		
+	
+//	SymCleanup(GetCurrentProcess());
+
 	return EXCEPTION_CONTINUE_SEARCH;
 }

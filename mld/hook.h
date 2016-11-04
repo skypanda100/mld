@@ -7,13 +7,13 @@
 #include "hashmap.h"
 
 #define KEYLEN	8 + 1
-#define BACKTRACELEN 1024*4 + 1
+#define BACKTRACELEN 1024*4
 
 struct Context_Element
 {
+	char call_str[BACKTRACELEN];
 	DWORD addr;
 	DWORD size;
-	char* call_str;
 };
 
 BOOL init_hook();
@@ -37,5 +37,9 @@ void del_context(DWORD addr);
 int loop_context(any_t item, any_t data);
 
 void uninit_context();
+
+void enter_lock(volatile LONG *);
+
+void leave_lock(volatile LONG *);
 
 #endif
