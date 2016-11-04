@@ -33,7 +33,7 @@ main()
 		FreeLibrary(sampledll);
 	}
 
-//	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
+	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
 	
 	mld_end();
 	return 0;

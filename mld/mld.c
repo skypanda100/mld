@@ -16,6 +16,8 @@ static void init_all()
 //	}
 	
 	output_init();
+
+	init_hook_targets();
 	 
 	init_hook();
 	
