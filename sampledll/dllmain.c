@@ -4,7 +4,7 @@
 
 DLLIMPORT void HelloWorld()
 {
-	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
+	MessageBox(0,"","",MB_ICONINFORMATION);
 	char *leak_1 = (char *)malloc(77);
 }
 

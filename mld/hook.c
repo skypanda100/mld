@@ -1,8 +1,16 @@
 #include "hook.h"
 
 map_t context_hashmap = NULL;
-volatile LONG mem_lock = FALSE;
-volatile LONG lib_lock = FALSE;
+LPVOID lpMalloc = NULL;
+LPVOID lpRealloc = NULL;
+LPVOID lpFree = NULL;
+LPVOID lpLoadLibraryA = NULL;
+LPVOID lpLoadLibraryW = NULL;
+volatile LONG malloc_lock = FALSE;
+volatile LONG realloc_lock = FALSE;
+volatile LONG free_lock = FALSE;
+volatile LONG libA_lock = FALSE;
+volatile LONG libW_lock = FALSE;
 
 /**
 * malloc
@@ -11,18 +19,16 @@ typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
 MALLOC fpMalloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size)
 {
-	enter_lock(&mem_lock);
+	enter_malloc_lock(&malloc_lock);
 
 	void *retPtr = fpMalloc(size);
 
 	disable_hook(MH_ALL_HOOKS);
-
 	PCONTEXT pcontext = current_context();
 	add_context((DWORD)retPtr, size, pcontext);
-	
 	enable_hook(MH_ALL_HOOKS);
 
-	leave_lock(&mem_lock);
+	leave_malloc_lock(&malloc_lock);
 	
 	return retPtr;
 }
@@ -34,19 +40,17 @@ typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
 REALLOC fpRealloc = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size)
 {
-	enter_lock(&mem_lock);
+	enter_realloc_lock(&realloc_lock);
 
 	void *retPtr = fpRealloc(ptr, size);
 
 	disable_hook(MH_ALL_HOOKS);
-
 	PCONTEXT pcontext = current_context();
 	del_context((DWORD)ptr);
 	add_context((DWORD)retPtr, size, pcontext);
-	
 	enable_hook(MH_ALL_HOOKS);
 
-	leave_lock(&mem_lock);
+	leave_realloc_lock(&realloc_lock);
 
 	return retPtr;
 }
@@ -58,17 +62,15 @@ typedef _CRTIMP __cdecl void (*FREE)(void *);
 FREE fpFree = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr)
 {
-	enter_lock(&mem_lock);
+	enter_free_lock(&free_lock);
 
 	fpFree(ptr);
-
-	disable_hook(MH_ALL_HOOKS);
-
-	del_context((DWORD)ptr);
 	
+	disable_hook(MH_ALL_HOOKS);
+	del_context((DWORD)ptr);
 	enable_hook(MH_ALL_HOOKS);
 
-	leave_lock(&mem_lock);
+	leave_free_lock(&free_lock);
 }
 
 /**
@@ -78,22 +80,20 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR);
 LOADLIBRARYA fpLoadLibraryA = NULL;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName)
 {
-	enter_lock(&lib_lock);
+	enter_libA_lock(&libA_lock);
 
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
 
-	disable_hook(MH_ALL_HOOKS);
-
 	//loadsymbol
 	if (retInstance != NULL)
 	{
-		load_symbol(retInstance);	
+		disable_hook(MH_ALL_HOOKS);
+		load_symbol(retInstance);
+		enable_hook(MH_ALL_HOOKS);
 	}
-	
-	enable_hook(MH_ALL_HOOKS);
 
-	leave_lock(&lib_lock);
+	leave_libA_lock(&libA_lock);
 
     return retInstance; 
 }
@@ -105,26 +105,65 @@ typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR);
 LOADLIBRARYW fpLoadLibraryW = NULL;
 HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName)
 {
-	enter_lock(&lib_lock);
+	enter_libW_lock(&libW_lock);
 
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryW(lpFileName);
-
-	disable_hook(MH_ALL_HOOKS);
-
+	
 	//loadsymbol
 	if (retInstance != NULL)
 	{
+		disable_hook(MH_ALL_HOOKS);
 		load_symbol(retInstance);
+		enable_hook(MH_ALL_HOOKS);
 	}
-	
-	enable_hook(MH_ALL_HOOKS);
 
-	leave_lock(&lib_lock);
+	leave_libW_lock(&libW_lock);
 
     return retInstance; 
 }
 
+/**
+* 获取各个hook目标 
+*/
+void init_hook_targets()
+{
+	HMODULE hModule;
+    LPVOID  pTarget;
+
+    hModule = GetModuleHandleW(L"msvcrt");
+    if(hModule != NULL){
+    	//malloc
+    	pTarget = (LPVOID)GetProcAddress(hModule, "malloc");
+    	if(pTarget != NULL){
+	 	   	lpMalloc = pTarget;    		
+		}
+		//realloc
+    	pTarget = (LPVOID)GetProcAddress(hModule, "realloc");
+    	if(pTarget != NULL){
+	 	   	lpRealloc = pTarget;    		
+		}
+		//free
+    	pTarget = (LPVOID)GetProcAddress(hModule, "free");
+    	if(pTarget != NULL){
+	 	   	lpFree = pTarget;    		
+		}
+	}
+	
+	hModule = GetModuleHandleW(L"kernel32");
+	if(hModule != NULL){
+    	//LoadLibraryA
+    	pTarget = (LPVOID)GetProcAddress(hModule, "LoadLibraryA");
+    	if(pTarget != NULL){
+	 	   	lpLoadLibraryA = pTarget;    		
+		}
+		//LoadLibraryW
+    	pTarget = (LPVOID)GetProcAddress(hModule, "LoadLibraryW");
+    	if(pTarget != NULL){
+	 	   	lpLoadLibraryW = pTarget;    		
+		}
+	}
+}
 /**
 * 初始化hook 
 */
@@ -158,27 +197,27 @@ BOOL uninit_hook()
 */
 BOOL create_hook()
 {
-	if (MH_CreateHookApi(L"msvcrt", "malloc", &DetourMalloc, (LPVOID)&fpMalloc) != MH_OK)
+	if (MH_CreateHookApiEx(L"msvcrt", "malloc", &DetourMalloc, (LPVOID)&fpMalloc, (LPVOID)&lpMalloc) != MH_OK)
 	{
 		return FALSE;
 	}
 
-	if (MH_CreateHookApi(L"msvcrt", "realloc", &DetourRealloc, (LPVOID)&fpRealloc) != MH_OK)
+	if (MH_CreateHookApiEx(L"msvcrt", "realloc", &DetourRealloc, (LPVOID)&fpRealloc, (LPVOID)&lpRealloc) != MH_OK)
 	{
 		return FALSE;
 	}
 
-	if (MH_CreateHookApi(L"msvcrt", "free", &DetourFree, (LPVOID)&fpFree) != MH_OK)
+	if (MH_CreateHookApiEx(L"msvcrt", "free", &DetourFree, (LPVOID)&fpFree, (LPVOID)&lpFree) != MH_OK)
 	{
 		return FALSE;
 	}
 	
-    if (MH_CreateHookApi(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != MH_OK)
+    if (MH_CreateHookApiEx(L"kernel32", "LoadLibraryA", &DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA, (LPVOID)&lpLoadLibraryA) != MH_OK)
     {
         return FALSE;
     }
     
-	if (MH_CreateHookApi(L"kernel32", "LoadLibraryW", &DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != MH_OK)
+	if (MH_CreateHookApiEx(L"kernel32", "LoadLibraryW", &DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW, (LPVOID)&lpLoadLibraryW) != MH_OK)
     {
         return FALSE;
     }
@@ -254,11 +293,11 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	context_element->addr = addr;
 	context_element->size = size;
 	memset(context_element->call_str, '\0', BACKTRACELEN);
-//	call_stack(pcontext, context_element->call_str);
+	call_stack(pcontext, context_element->call_str);
 	context_element->call_str[BACKTRACELEN - 1] = '\0';
 
-	output_print("addr = 0x%08X\n", addr);
-	call_stack(pcontext, NULL);
+//	output_print("addr = 0x%08X\n", addr);
+//	call_stack(pcontext, NULL);
 
 	hashmap_put(context_hashmap, key_str, context_element);
 }
@@ -305,7 +344,63 @@ void uninit_context()
 /**
 * 上锁 
 */
-void enter_lock(volatile LONG *lock)
+void enter_malloc_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+void enter_realloc_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+void enter_free_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+void enter_libA_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+void enter_libW_lock(volatile LONG *lock)
 {
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
@@ -322,9 +417,27 @@ void enter_lock(volatile LONG *lock)
 /**
 * 解锁 
 */
-void leave_lock(volatile LONG *lock)
+void leave_malloc_lock(volatile LONG *lock)
 {
 	InterlockedExchange(lock, FALSE);
 }
 
+void leave_realloc_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
 
+void leave_free_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
+void leave_libA_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
+void leave_libW_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}

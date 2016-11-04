@@ -16,6 +16,8 @@ struct Context_Element
 	DWORD size;
 };
 
+void init_hook_targets();
+
 BOOL init_hook();
 
 BOOL uninit_hook();
@@ -38,8 +40,23 @@ int loop_context(any_t item, any_t data);
 
 void uninit_context();
 
-void enter_lock(volatile LONG *);
+void enter_malloc_lock(volatile LONG *);
 
-void leave_lock(volatile LONG *);
+void leave_malloc_lock(volatile LONG *);
 
+void enter_realloc_lock(volatile LONG *);
+
+void leave_realloc_lock(volatile LONG *);
+
+void enter_free_lock(volatile LONG *);
+
+void leave_free_lock(volatile LONG *);
+
+void enter_libA_lock(volatile LONG *);
+
+void leave_libA_lock(volatile LONG *);
+
+void enter_libW_lock(volatile LONG *);
+
+void leave_libW_lock(volatile LONG *);
 #endif
