@@ -1,7 +1,7 @@
 [Project]
 FileName=mld.dev
 Name=mld
-Type=3
+Type=1
 Ver=2
 ObjFiles=
 Includes=./MinHook/include
@@ -20,7 +20,7 @@ LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=mld.dll
-HostApplication=E:\WorkSpace\DevCpp\mld\exe\sample.exe
+HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
@@ -111,26 +111,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=MinHook\include\MinHook.h
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit8]
-FileName=mld.h
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit10]
 FileName=hook.c
 CompileCpp=0
 Folder=
@@ -140,8 +120,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit11]
+[Unit10]
 FileName=hook.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=global.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -272,6 +262,16 @@ BuildCmd=
 
 [Unit1]
 FileName=mld.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=MinHook\include\MinHook.h
 CompileCpp=0
 Folder=
 Compile=1

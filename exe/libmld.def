@@ -1,5 +1,973 @@
 EXPORTS
-    mld_begin = mld_begin@0 @1
-    mld_begin@0 @2
-    mld_end = mld_end@0 @3
-    mld_end@0 @4
+    AllocateBuffer @1
+    Chunk @2 DATA
+    CreateTrampolineFunction @3
+    DetourFree @4
+    DetourLoadLibraryA = DetourLoadLibraryA@4 @5
+    DetourLoadLibraryA@4 @6
+    DetourLoadLibraryW = DetourLoadLibraryW@4 @7
+    DetourLoadLibraryW@4 @8
+    DetourMalloc @9
+    DetourRealloc @10
+    FreeBuffer @11
+    InitializeBuffer @12
+    IsExecutableAddress @13
+    MH_ApplyQueued = MH_ApplyQueued@0 @14
+    MH_ApplyQueued@0 @15
+    MH_CreateHook = MH_CreateHook@12 @16
+    MH_CreateHook@12 @17
+    MH_CreateHookApi = MH_CreateHookApi@16 @18
+    MH_CreateHookApi@16 @19
+    MH_CreateHookApiEx = MH_CreateHookApiEx@20 @20
+    MH_CreateHookApiEx@20 @21
+    MH_DisableHook = MH_DisableHook@4 @22
+    MH_DisableHook@4 @23
+    MH_EnableHook = MH_EnableHook@4 @24
+    MH_EnableHook@4 @25
+    MH_Initialize = MH_Initialize@0 @26
+    MH_Initialize@0 @27
+    MH_QueueDisableHook = MH_QueueDisableHook@4 @28
+    MH_QueueDisableHook@4 @29
+    MH_QueueEnableHook = MH_QueueEnableHook@4 @30
+    MH_QueueEnableHook@4 @31
+    MH_RemoveHook = MH_RemoveHook@4 @32
+    MH_RemoveHook@4 @33
+    MH_StatusToString = MH_StatusToString@4 @34
+    MH_StatusToString@4 @35
+    MH_Uninitialize = MH_Uninitialize@0 @36
+    MH_Uninitialize@0 @37
+    S3Forced @38 DATA
+    UninitializeBuffer @39
+    __printf__ @40
+    _backtrace @41
+    _bfd_abort @42
+    _bfd_add_bfd_to_archive_cache @43
+    _bfd_add_merge_section @44
+    _bfd_append_relative_path @45
+    _bfd_ar_sizepad @46
+    _bfd_ar_spacepad @47
+    _bfd_archive_bsd44_construct_extended_name_table @48
+    _bfd_archive_bsd_construct_extended_name_table @49
+    _bfd_archive_bsd_update_armap_timestamp @50
+    _bfd_archive_close_and_cleanup @51
+    _bfd_archive_coff_construct_extended_name_table @52
+    _bfd_assert_handler @53 DATA
+    _bfd_bsd44_write_ar_hdr @54
+    _bfd_clear_contents @55
+    _bfd_coff_debug_merge_hash_newfunc @56
+    _bfd_coff_final_link @57
+    _bfd_coff_free_symbols @58
+    _bfd_coff_generic_relocate_section @59
+    _bfd_coff_get_external_symbols @60
+    _bfd_coff_internal_syment_name @61
+    _bfd_coff_is_local_label_name @62
+    _bfd_coff_link_add_symbols @63
+    _bfd_coff_link_hash_newfunc @64
+    _bfd_coff_link_hash_table_create @65
+    _bfd_coff_link_hash_table_init @66
+    _bfd_coff_link_input_bfd @67
+    _bfd_coff_read_internal_relocs @68
+    _bfd_coff_read_string_table @69
+    _bfd_coff_reloc_link_order @70
+    _bfd_coff_section_already_linked @71
+    _bfd_coff_write_global_sym @72
+    _bfd_coff_write_task_globals @73
+    _bfd_compute_and_write_armap @74
+    _bfd_construct_extended_name_table @75
+    _bfd_count_link_order_relocs @76
+    _bfd_create_empty_archive_element_shell @77
+    _bfd_default_error_handler @78
+    _bfd_default_link_order @79
+    _bfd_discard_section_stabs @80
+    _bfd_dummy_target @81
+    _bfd_dwarf1_find_nearest_line @82
+    _bfd_dwarf2_cleanup_debug_info @83
+    _bfd_dwarf2_find_inliner_info @84
+    _bfd_dwarf2_find_nearest_line @85
+    _bfd_dwarf2_find_symbol_bias @86
+    _bfd_dwarf2_slurp_debug_info @87
+    _bfd_elf32_bfd_from_remote_memory @88
+    _bfd_elf32_size_info @89 DATA
+    _bfd_elf_add_dynamic_entry @90
+    _bfd_elf_adjust_dynamic_copy @91
+    _bfd_elf_allocate_ifunc_dyn_relocs @92
+    _bfd_elf_archive_symbol_lookup @93
+    _bfd_elf_assign_file_position_for_section @94
+    _bfd_elf_attr_strdup @95
+    _bfd_elf_can_make_relative @96
+    _bfd_elf_canonicalize_dynamic_reloc @97
+    _bfd_elf_canonicalize_dynamic_symtab @98
+    _bfd_elf_canonicalize_reloc @99
+    _bfd_elf_canonicalize_symtab @100
+    _bfd_elf_check_kept_section @101
+    _bfd_elf_close_and_cleanup @102
+    _bfd_elf_common_definition @103
+    _bfd_elf_common_section @104
+    _bfd_elf_common_section_index @105
+    _bfd_elf_compute_section_file_positions @106
+    _bfd_elf_copy_link_hash_symbol_type @107
+    _bfd_elf_copy_obj_attributes @108
+    _bfd_elf_copy_private_bfd_data @109
+    _bfd_elf_copy_private_header_data @110
+    _bfd_elf_copy_private_section_data @111
+    _bfd_elf_copy_private_symbol_data @112
+    _bfd_elf_create_dynamic_sections @113
+    _bfd_elf_create_got_section @114
+    _bfd_elf_create_ifunc_sections @115
+    _bfd_elf_default_action_discarded @116
+    _bfd_elf_default_got_elt_size @117
+    _bfd_elf_default_relocs_compatible @118
+    _bfd_elf_define_linkage_sym @119
+    _bfd_elf_discard_section_eh_frame @120
+    _bfd_elf_discard_section_eh_frame_hdr @121
+    _bfd_elf_dynamic_symbol_p @122
+    _bfd_elf_eh_frame_address_size @123
+    _bfd_elf_eh_frame_present @124
+    _bfd_elf_eh_frame_section_offset @125
+    _bfd_elf_encode_eh_address @126
+    _bfd_elf_find_function @127
+    _bfd_elf_find_inliner_info @128
+    _bfd_elf_find_line @129
+    _bfd_elf_find_nearest_line @130
+    _bfd_elf_find_segment_containing_section @131
+    _bfd_elf_fixup_group_sections @132
+    _bfd_elf_gc_keep @133
+    _bfd_elf_gc_mark @134
+    _bfd_elf_gc_mark_extra_sections @135
+    _bfd_elf_gc_mark_fdes @136
+    _bfd_elf_gc_mark_hook @137
+    _bfd_elf_gc_mark_reloc @138
+    _bfd_elf_gc_mark_rsec @139
+    _bfd_elf_get_dynamic_reloc_section @140
+    _bfd_elf_get_dynamic_reloc_upper_bound @141
+    _bfd_elf_get_dynamic_symtab_upper_bound @142
+    _bfd_elf_get_lineno @143
+    _bfd_elf_get_reloc_upper_bound @144
+    _bfd_elf_get_sec_type_attr @145
+    _bfd_elf_get_special_section @146
+    _bfd_elf_get_symbol_info @147
+    _bfd_elf_get_symtab_upper_bound @148
+    _bfd_elf_get_synthetic_symtab @149
+    _bfd_elf_hash_symbol @150
+    _bfd_elf_ifunc_get_synthetic_symtab @151
+    _bfd_elf_init_1_index_section @152
+    _bfd_elf_init_2_index_sections @153
+    _bfd_elf_init_private_section_data @154
+    _bfd_elf_is_function_type @155
+    _bfd_elf_is_local_label_name @156
+    _bfd_elf_large_com_section @157 DATA
+    _bfd_elf_link_create_dynamic_sections @158
+    _bfd_elf_link_hash_copy_indirect @159
+    _bfd_elf_link_hash_fixup_symbol @160
+    _bfd_elf_link_hash_hide_symbol @161
+    _bfd_elf_link_hash_newfunc @162
+    _bfd_elf_link_hash_table_create @163
+    _bfd_elf_link_hash_table_free @164
+    _bfd_elf_link_hash_table_init @165
+    _bfd_elf_link_lookup_local_dynindx @166
+    _bfd_elf_link_omit_section_dynsym @167
+    _bfd_elf_link_output_relocs @168
+    _bfd_elf_link_read_relocs @169
+    _bfd_elf_make_dynamic_reloc_section @170
+    _bfd_elf_make_dynamic_segment @171
+    _bfd_elf_make_empty_symbol @172
+    _bfd_elf_make_section_from_phdr @173
+    _bfd_elf_make_section_from_shdr @174
+    _bfd_elf_map_sections_to_segments @175
+    _bfd_elf_match_sections_by_type @176
+    _bfd_elf_maybe_function_sym @177
+    _bfd_elf_maybe_strip_eh_frame_hdr @178
+    _bfd_elf_merge_object_attributes @179
+    _bfd_elf_merge_sections @180
+    _bfd_elf_merge_unknown_attribute_list @181
+    _bfd_elf_merge_unknown_attribute_low @182
+    _bfd_elf_new_section_hook @183
+    _bfd_elf_no_info_to_howto @184
+    _bfd_elf_notice_as_needed @185
+    _bfd_elf_obj_attrs_arg_type @186
+    _bfd_elf_parse_attributes @187
+    _bfd_elf_parse_eh_frame @188
+    _bfd_elf_post_process_headers @189
+    _bfd_elf_print_private_bfd_data @190
+    _bfd_elf_rel_local_sym @191
+    _bfd_elf_rel_vtable_reloc_fn @192
+    _bfd_elf_rela_local_sym @193
+    _bfd_elf_reloc_type_class @194
+    _bfd_elf_relocs_compatible @195
+    _bfd_elf_section_already_linked @196
+    _bfd_elf_section_from_bfd_section @197
+    _bfd_elf_section_offset @198
+    _bfd_elf_set_arch_mach @199
+    _bfd_elf_set_section_contents @200
+    _bfd_elf_setup_sections @201
+    _bfd_elf_single_rel_hdr @202
+    _bfd_elf_size_group_sections @203
+    _bfd_elf_sizeof_headers @204
+    _bfd_elf_slurp_version_tables @205
+    _bfd_elf_stringtab_init @206
+    _bfd_elf_strtab_add @207
+    _bfd_elf_strtab_addref @208
+    _bfd_elf_strtab_clear_all_refs @209
+    _bfd_elf_strtab_delref @210
+    _bfd_elf_strtab_emit @211
+    _bfd_elf_strtab_finalize @212
+    _bfd_elf_strtab_free @213
+    _bfd_elf_strtab_init @214
+    _bfd_elf_strtab_offset @215
+    _bfd_elf_strtab_refcount @216
+    _bfd_elf_strtab_restore_size @217
+    _bfd_elf_strtab_size @218
+    _bfd_elf_swap_verdaux_in @219
+    _bfd_elf_swap_verdaux_out @220
+    _bfd_elf_swap_verdef_in @221
+    _bfd_elf_swap_verdef_out @222
+    _bfd_elf_swap_vernaux_in @223
+    _bfd_elf_swap_vernaux_out @224
+    _bfd_elf_swap_verneed_in @225
+    _bfd_elf_swap_verneed_out @226
+    _bfd_elf_swap_versym_in @227
+    _bfd_elf_swap_versym_out @228
+    _bfd_elf_symbol_from_bfd_symbol @229
+    _bfd_elf_symbol_refs_local_p @230
+    _bfd_elf_tls_setup @231
+    _bfd_elf_validate_reloc @232
+    _bfd_elf_write_corefile_contents @233
+    _bfd_elf_write_object_contents @234
+    _bfd_elf_write_section_eh_frame @235
+    _bfd_elf_write_section_eh_frame_hdr @236
+    _bfd_elfcore_make_pseudosection @237
+    _bfd_elfcore_strndup @238
+    _bfd_error_handler @239 DATA
+    _bfd_final_link_relocate @240
+    _bfd_fix_excluded_sec_syms @241
+    _bfd_free_cached_info @242
+    _bfd_generic_copy_link_hash_symbol_type @243
+    _bfd_generic_final_link @244
+    _bfd_generic_get_elt_at_index @245
+    _bfd_generic_get_section_contents @246
+    _bfd_generic_get_section_contents_in_window @247
+    _bfd_generic_init_private_section_data @248
+    _bfd_generic_link_add_archive_symbols @249
+    _bfd_generic_link_add_one_symbol @250
+    _bfd_generic_link_add_symbols @251
+    _bfd_generic_link_add_symbols_collect @252
+    _bfd_generic_link_hash_newfunc @253
+    _bfd_generic_link_hash_table_create @254
+    _bfd_generic_link_hash_table_free @255
+    _bfd_generic_link_just_syms @256
+    _bfd_generic_link_output_symbols @257
+    _bfd_generic_link_split_section @258
+    _bfd_generic_link_write_global_symbol @259
+    _bfd_generic_make_empty_symbol @260
+    _bfd_generic_minisymbol_to_symbol @261
+    _bfd_generic_mkarchive @262
+    _bfd_generic_new_section_hook @263
+    _bfd_generic_read_ar_hdr @264
+    _bfd_generic_read_ar_hdr_mag @265
+    _bfd_generic_read_minisymbols @266
+    _bfd_generic_reloc_link_order @267
+    _bfd_generic_section_already_linked @268
+    _bfd_generic_set_section_contents @269
+    _bfd_generic_verify_endian_match @270
+    _bfd_generic_write_ar_hdr @271
+    _bfd_get_elt_at_filepos @272
+    _bfd_get_gp_value @273
+    _bfd_handle_already_linked @274
+    _bfd_link_hash_newfunc @275
+    _bfd_link_hash_table_init @276
+    _bfd_link_section_stabs @277
+    _bfd_look_for_bfd_in_cache @278
+    _bfd_memory_iovec @279 DATA
+    _bfd_merge_sections @280
+    _bfd_merge_sections_free @281
+    _bfd_merged_section_offset @282
+    _bfd_n1 @283
+    _bfd_nearby_section @284
+    _bfd_new_bfd @285
+    _bfd_new_bfd_contained_in @286
+    _bfd_nocore_core_file_failing_command @287
+    _bfd_nocore_core_file_failing_signal @288
+    _bfd_nocore_core_file_matches_executable_p @289
+    _bfd_nocore_core_file_pid @290
+    _bfd_norelocs_canonicalize_reloc @291
+    _bfd_norelocs_get_reloc_upper_bound @292
+    _bfd_pe_bfd_copy_private_bfd_data_common @293
+    _bfd_pe_bfd_copy_private_section_data @294
+    _bfd_pe_get_symbol_info @295
+    _bfd_pe_only_swap_filehdr_out @296
+    _bfd_pe_print_ce_compressed_pdata @297
+    _bfd_pe_print_private_bfd_data_common @298
+    _bfd_pei_final_link_postscript @299
+    _bfd_pei_only_swap_filehdr_out @300
+    _bfd_pei_swap_aouthdr_in @301
+    _bfd_pei_swap_aouthdr_out @302
+    _bfd_pei_swap_aux_in @303
+    _bfd_pei_swap_aux_out @304
+    _bfd_pei_swap_debugdir_in @305
+    _bfd_pei_swap_debugdir_out @306
+    _bfd_pei_swap_lineno_in @307
+    _bfd_pei_swap_lineno_out @308
+    _bfd_pei_swap_scnhdr_out @309
+    _bfd_pei_swap_sym_in @310
+    _bfd_pei_swap_sym_out @311
+    _bfd_pei_write_codeview_record @312
+    _bfd_relocate_contents @313
+    _bfd_set_gp_value @314
+    _bfd_slurp_extended_name_table @315
+    _bfd_stab_section_find_nearest_line @316
+    _bfd_stab_section_offset @317
+    _bfd_std_section @318 DATA
+    _bfd_stringtab_add @319
+    _bfd_stringtab_emit @320
+    _bfd_stringtab_free @321
+    _bfd_stringtab_init @322
+    _bfd_stringtab_size @323
+    _bfd_target_vector_entries @324 DATA
+    _bfd_write_archive_contents @325
+    _bfd_write_merged_section @326
+    _bfd_write_section_stabs @327
+    _bfd_write_stab_strings @328
+    _bfd_xcoff_stringtab_init @329
+    _hex_value @330 DATA
+    _libiconv_version @331 DATA
+    _nl_expand_alias @332
+    _nl_explode_name @333
+    _nl_find_domain @334
+    _nl_find_msg @335
+    _nl_language_preferences_default @336
+    _nl_load_domain @337
+    _nl_locale_name @338
+    _nl_locale_name_canonicalize @339
+    _nl_locale_name_default @340
+    _nl_locale_name_environ @341
+    _nl_locale_name_from_win32_LANGID @342
+    _nl_locale_name_from_win32_LCID @343
+    _nl_locale_name_posix @344
+    _nl_locale_name_thread @345
+    _nl_locale_name_thread_unsafe @346
+    _nl_log_untranslated @347
+    _nl_make_l10nflist @348
+    _nl_msg_cat_cntr @349 DATA
+    _nl_normalize_codeset @350
+    _nl_state_lock @351 DATA
+    _objalloc_alloc @352
+    _sch_istable @353 DATA
+    _sch_tolower @354 DATA
+    _sch_toupper @355 DATA
+    _xexit_cleanup @356 DATA
+    ada_demangle @357
+    add_context @358
+    aliases2_lookup @359
+    aliases_lookup @360
+    asprintf @361
+    bfd_0 @362
+    bfd_0l @363
+    bfd_0u @364
+    bfd_alloc @365
+    bfd_alloc2 @366
+    bfd_alt_mach_code @367
+    bfd_arch_bits_per_address @368
+    bfd_arch_bits_per_byte @369
+    bfd_arch_default_fill @370
+    bfd_arch_get_compatible @371
+    bfd_arch_i386_short_nop_fill @372
+    bfd_arch_list @373
+    bfd_arch_mach_octets_per_byte @374
+    bfd_assert @375
+    bfd_associated_vector @376 DATA
+    bfd_bread @377
+    bfd_bsd_truncate_arname @378
+    bfd_bwrite @379
+    bfd_cache_close @380
+    bfd_cache_close_all @381
+    bfd_cache_init @382
+    bfd_cache_section_contents @383
+    bfd_calc_gnu_debuglink_crc32 @384
+    bfd_canonicalize_reloc @385
+    bfd_check_format @386
+    bfd_check_format_matches @387
+    bfd_check_overflow @388
+    bfd_close @389
+    bfd_close_all_done @390
+    bfd_coff_get_auxent @391
+    bfd_coff_get_comdat_section @392
+    bfd_coff_get_syment @393
+    bfd_coff_set_symbol_class @394
+    bfd_compress_section_contents @395
+    bfd_core_file_failing_command @396
+    bfd_core_file_failing_signal @397
+    bfd_core_file_pid @398
+    bfd_create @399
+    bfd_create_gnu_debuglink_section @400
+    bfd_decode_symclass @401
+    bfd_default_arch_struct @402 DATA
+    bfd_default_compatible @403
+    bfd_default_reloc_type_lookup @404
+    bfd_default_scan @405
+    bfd_default_set_arch_mach @406
+    bfd_default_vector @407 DATA
+    bfd_demangle @408
+    bfd_dont_truncate_arname @409
+    bfd_elf32_checksum_contents @410
+    bfd_elf32_core_file_failing_command @411
+    bfd_elf32_core_file_failing_signal @412
+    bfd_elf32_core_file_matches_executable_p @413
+    bfd_elf32_core_file_p @414
+    bfd_elf32_core_file_pid @415
+    bfd_elf32_object_p @416
+    bfd_elf32_slurp_reloc_table @417
+    bfd_elf32_slurp_symbol_table @418
+    bfd_elf32_swap_dyn_in @419
+    bfd_elf32_swap_dyn_out @420
+    bfd_elf32_swap_phdr_in @421
+    bfd_elf32_swap_phdr_out @422
+    bfd_elf32_swap_reloc_in @423
+    bfd_elf32_swap_reloc_out @424
+    bfd_elf32_swap_reloca_in @425
+    bfd_elf32_swap_reloca_out @426
+    bfd_elf32_swap_symbol_in @427
+    bfd_elf32_swap_symbol_out @428
+    bfd_elf32_write_out_phdrs @429
+    bfd_elf32_write_relocs @430
+    bfd_elf32_write_shdrs_and_ehdr @431
+    bfd_elf_add_obj_attr_int @432
+    bfd_elf_add_obj_attr_int_string @433
+    bfd_elf_add_obj_attr_string @434
+    bfd_elf_allocate_object @435
+    bfd_elf_bfd_from_remote_memory @436
+    bfd_elf_discard_info @437
+    bfd_elf_final_link @438
+    bfd_elf_gc_common_final_link @439
+    bfd_elf_gc_common_finalize_got_offsets @440
+    bfd_elf_gc_mark_dynamic_ref_symbol @441
+    bfd_elf_gc_record_vtentry @442
+    bfd_elf_gc_record_vtinherit @443
+    bfd_elf_gc_sections @444
+    bfd_elf_generic_reloc @445
+    bfd_elf_get_bfd_needed_list @446
+    bfd_elf_get_default_section_type @447
+    bfd_elf_get_dt_soname @448
+    bfd_elf_get_dyn_lib_class @449
+    bfd_elf_get_elf_syms @450
+    bfd_elf_get_needed_list @451
+    bfd_elf_get_obj_attr_int @452
+    bfd_elf_get_runpath_list @453
+    bfd_elf_gnu_hash @454
+    bfd_elf_hash @455
+    bfd_elf_is_group_section @456
+    bfd_elf_link_add_symbols @457
+    bfd_elf_link_record_dynamic_symbol @458
+    bfd_elf_link_record_local_dynamic_symbol @459
+    bfd_elf_lookup_section_flags @460
+    bfd_elf_make_object @461
+    bfd_elf_mkcorefile @462
+    bfd_elf_obj_attr_size @463
+    bfd_elf_perform_complex_relocation @464
+    bfd_elf_print_symbol @465
+    bfd_elf_record_link_assignment @466
+    bfd_elf_reloc_symbol_deleted_p @467
+    bfd_elf_section_type_names @468 DATA
+    bfd_elf_set_dt_needed_name @469
+    bfd_elf_set_dyn_lib_class @470
+    bfd_elf_set_group_contents @471
+    bfd_elf_set_obj_attr_contents @472
+    bfd_elf_size_dynamic_sections @473
+    bfd_elf_size_dynsym_hash_dynstr @474
+    bfd_elf_stack_segment_size @475
+    bfd_elf_string_from_elf_section @476
+    bfd_elf_sym_name @477
+    bfd_emul_get_commonpagesize @478
+    bfd_emul_get_maxpagesize @479
+    bfd_emul_set_commonpagesize @480
+    bfd_emul_set_maxpagesize @481
+    bfd_errmsg @482
+    bfd_errmsgs @483 DATA
+    bfd_false @484
+    bfd_fdopenr @485
+    bfd_fill_in_gnu_debuglink_section @486
+    bfd_find_target @487
+    bfd_find_version_for_sym @488
+    bfd_flush @489
+    bfd_follow_gnu_debugaltlink @490
+    bfd_follow_gnu_debuglink @491
+    bfd_fopen @492
+    bfd_format_string @493
+    bfd_fprintf_vma @494
+    bfd_generic_archive_p @495
+    bfd_generic_define_common_symbol @496
+    bfd_generic_discard_group @497
+    bfd_generic_gc_sections @498
+    bfd_generic_get_relocated_section_contents @499
+    bfd_generic_is_group_section @500
+    bfd_generic_is_local_label_name @501
+    bfd_generic_link_read_symbols @502
+    bfd_generic_lookup_section_flags @503
+    bfd_generic_merge_sections @504
+    bfd_generic_openr_next_archived_file @505
+    bfd_generic_relax_section @506
+    bfd_generic_stat_arch_elt @507
+    bfd_get_alt_debug_link_info @508
+    bfd_get_arch @509
+    bfd_get_arch_info @510
+    bfd_get_arch_size @511
+    bfd_get_assert_handler @512
+    bfd_get_bits @513
+    bfd_get_debug_link_info @514
+    bfd_get_elf_phdr_upper_bound @515
+    bfd_get_elf_phdrs @516
+    bfd_get_error @517
+    bfd_get_error_handler @518
+    bfd_get_full_section_contents @519
+    bfd_get_gp_size @520
+    bfd_get_linker_section @521
+    bfd_get_mach @522
+    bfd_get_mtime @523
+    bfd_get_next_mapent @524
+    bfd_get_next_section_by_name @525
+    bfd_get_reloc_code_name @526
+    bfd_get_reloc_size @527
+    bfd_get_reloc_upper_bound @528
+    bfd_get_relocated_section_contents @529
+    bfd_get_section_by_name @530
+    bfd_get_section_by_name_if @531
+    bfd_get_section_contents @532
+    bfd_get_sign_extend_vma @533
+    bfd_get_size @534
+    bfd_get_target_info @535
+    bfd_get_unique_section_name @536
+    bfd_getb16 @537
+    bfd_getb32 @538
+    bfd_getb64 @539
+    bfd_getb_signed_16 @540
+    bfd_getb_signed_32 @541
+    bfd_getb_signed_64 @542
+    bfd_getl16 @543
+    bfd_getl32 @544
+    bfd_getl64 @545
+    bfd_getl_signed_16 @546
+    bfd_getl_signed_32 @547
+    bfd_getl_signed_64 @548
+    bfd_gnu_truncate_arname @549
+    bfd_hash_allocate @550
+    bfd_hash_insert @551
+    bfd_hash_lookup @552
+    bfd_hash_newfunc @553
+    bfd_hash_rename @554
+    bfd_hash_replace @555
+    bfd_hash_set_default_size @556
+    bfd_hash_table_free @557
+    bfd_hash_table_init @558
+    bfd_hash_table_init_n @559
+    bfd_hash_traverse @560
+    bfd_hide_sym_by_version @561
+    bfd_i386_arch @562 DATA
+    bfd_i386_nacl_arch @563 DATA
+    bfd_init @564
+    bfd_init_section_compress_status @565
+    bfd_init_section_decompress_status @566
+    bfd_install_relocation @567
+    bfd_is_local_label @568
+    bfd_is_section_compressed @569
+    bfd_is_undefined_symclass @570
+    bfd_link_add_undef @571
+    bfd_link_hash_lookup @572
+    bfd_link_hash_traverse @573
+    bfd_link_repair_undef_list @574
+    bfd_log2 @575
+    bfd_lookup_arch @576
+    bfd_make_readable @577
+    bfd_make_section @578
+    bfd_make_section_anyway @579
+    bfd_make_section_anyway_with_flags @580
+    bfd_make_section_old_way @581
+    bfd_make_section_with_flags @582
+    bfd_make_writable @583
+    bfd_malloc @584
+    bfd_malloc2 @585
+    bfd_malloc_and_get_section @586
+    bfd_map_over_sections @587
+    bfd_mmap @588
+    bfd_new_link_order @589
+    bfd_nullvoidptr @590
+    bfd_octets_per_byte @591
+    bfd_open_file @592
+    bfd_openr @593
+    bfd_openr_iovec @594
+    bfd_openr_next_archived_file @595
+    bfd_openstreamr @596
+    bfd_openw @597
+    bfd_perform_relocation @598
+    bfd_perror @599
+    bfd_plugin_arch @600 DATA
+    bfd_plugin_set_plugin @601
+    bfd_plugin_set_program_name @602
+    bfd_print_symbol_vandf @603
+    bfd_printable_arch_mach @604
+    bfd_printable_name @605
+    bfd_put_bits @606
+    bfd_putb16 @607
+    bfd_putb32 @608
+    bfd_putb64 @609
+    bfd_putl16 @610
+    bfd_putl32 @611
+    bfd_putl64 @612
+    bfd_realloc @613
+    bfd_realloc2 @614
+    bfd_realloc_or_free @615
+    bfd_record_phdr @616
+    bfd_release @617
+    bfd_reloc_name_lookup @618
+    bfd_reloc_type_lookup @619
+    bfd_rename_section @620
+    bfd_scan_arch @621
+    bfd_scan_vma @622
+    bfd_search_for_target @623
+    bfd_section_already_linked_table_free @624
+    bfd_section_already_linked_table_init @625
+    bfd_section_already_linked_table_insert @626
+    bfd_section_already_linked_table_lookup @627
+    bfd_section_already_linked_table_traverse @628
+    bfd_section_from_elf_index @629
+    bfd_section_from_phdr @630
+    bfd_section_from_shdr @631
+    bfd_section_hash_newfunc @632
+    bfd_section_list_clear @633
+    bfd_sections_find_if @634
+    bfd_seek @635
+    bfd_set_arch_info @636
+    bfd_set_archive_head @637
+    bfd_set_assert_handler @638
+    bfd_set_default_target @639
+    bfd_set_error @640
+    bfd_set_error_handler @641
+    bfd_set_error_program_name @642
+    bfd_set_file_flags @643
+    bfd_set_format @644
+    bfd_set_gp_size @645
+    bfd_set_reloc @646
+    bfd_set_section_contents @647
+    bfd_set_section_flags @648
+    bfd_set_section_size @649
+    bfd_set_start_address @650
+    bfd_set_symtab @651
+    bfd_simple_get_relocated_section_contents @652
+    bfd_slurp_armap @653
+    bfd_slurp_bsd_armap_f2 @654
+    bfd_sprintf_vma @655
+    bfd_stat @656
+    bfd_sym_from_r_symndx @657
+    bfd_symbol_info @658
+    bfd_target_list @659
+    bfd_target_vector @660 DATA
+    bfd_tell @661
+    bfd_true @662
+    bfd_use_reserved_id @663 DATA
+    bfd_void @664
+    bfd_wrapped_link_hash_lookup @665
+    bfd_write_bigendian_4byte_int @666
+    bfd_zalloc @667
+    bfd_zalloc2 @668
+    bfd_zmalloc @669
+    bfd_zmalloc2 @670
+    binary_vec @671 DATA
+    bsd_write_armap @672
+    call_stack @673
+    canonical_filename_eq @674
+    close_bfd_ctx @675
+    coff_bfd_make_debug_symbol @676
+    coff_canonicalize_symtab @677
+    coff_count_linenumbers @678
+    coff_find_inliner_info @679
+    coff_find_nearest_line @680
+    coff_find_nearest_line_with_names @681
+    coff_get_lineno @682
+    coff_get_normalized_symtab @683
+    coff_get_reloc_upper_bound @684
+    coff_get_symbol_info @685
+    coff_get_symtab_upper_bound @686
+    coff_make_empty_symbol @687
+    coff_mangle_symbols @688
+    coff_object_p @689
+    coff_print_symbol @690
+    coff_real_object_p @691
+    coff_renumber_symbols @692
+    coff_section_from_bfd_index @693
+    coff_sizeof_headers @694
+    coff_symbol_from @695
+    coff_write_alien_symbol @696
+    coff_write_armap @697
+    coff_write_linenumbers @698
+    coff_write_symbols @699
+    concat @700
+    concat_copy @701
+    concat_copy2 @702
+    concat_length @703
+    context_hashmap @704 DATA
+    core_file_matches_executable_p @705
+    cplus_demangle @706
+    cplus_demangle_builtin_types @707 DATA
+    cplus_demangle_fill_ctor @708
+    cplus_demangle_fill_dtor @709
+    cplus_demangle_fill_extended_operator @710
+    cplus_demangle_fill_name @711
+    cplus_demangle_init_info @712
+    cplus_demangle_mangled_name @713
+    cplus_demangle_name_to_style @714
+    cplus_demangle_operators @715 DATA
+    cplus_demangle_opname @716
+    cplus_demangle_print @717
+    cplus_demangle_print_callback @718
+    cplus_demangle_set_style @719
+    cplus_demangle_type @720
+    cplus_demangle_v3 @721
+    cplus_demangle_v3_callback @722
+    cplus_mangle_opname @723
+    crc32 @724
+    create_hook @725
+    current_context @726
+    current_demangling_style @727 DATA
+    del_context @728
+    disable_hook @729
+    dlang_demangle @730
+    dos_lbasename @731
+    dwarf_debug_sections @732 DATA
+    elf32_be_vec @733 DATA
+    elf32_le_vec @734 DATA
+    elf32_r_info @735
+    elf32_r_sym @736
+    elf_append_rel @737
+    elf_append_rela @738
+    elf_vxworks_add_dynamic_entries @739
+    elf_vxworks_add_symbol_hook @740
+    elf_vxworks_create_dynamic_sections @741
+    elf_vxworks_emit_relocs @742
+    elf_vxworks_final_write_processing @743
+    elf_vxworks_finish_dynamic_entry @744
+    elf_vxworks_link_output_symbol_hook @745
+    elfcore_write_aarch_hw_break @746
+    elfcore_write_aarch_hw_watch @747
+    elfcore_write_aarch_tls @748
+    elfcore_write_arm_vfp @749
+    elfcore_write_linux_prpsinfo32 @750
+    elfcore_write_linux_prpsinfo64 @751
+    elfcore_write_note @752
+    elfcore_write_ppc_vmx @753
+    elfcore_write_ppc_vsx @754
+    elfcore_write_prfpreg @755
+    elfcore_write_prpsinfo @756
+    elfcore_write_prstatus @757
+    elfcore_write_prxfpreg @758
+    elfcore_write_register_note @759
+    elfcore_write_s390_ctrs @760
+    elfcore_write_s390_last_break @761
+    elfcore_write_s390_prefix @762
+    elfcore_write_s390_system_call @763
+    elfcore_write_s390_tdb @764
+    elfcore_write_s390_timer @765
+    elfcore_write_s390_todcmp @766
+    elfcore_write_s390_todpreg @767
+    elfcore_write_xstatereg @768
+    enable_hook @769
+    enter_free_lock @770
+    enter_libA_lock @771
+    enter_libW_lock @772
+    enter_malloc_lock @773
+    enter_realloc_lock @774
+    exception_filter = exception_filter@4 @775
+    exception_filter@4 @776
+    filename_cmp @777
+    filename_eq @778
+    filename_hash @779
+    filename_ncmp @780
+    find @781
+    fnmatch @782
+    fpFree @783 DATA
+    fpLoadLibraryA @784 DATA
+    fpLoadLibraryW @785 DATA
+    fpMalloc @786 DATA
+    fpRealloc @787 DATA
+    free_lock @788 DATA
+    g_hHeap @789 DATA
+    g_hooks @790 DATA
+    g_isLocked @791 DATA
+    g_output @792 DATA
+    g_pMemoryBlocks @793 DATA
+    generic_core_file_matches_executable_p @794
+    get_bc @795
+    getpwd @796
+    hashmap_free @797
+    hashmap_get @798
+    hashmap_hash @799
+    hashmap_hash_int @800
+    hashmap_iterate @801
+    hashmap_length @802
+    hashmap_new @803
+    hashmap_put @804
+    hashmap_rehash @805
+    hashmap_remove @806
+    hde32_disasm @807
+    hde32_table @808 DATA
+    hex_init @809
+    htab_clear_slot @810
+    htab_collisions @811
+    htab_create @812
+    htab_create_alloc @813
+    htab_create_alloc_ex @814
+    htab_create_typed_alloc @815
+    htab_delete @816
+    htab_elements @817
+    htab_empty @818
+    htab_eq_pointer @819 DATA
+    htab_find @820
+    htab_find_slot @821
+    htab_find_slot_with_hash @822
+    htab_find_with_hash @823
+    htab_hash_pointer @824 DATA
+    htab_hash_string @825
+    htab_remove_elt @826
+    htab_remove_elt_with_hash @827
+    htab_set_functions_ex @828
+    htab_size @829
+    htab_traverse @830
+    htab_traverse_noresize @831
+    htab_try_create @832
+    i386_elf32_fbsd_vec @833 DATA
+    i386_elf32_nacl_vec @834 DATA
+    i386_elf32_sol2_vec @835 DATA
+    i386_elf32_vec @836 DATA
+    i386_elf32_vxworks_vec @837 DATA
+    i386_pe_vec @838 DATA
+    i386_pei_vec @839 DATA
+    iconv_canonicalize @840
+    ihex_vec @841 DATA
+    init_bfd_ctx @842
+    init_context @843
+    init_hook @844
+    init_hook_targets @845
+    is_gnu_v3_mangled_ctor @846
+    is_gnu_v3_mangled_dtor @847
+    iterative_hash @848
+    java_demangle_v3 @849
+    java_demangle_v3_callback @850
+    lbasename @851
+    leave_free_lock @852
+    leave_libA_lock @853
+    leave_libW_lock @854
+    leave_malloc_lock @855
+    leave_realloc_lock @856
+    libA_lock @857 DATA
+    libW_lock @858 DATA
+    libiberty_concat_ptr @859 DATA
+    libiberty_demanglers @860 DATA
+    libiberty_vprintf_buffer_size @861
+    libiconv @862
+    libiconv_close @863
+    libiconv_open @864
+    libiconv_open_into @865
+    libiconv_relocate @866
+    libiconv_set_relocation_prefix @867
+    libiconvctl @868
+    libiconvlist @869
+    libintl_dcgettext @870
+    libintl_dcigettext @871
+    libintl_dgettext @872
+    libintl_fprintf @873
+    libintl_fwprintf @874
+    libintl_gettext_extract_plural @875
+    libintl_gettext_free_exp @876
+    libintl_gettext_germanic_plural @877 DATA
+    libintl_gettextparse @878
+    libintl_hash_string @879
+    libintl_lock_destroy_func @880
+    libintl_lock_init_func @881
+    libintl_lock_lock_func @882
+    libintl_lock_unlock_func @883
+    libintl_nl_current_default_domain @884 DATA
+    libintl_nl_default_default_domain @885 DATA
+    libintl_nl_default_dirname @886 DATA
+    libintl_nl_domain_bindings @887 DATA
+    libintl_once_func @888
+    libintl_recursive_lock_destroy_func @889
+    libintl_recursive_lock_init_func @890
+    libintl_recursive_lock_lock_func @891
+    libintl_recursive_lock_unlock_func @892
+    libintl_relocate @893
+    libintl_rwlock_destroy_func @894
+    libintl_rwlock_init_func @895
+    libintl_rwlock_rdlock_func @896
+    libintl_rwlock_unlock_func @897
+    libintl_rwlock_wrlock_func @898
+    libintl_set_relocation_prefix @899
+    libintl_snprintf @900
+    libintl_sprintf @901
+    libintl_swprintf @902
+    libintl_vasnprintf @903
+    libintl_vasnwprintf @904
+    libintl_vfprintf @905
+    libintl_vfwprintf @906
+    libintl_vprintf @907
+    libintl_vsnprintf @908
+    libintl_vsprintf @909
+    libintl_vswprintf @910
+    libintl_vwprintf @911
+    libintl_wprintf @912
+    load_symbol @913
+    local_time @914
+    locale_charset @915
+    lookup_section @916
+    loop_context @917
+    lpFree @918 DATA
+    lpLoadLibraryA @919 DATA
+    lpLoadLibraryW @920 DATA
+    lpMalloc @921 DATA
+    lpRealloc @922 DATA
+    lrealpath @923
+    main @924
+    make_relative_prefix @925
+    make_relative_prefix_ignore_links @926
+    malloc_lock @927 DATA
+    module_path @928
+    nacl_final_write_processing @929
+    nacl_modify_program_headers @930
+    nacl_modify_segment_map @931
+    objalloc_create @932
+    objalloc_free @933
+    objalloc_free_block @934
+    output_init @935
+    output_print @936
+    output_uninit @937
+    plugin_vec @938 DATA
+    read_signed_leb128 @939
+    read_unsigned_leb128 @940
+    real_fopen @941
+    real_fseek @942
+    real_ftell @943
+    realloc_lock @944 DATA
+    reconcat @945
+    release_hook @946
+    release_set @947
+    safe_read_leb128 @948
+    set_cplus_marker_for_demangling @949
+    srec_vec @950 DATA
+    stpcpy @951
+    strnlen @952
+    symbolsrec_vec @953 DATA
+    tekhex_vec @954 DATA
+    time_buf @955 DATA
+    trace_file @956 DATA
+    uninit_context @957
+    uninit_hook @958
+    unix_lbasename @959
+    unlink_if_ordinary @960
+    unwrap_hash_lookup @961
+    vasprintf @962
+    verilog_vec @963 DATA
+    warn_deprecated @964
+    xcalloc @965
+    xexit @966
+    xmalloc @967
+    xmalloc_failed @968
+    xmalloc_set_program_name @969
+    xrealloc @970
+    xstrdup @971
+    xstrerror @972
