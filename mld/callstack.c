@@ -1,8 +1,5 @@
 #include "callstack.h"
 
-extern HANDLE g_process;
-extern HANDLE g_thread;
-
 void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
 	struct find_info *data = opaque_data;
@@ -145,12 +142,15 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 	frame.AddrFrame.Offset = context->Ebp;
 	frame.AddrFrame.Mode = AddrModeFlat;
 
+	HANDLE process = GetCurrentProcess();
+	HANDLE thread = GetCurrentThread();
+
 	char symbol_buffer[sizeof(IMAGEHLP_SYMBOL) + 255];
 	char module_name_raw[MAX_PATH];
 
 	while(StackWalk(IMAGE_FILE_MACHINE_I386, 
-		g_process, 
-		g_thread, 
+		process, 
+		thread, 
 		&frame, 
 		context, 
 		0, 
@@ -165,7 +165,7 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 		symbol->SizeOfStruct = (sizeof *symbol) + 255;
 		symbol->MaxNameLength = 254;
 
-		DWORD module_base = SymGetModuleBase(g_process, frame.AddrPC.Offset);
+		DWORD module_base = SymGetModuleBase(process, frame.AddrPC.Offset);
 
 		const char * module_name = "[unknown module]";
 		if (module_base && 
@@ -184,7 +184,7 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 
 		if (file == NULL) {
 			DWORD dummy = 0;
-			if (SymGetSymFromAddr(g_process, frame.AddrPC.Offset, &dummy, symbol)) {
+			if (SymGetSymFromAddr(process, frame.AddrPC.Offset, &dummy, symbol)) {
 				file = symbol->Name;
 			}
 			else {
@@ -241,7 +241,7 @@ void load_symbol(HINSTANCE retInstance)
 	module_path(retInstance, lpFileName, MAX_PATH);
 	//加载模块的调试信息
 	DWORD moduleAddress = SymLoadModule(
-		g_process,
+		GetCurrentProcess(),
 		NULL, 
 		lpFileName,
 		NULL,
@@ -258,15 +258,16 @@ PCONTEXT current_context()
 	bfd_init();
 	
 	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
+	HANDLE thread = GetCurrentThread();
 	pcontext->ContextFlags = CONTEXT_FULL;
-	GetThreadContext(g_thread, pcontext);
+	GetThreadContext(thread, pcontext);
 	
 	return pcontext;
 }
 
 void call_stack(PCONTEXT pcontext, char *call_str)
 {
-	SymInitialize(g_process, 0, true);
+	SymInitialize(GetCurrentProcess(), 0, true);
 
 	bfd_init();
 
@@ -279,7 +280,7 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
-	SymInitialize(g_process, 0, true);
+	SymInitialize(GetCurrentProcess(), 0, true);
 
 	output_print("------------------------------ exception ------------------------------\n[callstack]\n");
 

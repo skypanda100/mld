@@ -1,7 +1,7 @@
 [Project]
 FileName=mld.dev
 Name=mld
-Type=1
+Type=3
 Ver=2
 ObjFiles=
 Includes=./MinHook/include
@@ -20,7 +20,7 @@ LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=mld.dll
-HostApplication=
+HostApplication=E:\WorkSpace\DevCpp\mld\exe\sample.exe
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=12
 CompilerSettings=0000000100000000001000000
-UnitCount=11
+UnitCount=10
 
 [VersionInfo]
 Major=1
@@ -131,7 +131,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=global.h
+FileName=hook.h
 CompileCpp=0
 Folder=
 Compile=1

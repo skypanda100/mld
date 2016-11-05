@@ -922,52 +922,51 @@ EXPORTS
     lpMalloc @921 DATA
     lpRealloc @922 DATA
     lrealpath @923
-    main @924
-    make_relative_prefix @925
-    make_relative_prefix_ignore_links @926
-    malloc_lock @927 DATA
-    module_path @928
-    nacl_final_write_processing @929
-    nacl_modify_program_headers @930
-    nacl_modify_segment_map @931
-    objalloc_create @932
-    objalloc_free @933
-    objalloc_free_block @934
-    output_init @935
-    output_print @936
-    output_uninit @937
-    plugin_vec @938 DATA
-    read_signed_leb128 @939
-    read_unsigned_leb128 @940
-    real_fopen @941
-    real_fseek @942
-    real_ftell @943
-    realloc_lock @944 DATA
-    reconcat @945
-    release_hook @946
-    release_set @947
-    safe_read_leb128 @948
-    set_cplus_marker_for_demangling @949
-    srec_vec @950 DATA
-    stpcpy @951
-    strnlen @952
-    symbolsrec_vec @953 DATA
-    tekhex_vec @954 DATA
-    time_buf @955 DATA
-    trace_file @956 DATA
-    uninit_context @957
-    uninit_hook @958
-    unix_lbasename @959
-    unlink_if_ordinary @960
-    unwrap_hash_lookup @961
-    vasprintf @962
-    verilog_vec @963 DATA
-    warn_deprecated @964
-    xcalloc @965
-    xexit @966
-    xmalloc @967
-    xmalloc_failed @968
-    xmalloc_set_program_name @969
-    xrealloc @970
-    xstrdup @971
-    xstrerror @972
+    make_relative_prefix @924
+    make_relative_prefix_ignore_links @925
+    malloc_lock @926 DATA
+    module_path @927
+    nacl_final_write_processing @928
+    nacl_modify_program_headers @929
+    nacl_modify_segment_map @930
+    objalloc_create @931
+    objalloc_free @932
+    objalloc_free_block @933
+    output_init @934
+    output_print @935
+    output_uninit @936
+    plugin_vec @937 DATA
+    read_signed_leb128 @938
+    read_unsigned_leb128 @939
+    real_fopen @940
+    real_fseek @941
+    real_ftell @942
+    realloc_lock @943 DATA
+    reconcat @944
+    release_hook @945
+    release_set @946
+    safe_read_leb128 @947
+    set_cplus_marker_for_demangling @948
+    srec_vec @949 DATA
+    stpcpy @950
+    strnlen @951
+    symbolsrec_vec @952 DATA
+    tekhex_vec @953 DATA
+    time_buf @954 DATA
+    trace_file @955 DATA
+    uninit_context @956
+    uninit_hook @957
+    unix_lbasename @958
+    unlink_if_ordinary @959
+    unwrap_hash_lookup @960
+    vasprintf @961
+    verilog_vec @962 DATA
+    warn_deprecated @963
+    xcalloc @964
+    xexit @965
+    xmalloc @966
+    xmalloc_failed @967
+    xmalloc_set_program_name @968
+    xrealloc @969
+    xstrdup @970
+    xstrerror @971
