@@ -2,6 +2,7 @@
 #include "hook.h"
 #include "print.h"
 #include "callstack.h"
+#include "mld.h"
 
 static LPTOP_LEVEL_EXCEPTION_FILTER g_prev = NULL;
 
@@ -38,14 +39,22 @@ static void uninit_all()
 	output_uninit();
 }
 
+__declspec(dllexport) void __stdcall mld_begin()
+{
+	init_all(); 
+}
+
+__declspec(dllexport) void __stdcall mld_end()
+{
+	uninit_all();
+}
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)
 {
 	switch (dwReason) {
 	case DLL_PROCESS_ATTACH:
-		init_all(); 
 		break;
 	case DLL_PROCESS_DETACH:
-		uninit_all();
 		break;
 	}
 	return TRUE;

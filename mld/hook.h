@@ -11,7 +11,7 @@
 
 struct Context_Element
 {
-	PCONTEXT pcontext;
+	char call_str[BACKTRACELEN];
 	DWORD addr;
 	DWORD size;
 };
