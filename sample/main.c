@@ -1,22 +1,26 @@
 #include <windows.h>
 #include <stdio.h>
-#include "mld.h"
+//#include "mld.h"
 
-
-__attribute((constructor)) void before_main()  
+static void
+foo()
 {
-	LoadLibraryA("mld.dll");
-    mld_begin();
-}  
-  
-__attribute((destructor)) void after_main()  
-{  
-    mld_end();
+	int *f=NULL;
+	*f = 0;
+}
+
+static void
+bar()
+{
+	foo();
 }
 
 int
 main()
 {
+	LoadLibraryA("mld.dll");
+//	mld_begin();
+
 	char *leak = (char *)malloc(555);
 //	free(leak);
 	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
@@ -31,6 +35,7 @@ main()
 
 	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
 	
+//	mld_end();
 	return 0;
 }
 
