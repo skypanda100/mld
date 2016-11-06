@@ -306,7 +306,7 @@ void add_context(DWORD addr, size_t size, PCONTEXT pcontext)
 	call_stack(pcontext, context_element->call_str);
 	context_element->call_str[BACKTRACELEN - 1] = '\0';
 
-//	output_print("addr = 0x%08X\n", addr);
+//	output_print("addr = 0x%08X size = %ld\n", addr, size);
 //	call_stack(pcontext, NULL);
 
 	hashmap_put(context_hashmap, key_str, context_element);
