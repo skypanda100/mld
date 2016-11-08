@@ -4,14 +4,14 @@ Name=mld
 Type=3
 Ver=2
 ObjFiles=
-Includes=./MinHook/include
+Includes=
 Libs=
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
 Compiler=-DBUILDING_DLL=1_@@_
 CppCompiler=-DBUILDING_DLL=1_@@_
-Linker=D:/MinGW/lib/libbfd.a_@@_D:/MinGW/lib/libiberty.a_@@_D:/MinGW/lib/libimagehlp.a_@@_D:/MinGW/lib/libintl.a_@@_D:/MinGW/lib/libiconv.a_@@_./MinHook/lib/MinHook.a_@@_
+Linker=D:/MinGW/lib/libbfd.a_@@_D:/MinGW/lib/libiberty.a_@@_D:/MinGW/lib/libimagehlp.a_@@_D:/MinGW/lib/libintl.a_@@_D:/MinGW/lib/libiconv.a_@@__@@_
 IsCpp=0
 Icon=
 ExeOutput=../exe
@@ -20,16 +20,16 @@ LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=mld.dll
-HostApplication=E:\WorkSpace\DevCpp\mld\exe\sample.exe
+HostApplication=D:\Dev c++\workspace\mld\exe\sample.exe
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=12
+CompilerSet=6
 CompilerSettings=0000000100000000001000000
-UnitCount=10
+UnitCount=11
 
 [VersionInfo]
 Major=1
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=hook.c
+FileName=hook.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -121,7 +121,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=hook.h
+FileName=detector.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -131,7 +131,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=hook.h
+FileName=detector.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -141,7 +141,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=MinHook\src\hook.c
+FileName=detector.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -271,7 +271,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=MinHook\include\MinHook.h
+FileName=hook.c
 CompileCpp=0
 Folder=
 Compile=1
