@@ -194,7 +194,7 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 		
 		if (func == NULL) {
 			if(call_str == NULL){
-				output_print("0x%08x : %s : %s %s \n",
+				report("0x%08x : %s : %s %s \n",
 					frame.AddrPC.Offset,
 					module_name,
 					file,
@@ -210,7 +210,7 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 		}
 		else {
 			if(call_str == NULL){
-				output_print("0x%08x : %s : %s (%d) : in function (%s) \n",
+				report("0x%08x : %s : %s (%d) : in function (%s) \n",
 					frame.AddrPC.Offset,
 					module_name,
 					file,
@@ -248,8 +248,7 @@ void load_symbol(HINSTANCE retInstance)
 		(DWORD)GetModuleHandleA(lpFileName),
 		0);
 	if (moduleAddress == 0) {
-//		fprintf(trace_file, "SymLoadModule(%s) failed: %d\n", lpFileName, GetLastError());
-//		fflush(trace_file);
+//		report("SymLoadModule(%s) failed: %d\n", lpFileName, GetLastError());
 	}
 }
 
@@ -267,7 +266,7 @@ PCONTEXT current_context()
 
 void call_stack(PCONTEXT pcontext, char *call_str)
 {
-	SymInitialize(GetCurrentProcess(), 0, true);
+//	SymInitialize(GetCurrentProcess(), 0, true);
 
 	bfd_init();
 
@@ -280,9 +279,9 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
-	SymInitialize(GetCurrentProcess(), 0, true);
+//	SymInitialize(GetCurrentProcess(), 0, true);
 
-	output_print("------------------------------ exception ------------------------------\n[callstack]\n");
+	report("------------------------------ exception ------------------------------\n[callstack]\n");
 
 	bfd_init();
 	struct bfd_set *set = calloc(1,sizeof(*set));

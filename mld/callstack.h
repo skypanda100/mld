@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "print.h"
+#include "report.h"
 
 #define BFD_ERR_OK          (0)
 #define BFD_ERR_OPEN_FAIL   (1)

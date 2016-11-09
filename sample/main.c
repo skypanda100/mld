@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
-//#include "mld.h"
+#include "mld.h"
 
 static void
 foo()
@@ -30,7 +30,7 @@ main()
 		if(memory_leak_func != NULL){
 			memory_leak_func();
 		}
-		FreeLibrary(sampledll);
+//		FreeLibrary(sampledll);
 	}
 
 	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
