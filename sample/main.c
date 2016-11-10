@@ -1,6 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
-//#include "mld.h"
+#include "mld.h"
 
 static void
 foo()
@@ -18,8 +18,8 @@ bar()
 int
 main()
 {
-	LoadLibraryA("mld.dll");
-
+	MingwLeakDetector();
+	
 	char *leak = (char *)malloc(555);
 //	free(leak);
 	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
@@ -32,8 +32,10 @@ main()
 //		FreeLibrary(sampledll);
 	}
 
-	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
-	
+	MessageBox(0,"1\n","Hi",MB_ICONINFORMATION);
+	MessageBox(0,"2\n","Hi",MB_ICONINFORMATION);
+	MessageBox(0,"3\n","Hi",MB_ICONINFORMATION);
+
 	return 0;
 }
 
