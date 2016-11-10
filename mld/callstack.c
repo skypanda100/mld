@@ -1,6 +1,47 @@
 #include "callstack.h"
 
-void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
+volatile LONG callstack_lock = FALSE;
+volatile LONG loadsymbol_lock = FALSE;
+
+static void enter_callstack_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+static void leave_callstack_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
+static void enter_loadsymbol_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+static void leave_loadsymbol_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
+static void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
 	struct find_info *data = opaque_data;
 
@@ -17,7 +58,7 @@ void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 	bfd_find_nearest_line(abfd, sec, data->symbol, data->counter - vma, &(data->file), &(data->func), &(data->line));
 }
 
-void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func, unsigned *line)
+static void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func, unsigned *line)
 {
 	struct find_info data;
 	data.func = NULL;
@@ -39,7 +80,7 @@ void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func
 	}
 }
 
-int init_bfd_ctx(struct bfd_ctx *bc, const char * procname, int *err)
+static int init_bfd_ctx(struct bfd_ctx *bc, const char * procname, int *err)
 {
 	bc->handle = NULL;
 	bc->symbol = NULL;
@@ -81,7 +122,7 @@ int init_bfd_ctx(struct bfd_ctx *bc, const char * procname, int *err)
 	return 0;
 }
 
-void close_bfd_ctx(struct bfd_ctx *bc)
+static void close_bfd_ctx(struct bfd_ctx *bc)
 {
 	if (bc) {
 		if (bc->symbol) {
@@ -93,7 +134,7 @@ void close_bfd_ctx(struct bfd_ctx *bc)
 	}
 }
 
-struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err)
+static struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err)
 {
 	while(set->name) {
 		if (strcmp(set->name , procname) == 0) {
@@ -113,7 +154,7 @@ struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err)
 	return set->bc;
 }
 
-void release_set(struct bfd_set *set)
+static void release_set(struct bfd_set *set)
 {
 	while(set) {
 		struct bfd_set * temp = set->next;
@@ -124,7 +165,7 @@ void release_set(struct bfd_set *set)
 	}
 }
 
-void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str)
+static void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str)
 {
 	char procname[MAX_PATH];
 	GetModuleFileNameA(NULL, procname, sizeof procname);
@@ -229,13 +270,15 @@ void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_s
 	}
 }
 
-void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size)
+static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size)
 {
 	GetModuleFileNameA(moduleInstance, lpFileName, MAX_PATH);
 }
 
 void load_symbol(HINSTANCE retInstance)
 {
+	enter_loadsymbol_lock(&loadsymbol_lock);
+	
 	//获取模块路径 
 	char lpFileName[MAX_PATH] = {'\0'}; 
 	module_path(retInstance, lpFileName, MAX_PATH);
@@ -250,6 +293,8 @@ void load_symbol(HINSTANCE retInstance)
 	if (moduleAddress == 0) {
 //		report("SymLoadModule(%s) failed: %d\n", lpFileName, GetLastError());
 	}
+
+	leave_loadsymbol_lock(&loadsymbol_lock);
 }
 
 PCONTEXT current_context()
@@ -260,13 +305,13 @@ PCONTEXT current_context()
 	HANDLE thread = GetCurrentThread();
 	pcontext->ContextFlags = CONTEXT_FULL;
 	GetThreadContext(thread, pcontext);
-	
+
 	return pcontext;
 }
 
 void call_stack(PCONTEXT pcontext, char *call_str)
 {
-//	SymInitialize(GetCurrentProcess(), 0, true);
+	enter_callstack_lock(&callstack_lock);
 
 	bfd_init();
 
@@ -274,21 +319,17 @@ void call_stack(PCONTEXT pcontext, char *call_str)
 	_backtrace(set, 128, pcontext, call_str);
 	release_set(set);
 	
-//	SymCleanup(GetCurrentProcess());
+	leave_callstack_lock(&callstack_lock);
 }
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
-//	SymInitialize(GetCurrentProcess(), 0, true);
-
 	report("------------------------------ exception ------------------------------\n[callstack]\n");
 
 	bfd_init();
 	struct bfd_set *set = calloc(1,sizeof(*set));
 	_backtrace(set , 128 , info->ContextRecord, NULL);
 	release_set(set);
-	
-//	SymCleanup(GetCurrentProcess());
 
 	return EXCEPTION_CONTINUE_SEARCH;
 }

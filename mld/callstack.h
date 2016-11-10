@@ -47,21 +47,29 @@ struct find_info {
 	unsigned line;
 };
 
-void lookup_section(bfd *abfd, asection *sec, void *opaque_data);
+static void enter_callstack_lock(volatile LONG *);
 
-void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func, unsigned *line);
+static void leave_callstack_lock(volatile LONG *);
 
-int init_bfd_ctx(struct bfd_ctx *bc, const char * procname, int *err);
+static void enter_loadsymbol_lock(volatile LONG *);
 
-void close_bfd_ctx(struct bfd_ctx *bc);
+static void leave_loadsymbol_lock(volatile LONG *);
 
-struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err);
+static void lookup_section(bfd *abfd, asection *sec, void *opaque_data);
 
-void release_set(struct bfd_set *set);
+static void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func, unsigned *line);
 
-void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str);
+static int init_bfd_ctx(struct bfd_ctx *bc, const char * procname, int *err);
 
-void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
+static void close_bfd_ctx(struct bfd_ctx *bc);
+
+static struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *err);
+
+static void release_set(struct bfd_set *set);
+
+static void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str);
+
+static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
 
 void load_symbol(HINSTANCE retInstance);
 

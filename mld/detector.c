@@ -222,6 +222,13 @@ static void del_context(DWORD addr){
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
 
+	//value
+	LPVOID pce = NULL;
+	hashmap_get(context_hashmap, key_str, &pce);
+	if(pce){
+		free(pce);
+	}
+	
 	hashmap_remove(context_hashmap, key_str);
 }
 

@@ -19,7 +19,7 @@ int
 main()
 {
 	LoadLibraryA("mld.dll");
-	mld_begin();
+//	mld_begin();
 
 	char *leak = (char *)malloc(555);
 //	free(leak);
@@ -35,7 +35,7 @@ main()
 
 	MessageBox(0,"Hello World from DLL!\n","Hi",MB_ICONINFORMATION);
 	
-	mld_end();
+//	mld_end();
 	return 0;
 }
 

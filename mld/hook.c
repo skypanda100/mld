@@ -1,5 +1,7 @@
 #include "hook.h"
 
+volatile LONG hook_lock = FALSE;
+
 PMB	MB_MEM[MODULE_LEN] = {NULL};
 PJF	JF_MEM[FUNC_LEN] = {NULL};
 
@@ -49,6 +51,25 @@ static int createBuffer(LPCWSTR pszModule){
 	MB_MEM[index] = pmb;
 	
     return index;
+}
+
+static void enter_hook_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+static void leave_hook_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
 }
 
 BOOL createHook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal){
@@ -116,6 +137,8 @@ BOOL createHook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *p
 }
 
 BOOL enableHook(){
+	enter_hook_lock(&hook_lock);
+	
 	for(int i = 0;i < FUNC_LEN;i++){
 		PJF pjf = JF_MEM[i];
 		if(pjf != NULL){
@@ -130,10 +153,15 @@ BOOL enableHook(){
     		FlushInstructionCache(GetCurrentProcess(), pPatchTarget, 5);
 		}
 	}
+	
+	leave_hook_lock(&hook_lock);
+	
 	return TRUE;
 }
 
 BOOL disableHook(){
+	enter_hook_lock(&hook_lock);
+
 	for(int i = 0;i < FUNC_LEN;i++){
 		PJF pjf = JF_MEM[i];
 		if(pjf != NULL){
@@ -148,5 +176,8 @@ BOOL disableHook(){
     		FlushInstructionCache(GetCurrentProcess(), pPatchTarget, 5);
 		}
 	}
+
+	leave_hook_lock(&hook_lock);
+
 	return TRUE;
 }
