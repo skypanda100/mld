@@ -7,14 +7,14 @@
 #include "hashmap.h"
 #include "report.h"
 
-#define KEYLEN	8 + 1
-#define BACKTRACELEN 1024*4
+#define KEYLEN	(8 + 1) 
+#define BACKTRACELEN (1024*4)
 
 typedef struct Context_Element
 {
 	DWORD		addr;
 	DWORD		size;
-	PCONTEXT	pcontext;
+	char		backtrace[BACKTRACELEN];
 }CE, *PCE;
 
 BOOL init_detector();

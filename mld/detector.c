@@ -208,7 +208,8 @@ static void add_context(DWORD addr, size_t size, PCONTEXT pcontext){
 	PCE pce = (PCE)malloc(sizeof(CE));
 	pce->addr = addr;
 	pce->size = size;
-	pce->pcontext = pcontext;
+	memset(pce->backtrace, '\0', BACKTRACELEN);
+	call_stack(pcontext, pce->backtrace);
 
 	hashmap_put(context_hashmap, key_str, pce);
 }
@@ -233,11 +234,11 @@ static int loop_context(any_t item, any_t data){
 	{
 		leak_count++;
 		leak_total += pce->size;
-		report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n"
+		report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n%s\n\n"
 		, leak_count
 		, pce->addr
-		, pce->size);
-		call_stack(pce->pcontext, NULL);
+		, pce->size
+		, pce->backtrace);
 	}
 	return MAP_OK;
 }

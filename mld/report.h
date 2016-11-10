@@ -7,7 +7,7 @@
 #include <stdarg.h>
 #include <string.h>
 
-#define BUFFER_MAX (1024 + 1)
+#define BUFFER_MAX (1024*5)
 #define TIME_MAX (19 + 1)	//yyyy-MM-dd hh:mm:ss
 
 static char *local_time();
