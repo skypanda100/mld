@@ -1,18 +1,7 @@
 ******************************************************************
-*******                 2016-11-10 17:21:03                *******
+*******                 2016-11-10 17:29:58                *******
 ******************************************************************
------------------------------- memory leak (block 1): address = 0x020CCB98 size = 77 ------------------------------
-[callstack]
-0x77ca0c52 : [unknown module] : [unknown file]  
-0x6f842dbe : [unknown module] : [unknown file]  
-0x664412f9 : D:\Dev c++\workspace\mld\exe\sampledll.dll : D:\Dev c++\workspace\mld\sampledll/dllmain.c (8) : in function (HelloWorld) 
-0x004014e7 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (35) : in function (main) 
-0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
-0x77cb9902 : [unknown module] : [unknown file]  
-0x77cb98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 2): address = 0x006A9D18 size = 555 ------------------------------
+------------------------------ memory leak (block 1): address = 0x009A9D18 size = 555 ------------------------------
 [callstack]
 0x77ca0c52 : [unknown module] : [unknown file]  
 0x6f842dbe : [unknown module] : [unknown file]  
@@ -23,5 +12,57 @@
 0x77cb98d5 : [unknown module] : [unknown file]  
 
 
+------------------------------ memory leak (block 2): address = 0x004ACB98 size = 77 ------------------------------
+[callstack]
+0x77ca0c52 : [unknown module] : [unknown file]  
+0x6f842dbe : [unknown module] : [unknown file]  
+0x664412f9 : D:\Dev c++\workspace\mld\exe\sampledll.dll : D:\Dev c++\workspace\mld\sampledll/dllmain.c (8) : in function (HelloWorld) 
+0x004014e7 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (35) : in function (main) 
+0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x77cb9902 : [unknown module] : [unknown file]  
+0x77cb98d5 : [unknown module] : [unknown file]  
 
------------------------------- memory leak (count 2): total size = 632 ------------------------------
+
+------------------------------ memory leak (block 3): address = 0x004EE600 size = 128 ------------------------------
+[callstack]
+0x77ca0c52 : [unknown module] : [unknown file]  
+0x6f842dbe : [unknown module] : [unknown file]  
+0x6f8429fc : [unknown module] : [unknown file]  
+0x727b2201 : [unknown module] : [unknown file]  
+0x727b1f40 : [unknown module] : [unknown file]  
+0x727b207b : [unknown module] : [unknown file]  
+0x727b1d7a : [unknown module] : [unknown file]  
+0x77cb9364 : [unknown module] : [unknown file]  
+0x77cbdc81 : [unknown module] : [unknown file]  
+0x77cbc901 : [unknown module] : [unknown file]  
+0x77cfd39f : [unknown module] : [unknown file]  
+0x77192e0f : [unknown module] : [unknown file]  
+0x77192e66 : [unknown module] : [unknown file]  
+0x728763fe : [unknown module] : [unknown file]  
+0x72876339 : [unknown module] : [unknown file]  
+0x7287692f : [unknown module] : [unknown file]  
+0x728768b7 : [unknown module] : [unknown file]  
+0x728721e2 : [unknown module] : [unknown file]  
+0x72870b96 : [unknown module] : [unknown file]  
+0x7709729a : [unknown module] : [unknown file]  
+0x77096bc4 : [unknown module] : [unknown file]  
+0x770bfa95 : [unknown module] : [unknown file]  
+0x770bf87c : [unknown module] : [unknown file]  
+0x770962fa : [unknown module] : [unknown file]  
+0x77096d3a : [unknown module] : [unknown file]  
+0x77096de8 : [unknown module] : [unknown file]  
+0x77098623 : [unknown module] : [unknown file]  
+0x77c9011a : [unknown module] : [unknown file]  
+0x770c1d1b : [unknown module] : [unknown file]  
+0x770bda5b : [unknown module] : [unknown file]  
+0x770ef7d0 : [unknown module] : [unknown file]  
+0x770efaac : [unknown module] : [unknown file]  
+0x664412ea : D:\Dev c++\workspace\mld\exe\sampledll.dll : D:\Dev c++\workspace\mld\sampledll/dllmain.c (7) : in function (HelloWorld) 
+0x004014e7 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.c (35) : in function (main) 
+0x0040126d : D:\Dev c++\workspace\mld\exe\sample.exe : main.c  
+0x77cb9902 : [unknown module] : [unknown file]  
+0x77cb98d5 : [unknown module] : [unknown file]  
+
+
+
+------------------------------ memory leak (count 3): total size = 760 ------------------------------
