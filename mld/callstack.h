@@ -47,14 +47,6 @@ struct find_info {
 	unsigned line;
 };
 
-static void enter_callstack_lock(volatile LONG *);
-
-static void leave_callstack_lock(volatile LONG *);
-
-static void enter_loadsymbol_lock(volatile LONG *);
-
-static void leave_loadsymbol_lock(volatile LONG *);
-
 static void lookup_section(bfd *abfd, asection *sec, void *opaque_data);
 
 static void find(struct bfd_ctx * b, DWORD offset, const char **file, const char **func, unsigned *line);

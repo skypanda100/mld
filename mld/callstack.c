@@ -1,46 +1,5 @@
 #include "callstack.h"
 
-volatile LONG callstack_lock = FALSE;
-volatile LONG loadsymbol_lock = FALSE;
-
-static void enter_callstack_lock(volatile LONG *lock)
-{
-	size_t c = 0;
-	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
-	{
-		if(c < 20){
-			Sleep(0);
-		}else{
-			Sleep(1);
-		}
-		c++;
-	}
-}
-
-static void leave_callstack_lock(volatile LONG *lock)
-{
-	InterlockedExchange(lock, FALSE);
-}
-
-static void enter_loadsymbol_lock(volatile LONG *lock)
-{
-	size_t c = 0;
-	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
-	{
-		if(c < 20){
-			Sleep(0);
-		}else{
-			Sleep(1);
-		}
-		c++;
-	}
-}
-
-static void leave_loadsymbol_lock(volatile LONG *lock)
-{
-	InterlockedExchange(lock, FALSE);
-}
-
 static void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
 	struct find_info *data = opaque_data;
@@ -276,9 +235,7 @@ static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size)
 }
 
 void load_symbol(HINSTANCE retInstance)
-{
-	enter_loadsymbol_lock(&loadsymbol_lock);
-	
+{	
 	//获取模块路径 
 	char lpFileName[MAX_PATH] = {'\0'}; 
 	module_path(retInstance, lpFileName, MAX_PATH);
@@ -293,8 +250,6 @@ void load_symbol(HINSTANCE retInstance)
 	if (moduleAddress == 0) {
 //		report("SymLoadModule(%s) failed: %d\n", lpFileName, GetLastError());
 	}
-
-	leave_loadsymbol_lock(&loadsymbol_lock);
 }
 
 PCONTEXT current_context()
@@ -311,15 +266,11 @@ PCONTEXT current_context()
 
 void call_stack(PCONTEXT pcontext, char *call_str)
 {
-	enter_callstack_lock(&callstack_lock);
-
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
 	_backtrace(set, 128, pcontext, call_str);
 	release_set(set);
-	
-	leave_callstack_lock(&callstack_lock);
 }
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
