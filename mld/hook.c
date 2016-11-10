@@ -1,9 +1,9 @@
 #include "hook.h"
 
-volatile LONG hook_lock = FALSE;
+static volatile LONG hook_lock = FALSE;
 
-PMB	MB_MEM[MODULE_LEN] = {NULL};
-PJF	JF_MEM[FUNC_LEN] = {NULL};
+static PMB	MB_MEM[MODULE_LEN] = {NULL};
+static PJF	JF_MEM[FUNC_LEN] = {NULL};
 
 static int createBuffer(LPCWSTR pszModule){
 	//在已经创建的module中寻找 

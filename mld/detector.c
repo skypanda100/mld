@@ -1,15 +1,16 @@
 #include "detector.h"
 
-map_t context_hashmap = NULL;
+static map_t context_hashmap = NULL;
+static LPTOP_LEVEL_EXCEPTION_FILTER g_prev = NULL;
 
 static int leak_count = 0;
 static ULONG leak_total = 0;
 
-volatile LONG malloc_lock = FALSE;
-volatile LONG realloc_lock = FALSE;
-volatile LONG free_lock = FALSE;
-volatile LONG libA_lock = FALSE;
-volatile LONG libW_lock = FALSE;
+static volatile LONG malloc_lock = FALSE;
+static volatile LONG realloc_lock = FALSE;
+static volatile LONG free_lock = FALSE;
+static volatile LONG libA_lock = FALSE;
+static volatile LONG libW_lock = FALSE;
 
 /**
 * malloc
@@ -115,16 +116,19 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 * 初始化内存泄漏检查 
 */
 BOOL init_detector(){
-	//1
+    //1
+    g_prev = SetUnhandledExceptionFilter(exception_filter);
+    
+	//2
 	init_context();
 	
-	//2
+	//3
 	init_report();
 	
-	//3
+	//4
 	init_symbol();
 
-	//4
+	//5
 	if (createHook(L"msvcrt", "malloc", &DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
 		return FALSE;
 	}
@@ -145,7 +149,7 @@ BOOL init_detector(){
         return FALSE;
     }
     
-    //5
+    //6
     enableHook();
     
     return TRUE;
@@ -169,6 +173,9 @@ BOOL uninit_detector(){
 	
 	//5
 	uninit_symbol();
+	
+	//6
+	SetUnhandledExceptionFilter(g_prev);
 }
 
 /**

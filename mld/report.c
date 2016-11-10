@@ -1,8 +1,8 @@
 #include "report.h"
 
-char g_output[BUFFER_MAX] = {'\0'};
-char time_buf[TIME_MAX] = {'\0'};
-FILE *trace_file = NULL;
+static char g_output[BUFFER_MAX] = {'\0'};
+static char time_buf[TIME_MAX] = {'\0'};
+static FILE *trace_file = NULL;
 
 static char *local_time()
 {
