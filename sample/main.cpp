@@ -1,12 +1,13 @@
-#include <iostream>
 #include "mld.h"
+#include <iostream>
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char** argv) {
 	MingwLeakDetector();
-	
-	char *leak = (char *)malloc(555);
-//	free(leak);
+
+	char *new_leak = new char[100];	
+	char *malloc_leak = (char *)malloc(555);
+
 	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
 	if(sampledll != NULL){
 		typedef void (*MEMORY_LEAK_TEST)();
