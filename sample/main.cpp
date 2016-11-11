@@ -1,23 +1,8 @@
-#include <windows.h>
-#include <stdio.h>
+#include <iostream>
 #include "mld.h"
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-static void
-foo()
-{
-	int *f=NULL;
-	*f = 0;
-}
-
-static void
-bar()
-{
-	foo();
-}
-
-int
-main()
-{
+int main(int argc, char** argv) {
 	MingwLeakDetector();
 	
 	char *leak = (char *)malloc(555);
@@ -38,4 +23,3 @@ main()
 
 	return 0;
 }
-

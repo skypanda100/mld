@@ -1,11 +1,16 @@
 #ifndef MLD
 #define MLD
 
-#pragma init_seg(compiler)
-HMODULE mld_hmodule = NULL;
+#include <windows.h>
 
-void MingwLeakDetector(){
-	mld_hmodule = LoadLibraryA("mld.dll");
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+void MingwLeakDetector();
+
+#ifdef __cplusplus
 }
+#endif
 
 #endif
