@@ -1,5 +1,5 @@
-#ifndef HOOK
-#define HOOK
+#ifndef INLINE_HOOK
+#define INLINE_HOOK
 
 #include <windows.h>
 
@@ -28,10 +28,10 @@ static void enter_hook_lock(volatile LONG *);
 
 static void leave_hook_lock(volatile LONG *);
 
-BOOL createHook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal);
+BOOL create_inline_hook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal);
 
-BOOL enableHook();
+BOOL enable_inline_hook();
 
-BOOL disableHook();
+BOOL disable_inline_hook();
 
 #endif

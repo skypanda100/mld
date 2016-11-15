@@ -72,7 +72,7 @@ static void leave_hook_lock(volatile LONG *lock)
 	InterlockedExchange(lock, FALSE);
 }
 
-BOOL createHook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal){
+BOOL create_inline_hook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *ppOriginal){
 	//´´½¨module 
 	int module_index = createBuffer(pszModule);
 	if(module_index == -1){
@@ -136,7 +136,7 @@ BOOL createHook(LPCWSTR pszModule, LPCSTR pszProcName, LPVOID pDetour, LPVOID *p
     return TRUE;
 }
 
-BOOL enableHook(){
+BOOL enable_inline_hook(){
 	enter_hook_lock(&hook_lock);
 	
 	for(int i = 0;i < FUNC_LEN;i++){
@@ -159,7 +159,7 @@ BOOL enableHook(){
 	return TRUE;
 }
 
-BOOL disableHook(){
+BOOL disable_inline_hook(){
 	enter_hook_lock(&hook_lock);
 
 	for(int i = 0;i < FUNC_LEN;i++){

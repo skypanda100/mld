@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = ../obj/mld.o ../obj/callstack.o ../obj/report.o ../obj/hashmap.o ../obj/inline_hook.o ../obj/detector.o
-LINKOBJ  = ../obj/mld.o ../obj/callstack.o ../obj/report.o ../obj/hashmap.o ../obj/inline_hook.o ../obj/detector.o
+OBJ      = ../obj/mld.o ../obj/callstack.o ../obj/report.o ../obj/hashmap.o ../obj/inline_hook.o ../obj/detector.o ../obj/iat_hook.o
+LINKOBJ  = ../obj/mld.o ../obj/callstack.o ../obj/report.o ../obj/hashmap.o ../obj/inline_hook.o ../obj/detector.o ../obj/iat_hook.o
 LIBS     = -L"D:/MinGW/lib" -L"D:/MinGW/mingw32/lib" -static-libgcc D:/MinGW/lib/libbfd.a D:/MinGW/lib/libiberty.a D:/MinGW/lib/libimagehlp.a D:/MinGW/lib/libintl.a D:/MinGW/lib/libiconv.a -m32 -g3
 INCS     = -I"D:/MinGW/include" -I"D:/MinGW/mingw32/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include"
 CXXINCS  = -I"D:/MinGW/include" -I"D:/MinGW/mingw32/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include/c++"
@@ -43,3 +43,6 @@ $(BIN): $(LINKOBJ)
 
 ../obj/detector.o: detector.c
 	$(CC) -c detector.c -o ../obj/detector.o $(CFLAGS)
+
+../obj/iat_hook.o: iat_hook.c
+	$(CC) -c iat_hook.c -o ../obj/iat_hook.o $(CFLAGS)

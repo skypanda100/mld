@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=6
 CompilerSettings=0000000100000000001000000
-UnitCount=12
+UnitCount=14
 
 [VersionInfo]
 Major=1
@@ -111,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=hook.h
+FileName=inline_hook.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -241,7 +241,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=hook.c
+FileName=inline_hook.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -252,6 +252,26 @@ BuildCmd=
 
 [Unit12]
 FileName=mld.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
+FileName=iat_hook.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit14]
+FileName=iat_hook.c
 CompileCpp=0
 Folder=
 Compile=1
