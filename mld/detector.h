@@ -2,7 +2,7 @@
 #define DETECTOR
 
 #include <windows.h>
-#include "hook.h"
+#include "inline_hook.h"
 #include "callstack.h"
 #include "hashmap.h"
 #include "report.h"
