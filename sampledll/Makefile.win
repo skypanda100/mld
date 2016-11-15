@@ -6,9 +6,9 @@ CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 OBJ      = ../obj/dllmain.o
 LINKOBJ  = ../obj/dllmain.o
-LIBS     = -L"D:/MinGW/lib" -L"D:/MinGW/mingw32/lib" -static-libgcc -m32 -g3
-INCS     = -I"D:/MinGW/include" -I"D:/MinGW/mingw32/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include"
-CXXINCS  = -I"D:/MinGW/include" -I"D:/MinGW/mingw32/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include" -I"D:/MinGW/lib/gcc/mingw32/5.3.0/include/c++"
+LIBS     = -L"D:/mingw/lib" -L"D:/mingw/mingw32/lib" -static-libgcc -m32 -g3
+INCS     = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include"
+CXXINCS  = -I"D:/mingw/include" -I"D:/mingw/mingw32/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include" -I"D:/mingw/lib/gcc/mingw32/5.3.0/include/c++"
 BIN      = ../exe/sampledll.dll
 CXXFLAGS = $(CXXINCS) -m32 -g3 -DBUILDING_DLL=1
 CFLAGS   = $(INCS) -m32 -g3 -DBUILDING_DLL=1
