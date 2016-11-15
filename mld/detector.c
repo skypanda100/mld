@@ -22,10 +22,8 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 
 	void *retPtr = fpMalloc(size);
 
-	disable_iat_hook();
 	PCONTEXT pcontext = current_context();
 	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
 
 	leave_malloc_lock(&malloc_lock);
 
@@ -42,11 +40,9 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 
 	void *retPtr = fpRealloc(ptr, size);
 
-	disable_iat_hook();
 	PCONTEXT pcontext = current_context();
 	del_context((DWORD)ptr);
 	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
 
 	leave_realloc_lock(&realloc_lock);
 
@@ -61,9 +57,7 @@ FREE fpFree = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr){
 	enter_free_lock(&free_lock);
 
-	disable_iat_hook();
 	del_context((DWORD)ptr);
-	enable_iat_hook();
 
 	fpFree(ptr);
 	
@@ -80,11 +74,10 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
-		load_symbol(retInstance);		
+		load_symbol(retInstance);
+		hook_target(retInstance);
 	}
-	enable_iat_hook();
 
 	leave_libA_lock(&libA_lock);
 
@@ -101,11 +94,10 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 
 	//loadlibrary 
 	HINSTANCE retInstance = ((LOADLIBRARYW)fpLoadLibraryW)(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
 		load_symbol(retInstance);
+		hook_target(retInstance);
 	}
-	enable_iat_hook();
 
 	leave_libW_lock(&libW_lock);
 
@@ -129,28 +121,7 @@ BOOL init_detector(){
 	init_symbol();
 
 	//5
-	if (create_iat_hook(NULL, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
-		return FALSE;
-	}
-
-	if (create_iat_hook(NULL, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
-		return FALSE;
-	}
-
-	if (create_iat_hook(NULL, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
-		return FALSE;
-	}
-	
-    if (create_iat_hook(NULL, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
-        return FALSE;
-    }
-    
-	if (create_iat_hook(NULL, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
-        return FALSE;
-    }
-    
-    //6
-    enable_iat_hook();
+	hook_target(NULL);
     
     return TRUE;
 }
@@ -160,7 +131,7 @@ BOOL init_detector(){
 */
 BOOL uninit_detector(){
 	//1
-	disable_iat_hook();
+//	disable_iat_hook();
 	
 	//2
 	detect();
@@ -262,6 +233,34 @@ static int loop_context(any_t item, any_t data){
 */
 static void	uninit_context(){
 	hashmap_free(context_hashmap);
+}
+
+/**
+* …Ë÷√π“π≥ 
+*/
+static BOOL hook_target(HMODULE lpBase){
+	if (create_iat_hook(lpBase, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
+		return FALSE;
+	}
+
+	if (create_iat_hook(lpBase, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
+		return FALSE;
+	}
+
+	if (create_iat_hook(lpBase, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
+		return FALSE;
+	}
+
+    if (create_iat_hook(lpBase, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
+        return FALSE;
+    }
+
+	if (create_iat_hook(lpBase, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
+        return FALSE;
+    }
+    
+//    return enable_iat_hook();
+	return TRUE;
 }
 
 /**
