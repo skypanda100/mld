@@ -24,8 +24,8 @@ static void leave_hook_lock(volatile LONG *lock)
 	InterlockedExchange(lock, FALSE);
 }
 
-BOOL create_iat_hook(LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
-	HMODULE lpBase = GetModuleHandleA(NULL);
+BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
+	HMODULE lpBase = GetModuleHandleA(pszTarget);
 	if(lpBase == NULL){
 		return FALSE;
 	}
@@ -43,27 +43,25 @@ BOOL create_iat_hook(LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, L
 	PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)lpBase;
 	PIMAGE_NT_HEADERS pNtHeader = (PIMAGE_NT_HEADERS32)((PBYTE)lpBase + pDosHeader->e_lfanew);; 
 	PIMAGE_IMPORT_DESCRIPTOR pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)((PBYTE)lpBase + pNtHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
+	PROC* procAddr = NULL;
 
 	while(pImportDesc->FirstThunk){
-	   PSTR pszModName = (PSTR)((PBYTE)lpBase + pImportDesc->Name);
+		PSTR pszModName = (PSTR)((PBYTE)lpBase + pImportDesc->Name);
 		if(stricmp(pszModName, pszModule) == 0){
-			break;
+			PIMAGE_THUNK_DATA pThunk = (PIMAGE_THUNK_DATA)((PBYTE)lpBase + pImportDesc->FirstThunk);
+			
+			while(pThunk->u1.Function){
+				PROC* ppfn = (PROC*)&(pThunk->u1.Function);
+				if(*ppfn == hookProc){
+					procAddr = ppfn;
+				    break;
+				}
+				pThunk++;
+			}
 		}
-	   pImportDesc++;
+		pImportDesc++;
 	}
-
-    PIMAGE_THUNK_DATA pThunk = (PIMAGE_THUNK_DATA)((PBYTE)lpBase + pImportDesc->FirstThunk);
-    
-    PROC* procAddr = NULL;
-    while(pThunk->u1.Function){
-        PROC *ppfn = (PROC *)&(pThunk->u1.Function);
-        if(*ppfn == hookProc){
-			procAddr = ppfn;
-            break;
-        }
-        pThunk++;
-    }
-    
+	
     //±£´æÐÂ¾Éº¯Êý 
 	PJP pjp = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(JP));
 	pjp->oldProc = hookProc;

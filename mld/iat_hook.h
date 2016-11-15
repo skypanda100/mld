@@ -16,7 +16,7 @@ static void enter_hook_lock(volatile LONG *);
 
 static void leave_hook_lock(volatile LONG *);
 
-BOOL create_iat_hook(LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
+BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
 
 BOOL enable_iat_hook();
 

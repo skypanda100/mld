@@ -129,23 +129,23 @@ BOOL init_detector(){
 	init_symbol();
 
 	//5
-	if (create_iat_hook("msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
+	if (create_iat_hook(NULL, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
 		return FALSE;
 	}
 
-	if (create_iat_hook("msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
+	if (create_iat_hook(NULL, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
 		return FALSE;
 	}
 
-	if (create_iat_hook("msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
+	if (create_iat_hook(NULL, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
 		return FALSE;
 	}
 	
-    if (create_iat_hook("kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
+    if (create_iat_hook(NULL, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
         return FALSE;
     }
     
-	if (create_iat_hook("kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
+	if (create_iat_hook(NULL, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
         return FALSE;
     }
     
