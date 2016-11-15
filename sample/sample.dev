@@ -10,7 +10,7 @@ PrivateResource=
 ResourceIncludes=
 MakeIncludes=
 Compiler=
-CppCompiler=
+CppCompiler=_@@_
 Linker=../exe/libmld.a_@@_
 IsCpp=1
 Icon=
@@ -27,7 +27,7 @@ CommandLine=
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=12
+CompilerSet=4
 CompilerSettings=0000000100000000001000000
 UnitCount=1
 

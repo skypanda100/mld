@@ -1,6 +1,6 @@
 #include "iat_hook.h"
 
-BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
+BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc){
 	if(lpBase == NULL){
 		lpBase = GetModuleHandleA(NULL);
 		if(lpBase == NULL){
@@ -46,8 +46,6 @@ BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPR
 		pImportDesc++;
 	}
 	
-	*ppOriginal = hookProc;
-
     return TRUE;
 }
 

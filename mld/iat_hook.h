@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <imagehlp.h>
 
-BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
+BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc);
 
 
 #endif

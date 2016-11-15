@@ -9,6 +9,7 @@ int main(int argc, char** argv) {
 	char *malloc_leak = (char *)malloc(555);
 
 	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
+
 	if(sampledll != NULL){
 		typedef void (*MEMORY_LEAK_TEST)();
 		MEMORY_LEAK_TEST memory_leak_func = (MEMORY_LEAK_TEST)GetProcAddress(sampledll,"HelloWorld");
