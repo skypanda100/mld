@@ -37,6 +37,10 @@ static int loop_context(any_t item, any_t data);
 
 static void uninit_context();
 
+static BOOL create_hooks_a(LPCSTR);
+
+static BOOL create_hooks_w(LPCWSTR);
+
 static void enter_malloc_lock(volatile LONG *);
 
 static void leave_malloc_lock(volatile LONG *);

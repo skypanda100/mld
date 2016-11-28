@@ -24,8 +24,7 @@ static void leave_hook_lock(volatile LONG *lock)
 	InterlockedExchange(lock, FALSE);
 }
 
-BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
-	HMODULE lpBase = GetModuleHandleA(pszTarget);
+static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
 	if(lpBase == NULL){
 		return FALSE;
 	}
@@ -63,18 +62,18 @@ BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FAR
 	}
 	
     //±£´æÐÂ¾Éº¯Êý 
-	PJP pjp = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(JP));
-	pjp->oldProc = hookProc;
-	pjp->newProc = detourProc;
-	pjp->procAddr = procAddr;
-
     int i = 0;
 	for(;i < PROC_LEN;i++){
 		if(JP_MEM[i] == NULL){
+			PJP pjp = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(JP));
+			pjp->oldProc = hookProc;
+			pjp->newProc = detourProc;
+			pjp->procAddr = procAddr;
 			JP_MEM[i] = pjp;
 			break;
 		}else{
-			if(JP_MEM[i]->oldProc == hookProc){
+			if(JP_MEM[i]->procAddr == procAddr){
+				JP_MEM[i]->oldProc = hookProc;
 				JP_MEM[i]->newProc = detourProc;
 				break;
 			}
@@ -87,6 +86,16 @@ BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FAR
 	*ppOriginal = hookProc;
 
     return TRUE;
+}
+
+BOOL create_iat_hook_a(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
+	HMODULE hModule = GetModuleHandleA(pszTarget);
+	return create_iat_hook(hModule, pszModule, pszProcName, detourProc, ppOriginal);
+}
+
+BOOL create_iat_hook_w(LPCWSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
+	HMODULE hModule = GetModuleHandleW(pszTarget);
+	return create_iat_hook(hModule, pszModule, pszProcName, detourProc, ppOriginal);
 }
 
 BOOL enable_iat_hook(){

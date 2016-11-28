@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <imagehlp.h>
 
-#define PROC_LEN	10
+#define PROC_LEN	256
 
 typedef struct Jump_Proc{
 	FARPROC		oldProc;
@@ -16,7 +16,11 @@ static void enter_hook_lock(volatile LONG *);
 
 static void leave_hook_lock(volatile LONG *);
 
-BOOL create_iat_hook(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
+static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
+
+BOOL create_iat_hook_a(LPCSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
+
+BOOL create_iat_hook_w(LPCWSTR pszTarget, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal);
 
 BOOL enable_iat_hook();
 
