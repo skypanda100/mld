@@ -14,6 +14,8 @@ static volatile LONG free_lock = FALSE;
 static volatile LONG HeapFree_lock = FALSE;
 static volatile LONG libA_lock = FALSE;
 static volatile LONG libW_lock = FALSE;
+static volatile LONG libExA_lock = FALSE;
+static volatile LONG libExW_lock = FALSE;
 
 /**
 * malloc
@@ -155,6 +157,28 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 }
 
 /**
+* LoadLibraryExA
+*/
+typedef HMODULE WINAPI(*LOADLIBRARYEXA)(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+LOADLIBRARYEXA fpLoadLibraryExA = NULL;
+WINBASEAPI HMODULE WINAPI DetourLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags){
+	enter_libExA_lock(&libExA_lock);
+
+	//loadlibrary 
+	HMODULE retHmodule = fpLoadLibraryExA(lpLibFileName, hFile, dwFlags);
+	disable_iat_hook();
+	if(retHmodule != NULL){
+		load_symbol(retHmodule);
+		create_hooks_a(lpLibFileName);
+	}
+	enable_iat_hook();
+
+	leave_libExA_lock(&libExA_lock);
+
+    return retHmodule; 
+}
+
+/**
 * LoadLibraryW
 */
 typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR); 
@@ -174,6 +198,28 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 	leave_libW_lock(&libW_lock);
 
     return retInstance; 
+}
+
+/**
+* LoadLibraryExW
+*/
+typedef HMODULE WINAPI(*LOADLIBRARYEXW)(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
+LOADLIBRARYEXW fpLoadLibraryExW = NULL;
+WINBASEAPI HMODULE WINAPI DetourLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags){
+	enter_libExW_lock(&libExW_lock);
+
+	//loadlibrary 
+	HMODULE retHmodule = fpLoadLibraryExW(lpLibFileName, hFile, dwFlags);
+	disable_iat_hook();
+	if(retHmodule != NULL){
+		load_symbol(retHmodule);
+		create_hooks_w(lpLibFileName);
+	}
+	enable_iat_hook();
+
+	leave_libExW_lock(&libExW_lock);
+
+    return retHmodule; 
 }
 
 /**
@@ -344,7 +390,15 @@ static BOOL create_hooks_a(LPCSTR lpFileName){
         return FALSE;
     }
     
+    if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
+        return FALSE;
+    }
+    
 	if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
+        return FALSE;
+    }
+    
+    if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
         return FALSE;
     }
     
@@ -379,11 +433,19 @@ static BOOL create_hooks_w(LPCWSTR lpFileName){
     if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
         return FALSE;
     }
-    
+
+    if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
+        return FALSE;
+    }
+	    
 	if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
         return FALSE;
     }
-    
+
+	if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
+        return FALSE;
+    }
+	    
     return TRUE;	
 }
 
@@ -503,7 +565,35 @@ static void enter_libA_lock(volatile LONG *lock)
 	}
 }
 
+static void enter_libExA_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
 static void enter_libW_lock(volatile LONG *lock)
+{
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+static void enter_libExW_lock(volatile LONG *lock)
 {
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
@@ -555,7 +645,17 @@ static void leave_libA_lock(volatile LONG *lock)
 	InterlockedExchange(lock, FALSE);
 }
 
+static void leave_libExA_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
 static void leave_libW_lock(volatile LONG *lock)
+{
+	InterlockedExchange(lock, FALSE);
+}
+
+static void leave_libExW_lock(volatile LONG *lock)
 {
 	InterlockedExchange(lock, FALSE);
 }

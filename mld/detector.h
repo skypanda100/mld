@@ -69,8 +69,16 @@ static void enter_libA_lock(volatile LONG *);
 
 static void leave_libA_lock(volatile LONG *);
 
+static void enter_libExA_lock(volatile LONG *);
+
+static void leave_libExA_lock(volatile LONG *);
+
 static void enter_libW_lock(volatile LONG *);
 
 static void leave_libW_lock(volatile LONG *);
+
+static void enter_libExW_lock(volatile LONG *);
+
+static void leave_libExW_lock(volatile LONG *);
 
 #endif
