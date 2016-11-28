@@ -20,14 +20,14 @@ LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
 OverrideOutputName=mld.dll
-HostApplication=D:\Dev c++\workspace\mld\exe\sample.exe
+HostApplication=E:\WorkSpace\DevCpp\mld\exe\sample.exe
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
 Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=6
+CompilerSet=12
 CompilerSettings=0000000100000000001000000
 UnitCount=14
 

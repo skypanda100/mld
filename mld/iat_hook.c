@@ -1,5 +1,6 @@
 #include "iat_hook.h"
 
+<<<<<<< HEAD
 static volatile LONG hook_lock = FALSE;
 
 static PJP JP_MEM[PROC_LEN] = {NULL};
@@ -25,8 +26,14 @@ static void leave_hook_lock(volatile LONG *lock)
 }
 
 static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc, LPVOID *ppOriginal){
+=======
+BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName, FARPROC detourProc){
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
 	if(lpBase == NULL){
-		return FALSE;
+		lpBase = GetModuleHandleA(NULL);
+		if(lpBase == NULL){
+			return FALSE;
+		}
 	}
 	
 	HMODULE hModule = GetModuleHandleA(pszModule);
@@ -42,7 +49,6 @@ static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName
 	PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)lpBase;
 	PIMAGE_NT_HEADERS pNtHeader = (PIMAGE_NT_HEADERS32)((PBYTE)lpBase + pDosHeader->e_lfanew);; 
 	PIMAGE_IMPORT_DESCRIPTOR pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)((PBYTE)lpBase + pNtHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
-	PROC* procAddr = NULL;
 
 	while(pImportDesc->FirstThunk){
 		PSTR pszModName = (PSTR)((PBYTE)lpBase + pImportDesc->Name);
@@ -52,7 +58,14 @@ static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName
 			while(pThunk->u1.Function){
 				PROC* ppfn = (PROC*)&(pThunk->u1.Function);
 				if(*ppfn == hookProc){
-					procAddr = ppfn;
+					DWORD oldProtect;
+					if(!VirtualProtect(ppfn, sizeof(PROC), PAGE_READWRITE, &oldProtect)){
+						return FALSE;
+					}
+					*ppfn = detourProc;
+					
+					VirtualProtect(ppfn, sizeof(PROC), oldProtect, &oldProtect);
+					FlushInstructionCache(GetCurrentProcess(), ppfn, sizeof(PROC));
 				    break;
 				}
 				pThunk++;
@@ -61,6 +74,7 @@ static BOOL create_iat_hook(HMODULE lpBase, LPCSTR pszModule, LPCSTR pszProcName
 		pImportDesc++;
 	}
 	
+<<<<<<< HEAD
     //±£´æÐÂ¾Éº¯Êý 
     int i = 0;
 	for(;i < PROC_LEN;i++){
@@ -151,3 +165,8 @@ BOOL disable_iat_hook(){
 
 	return TRUE;
 }
+=======
+    return TRUE;
+}
+
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604

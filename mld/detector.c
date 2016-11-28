@@ -16,16 +16,14 @@ static volatile LONG libW_lock = FALSE;
 * malloc
 */
 typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
-MALLOC fpMalloc = NULL;
+MALLOC fpMalloc = &malloc;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 	enter_malloc_lock(&malloc_lock);
 
 	void *retPtr = fpMalloc(size);
 
-	disable_iat_hook();
 	PCONTEXT pcontext = current_context();
 	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
 
 	leave_malloc_lock(&malloc_lock);
 
@@ -36,17 +34,15 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 * realloc
 */
 typedef _CRTIMP __cdecl void *(*REALLOC)(void *, size_t);
-REALLOC fpRealloc = NULL;
+REALLOC fpRealloc = &realloc;
 _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 	enter_realloc_lock(&realloc_lock);
 
 	void *retPtr = fpRealloc(ptr, size);
 
-	disable_iat_hook();
 	PCONTEXT pcontext = current_context();
 	del_context((DWORD)ptr);
 	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
 
 	leave_realloc_lock(&realloc_lock);
 
@@ -57,13 +53,11 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 * free
 */
 typedef _CRTIMP __cdecl void (*FREE)(void *);
-FREE fpFree = NULL;
+FREE fpFree = &free;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr){
 	enter_free_lock(&free_lock);
 
-	disable_iat_hook();
 	del_context((DWORD)ptr);
-	enable_iat_hook();
 
 	fpFree(ptr);
 	
@@ -74,18 +68,20 @@ _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr){
 * LoadLibraryA
 */
 typedef HINSTANCE (WINAPI *LOADLIBRARYA)(LPCSTR); 
-LOADLIBRARYA fpLoadLibraryA = NULL;
+LOADLIBRARYA fpLoadLibraryA = &LoadLibraryA;
 HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 	enter_libA_lock(&libA_lock);
 
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
 		load_symbol(retInstance);
+<<<<<<< HEAD
 		create_hooks_a(lpFileName);
+=======
+		hook_target(retInstance);
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
 	}
-	enable_iat_hook();
 
 	leave_libA_lock(&libA_lock);
 
@@ -96,18 +92,20 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 * LoadLibraryW
 */
 typedef HINSTANCE (WINAPI *LOADLIBRARYW)(LPCWSTR); 
-LOADLIBRARYW fpLoadLibraryW = NULL;
+LOADLIBRARYW fpLoadLibraryW = &LoadLibraryW;
 HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 	enter_libW_lock(&libW_lock);
 
 	//loadlibrary 
 	HINSTANCE retInstance = ((LOADLIBRARYW)fpLoadLibraryW)(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
 		load_symbol(retInstance);
+<<<<<<< HEAD
 		create_hooks_w(lpFileName);
+=======
+		hook_target(retInstance);
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
 	}
-	enable_iat_hook();
 
 	leave_libW_lock(&libW_lock);
 
@@ -131,12 +129,16 @@ BOOL init_detector(){
 	init_symbol();
 
 	//5
+<<<<<<< HEAD
 	if(create_hooks_a(NULL) != TRUE){
 		return FALSE;
 	}
     
     //6
     enable_iat_hook();
+=======
+	hook_target(NULL);
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
     
     return TRUE;
 }
@@ -146,7 +148,7 @@ BOOL init_detector(){
 */
 BOOL uninit_detector(){
 	//1
-	disable_iat_hook();
+//	disable_iat_hook();
 	
 	//2
 	detect();
@@ -251,6 +253,7 @@ static void	uninit_context(){
 }
 
 /**
+<<<<<<< HEAD
 * 创建所有挂钩 
 */
 static BOOL create_hooks_a(LPCSTR lpFileName){
@@ -299,6 +302,33 @@ static BOOL create_hooks_w(LPCWSTR lpFileName){
     }
     
     return TRUE;	
+=======
+* 设置挂钩 
+*/
+static BOOL hook_target(HMODULE lpBase){
+	if (create_iat_hook(lpBase, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc) != TRUE){
+		return FALSE;
+	}
+
+	if (create_iat_hook(lpBase, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc) != TRUE){
+		return FALSE;
+	}
+
+	if (create_iat_hook(lpBase, "msvcrt.dll", "free", (FARPROC)&DetourFree) != TRUE){
+		return FALSE;
+	}
+
+    if (create_iat_hook(lpBase, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA) != TRUE){
+        return FALSE;
+    }
+
+	if (create_iat_hook(lpBase, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW) != TRUE){
+        return FALSE;
+    }
+    
+//    return enable_iat_hook();
+	return TRUE;
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
 }
 
 /**

@@ -37,9 +37,13 @@ static int loop_context(any_t item, any_t data);
 
 static void uninit_context();
 
+<<<<<<< HEAD
 static BOOL create_hooks_a(LPCSTR);
 
 static BOOL create_hooks_w(LPCWSTR);
+=======
+static BOOL hook_target(HMODULE);
+>>>>>>> 323e65d098e3c903db3e59858c6a11c60241b604
 
 static void enter_malloc_lock(volatile LONG *);
 
