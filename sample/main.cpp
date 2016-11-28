@@ -22,5 +22,7 @@ int main(int argc, char** argv) {
 	MessageBox(0,"2\n","Hi",MB_ICONINFORMATION);
 	MessageBox(0,"3\n","Hi",MB_ICONINFORMATION);
 
+	void *heapAlloc_leak = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, 500);
+
 	return 0;
 }
