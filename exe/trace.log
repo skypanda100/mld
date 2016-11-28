@@ -1,7 +1,7 @@
 ******************************************************************
-*******                 2016-11-28 17:04:23                *******
+*******                 2016-11-28 17:32:22                *******
 ******************************************************************
------------------------------- memory leak (block 1): address = 0x005DECC8 size = 100 ------------------------------
+------------------------------ memory leak (block 1): address = 0x007CECC8 size = 100 ------------------------------
 [callstack]
 0x77830c52 : [unknown module] : [unknown file]  
 0x6f842f2a : [unknown module] : [unknown file]  
@@ -14,7 +14,15 @@
 0x778498d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 2): address = 0x00A24FC0 size = 500 ------------------------------
+------------------------------ memory leak (block 2): address = 0x025E2008 size = 555 ------------------------------
+[callstack]
+0x77830c52 : [unknown module] : [unknown file]  
+0x6f842f2a : [unknown module] : [unknown file]  
+0x00401536 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (9) : in function (main) 
+0x0040ce8f : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/atonexit.c (58) : in function (atexit) 
+
+
+------------------------------ memory leak (block 3): address = 0x00966FA8 size = 500 ------------------------------
 [callstack]
 0x77830c52 : [unknown module] : [unknown file]  
 0x6f842f2a : [unknown module] : [unknown file]  
@@ -25,7 +33,7 @@
 0x778498d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 3): address = 0x006AB7A8 size = 77 ------------------------------
+------------------------------ memory leak (block 4): address = 0x0089B7A8 size = 77 ------------------------------
 [callstack]
 0x77830c52 : [unknown module] : [unknown file]  
 0x6f842f2a : [unknown module] : [unknown file]  
@@ -35,14 +43,6 @@
 0x76fa336a : [unknown module] : [unknown file]  
 0x77849902 : [unknown module] : [unknown file]  
 0x778498d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 4): address = 0x02422008 size = 555 ------------------------------
-[callstack]
-0x77830c52 : [unknown module] : [unknown file]  
-0x6f842f2a : [unknown module] : [unknown file]  
-0x00401536 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (9) : in function (main) 
-0x0040ce8f : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/atonexit.c (58) : in function (atexit) 
 
 
 
