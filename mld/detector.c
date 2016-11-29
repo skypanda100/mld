@@ -31,10 +31,12 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 
 	void *retPtr = fpMalloc(size);
 
-	disable_iat_hook();
-	PCONTEXT pcontext = current_context();
-	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
+	if(retPtr != NULL){
+		disable_iat_hook();
+		PCONTEXT pcontext = current_context();
+		add_context((DWORD)retPtr, size, pcontext);
+		enable_iat_hook();
+	}
 
 	leave_malloc_lock(&malloc_lock);
 
@@ -51,11 +53,14 @@ WINBASEAPI LPVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwB
 
 	LPVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
 
-	disable_iat_hook();
-	PCONTEXT pcontext = current_context();
-	add_context((DWORD)retPtr, dwBytes, pcontext);
-	enable_iat_hook();
-	leave_HeapAlloc_lock(&HeapAlloc_lock);
+	if(retPtr != NULL){
+		disable_iat_hook();
+		PCONTEXT pcontext = current_context();
+		add_context((DWORD)retPtr, dwBytes, pcontext);
+		enable_iat_hook();
+	}
+
+	leave_HeapAlloc_lock(&HeapAlloc_lock);		
 
 	return retPtr;
 }
@@ -70,11 +75,13 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 
 	void *retPtr = fpRealloc(ptr, size);
 
-	disable_iat_hook();
-	PCONTEXT pcontext = current_context();
-	del_context((DWORD)ptr);
-	add_context((DWORD)retPtr, size, pcontext);
-	enable_iat_hook();
+	if(retPtr != NULL){
+		disable_iat_hook();
+		PCONTEXT pcontext = current_context();
+		del_context((DWORD)ptr);
+		add_context((DWORD)retPtr, size, pcontext);
+		enable_iat_hook();		
+	}
 
 	leave_realloc_lock(&realloc_lock);
 
@@ -91,11 +98,13 @@ WINBASEAPI LPVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID l
 
 	LPVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
 
-	disable_iat_hook();
-	PCONTEXT pcontext = current_context();
-	del_context((DWORD)lpMem);
-	add_context((DWORD)retPtr, dwBytes, pcontext);
-	enable_iat_hook();
+	if(retPtr != NULL){
+		disable_iat_hook();
+		PCONTEXT pcontext = current_context();
+		del_context((DWORD)lpMem);
+		add_context((DWORD)retPtr, dwBytes, pcontext);
+		enable_iat_hook();		
+	}
 
 	leave_HeapReAlloc_lock(&HeapReAlloc_lock);
 
@@ -148,12 +157,12 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
+		disable_iat_hook();
 		load_symbol(retInstance);
 		create_hooks_a(lpFileName);
+		enable_iat_hook();
 	}
-	enable_iat_hook();
 
 	leave_libA_lock(&libA_lock);
 
@@ -170,12 +179,12 @@ WINBASEAPI HMODULE WINAPI DetourLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFil
 
 	//loadlibrary 
 	HMODULE retHmodule = fpLoadLibraryExA(lpLibFileName, hFile, dwFlags);
-	disable_iat_hook();
 	if(retHmodule != NULL){
+		disable_iat_hook();
 		load_symbol(retHmodule);
 		create_hooks_a(lpLibFileName);
+		enable_iat_hook();
 	}
-	enable_iat_hook();
 
 	leave_libExA_lock(&libExA_lock);
 
@@ -192,12 +201,12 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 
 	//loadlibrary 
 	HINSTANCE retInstance = ((LOADLIBRARYW)fpLoadLibraryW)(lpFileName);
-	disable_iat_hook();
 	if(retInstance != NULL){
+		disable_iat_hook();
 		load_symbol(retInstance);
 		create_hooks_w(lpFileName);
+		enable_iat_hook();
 	}
-	enable_iat_hook();
 
 	leave_libW_lock(&libW_lock);
 
@@ -214,12 +223,12 @@ WINBASEAPI HMODULE WINAPI DetourLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFi
 
 	//loadlibrary 
 	HMODULE retHmodule = fpLoadLibraryExW(lpLibFileName, hFile, dwFlags);
-	disable_iat_hook();
 	if(retHmodule != NULL){
+		disable_iat_hook();
 		load_symbol(retHmodule);
 		create_hooks_w(lpLibFileName);
+		enable_iat_hook();
 	}
-	enable_iat_hook();
 
 	leave_libExW_lock(&libExW_lock);
 
