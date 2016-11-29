@@ -17,6 +17,10 @@ static volatile LONG libW_lock = FALSE;
 static volatile LONG libExA_lock = FALSE;
 static volatile LONG libExW_lock = FALSE;
 
+static char *CPPDLL[] = {
+	"libstdc++-6.dll",
+};
+
 /**
 * malloc
 */
@@ -242,7 +246,11 @@ BOOL init_detector(){
 	if(create_hooks_a(NULL) != TRUE){
 		return FALSE;
 	}
-    
+	int cpp_dll_len = sizeof(CPPDLL) / sizeof(char *);
+	for(int i = 0;i < cpp_dll_len;i++){
+		create_hooks_a(CPPDLL[i]);
+	}
+	
     //6
     enable_iat_hook();
     

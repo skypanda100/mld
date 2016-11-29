@@ -1,48 +1,48 @@
 ******************************************************************
-*******                 2016-11-28 17:32:22                *******
+*******                 2016-11-29 13:27:28                *******
 ******************************************************************
------------------------------- memory leak (block 1): address = 0x007CECC8 size = 100 ------------------------------
+------------------------------ memory leak (block 1): address = 0x01F4ECC8 size = 100 ------------------------------
 [callstack]
-0x77830c52 : [unknown module] : [unknown file]  
-0x6f842f2a : [unknown module] : [unknown file]  
+0x77e90c52 : [unknown module] : [unknown file]  
+0x6f842f58 : [unknown module] : [unknown file]  
 0x0047dd4a : D:\Dev c++\workspace\mld\exe\sample.exe : crtend.c  
 0x0047dce8 : D:\Dev c++\workspace\mld\exe\sample.exe : crtend.c  
 0x00401527 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (8) : in function (main) 
 0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
-0x76fa336a : [unknown module] : [unknown file]  
-0x77849902 : [unknown module] : [unknown file]  
-0x778498d5 : [unknown module] : [unknown file]  
+0x7588336a : [unknown module] : [unknown file]  
+0x77ea9902 : [unknown module] : [unknown file]  
+0x77ea98d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 2): address = 0x025E2008 size = 555 ------------------------------
+------------------------------ memory leak (block 2): address = 0x02902008 size = 555 ------------------------------
 [callstack]
-0x77830c52 : [unknown module] : [unknown file]  
-0x6f842f2a : [unknown module] : [unknown file]  
+0x77e90c52 : [unknown module] : [unknown file]  
+0x6f842f58 : [unknown module] : [unknown file]  
 0x00401536 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (9) : in function (main) 
 0x0040ce8f : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/atonexit.c (58) : in function (atexit) 
 
 
------------------------------- memory leak (block 3): address = 0x00966FA8 size = 500 ------------------------------
+------------------------------ memory leak (block 3): address = 0x0201B7A8 size = 77 ------------------------------
 [callstack]
-0x77830c52 : [unknown module] : [unknown file]  
-0x6f842f2a : [unknown module] : [unknown file]  
-0x00401615 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (25) : in function (main) 
-0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
-0x76fa336a : [unknown module] : [unknown file]  
-0x77849902 : [unknown module] : [unknown file]  
-0x778498d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 4): address = 0x0089B7A8 size = 77 ------------------------------
-[callstack]
-0x77830c52 : [unknown module] : [unknown file]  
-0x6f842f2a : [unknown module] : [unknown file]  
+0x77e90c52 : [unknown module] : [unknown file]  
+0x6f842f58 : [unknown module] : [unknown file]  
 0x664412f9 : D:\Dev c++\workspace\mld\exe\sampledll.dll : D:\Dev c++\workspace\mld\sampledll/dllmain.c (8) : in function (HelloWorld) 
 0x00401579 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (21) : in function (main) 
 0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
-0x76fa336a : [unknown module] : [unknown file]  
-0x77849902 : [unknown module] : [unknown file]  
-0x778498d5 : [unknown module] : [unknown file]  
+0x7588336a : [unknown module] : [unknown file]  
+0x77ea9902 : [unknown module] : [unknown file]  
+0x77ea98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 4): address = 0x00644B60 size = 500 ------------------------------
+[callstack]
+0x77e90c52 : [unknown module] : [unknown file]  
+0x6f842f58 : [unknown module] : [unknown file]  
+0x00401615 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (25) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x7588336a : [unknown module] : [unknown file]  
+0x77ea9902 : [unknown module] : [unknown file]  
+0x77ea98d5 : [unknown module] : [unknown file]  
 
 
 
