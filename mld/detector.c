@@ -19,6 +19,10 @@ static volatile LONG libExW_lock = FALSE;
 
 static char *CPPDLL[] = {
 	"libstdc++-6.dll",
+	"Qt5Cored.dll",
+	"Qt5Core.dll",
+	"libwinpthread-1.dll",
+	"libgcc_s_dw2-1.dll",
 };
 
 /**
@@ -258,6 +262,10 @@ BOOL init_detector(){
 	int cpp_dll_len = sizeof(CPPDLL) / sizeof(char *);
 	for(int i = 0;i < cpp_dll_len;i++){
 		create_hooks_a(CPPDLL[i]);
+//		HINSTANCE instance = LoadLibraryA(CPPDLL[i]);
+//		if(instance != NULL){
+//			load_symbol(instance);	
+//		}
 	}
 	
     //6
@@ -308,8 +316,7 @@ static void uninit_symbol(){
 * 初始化Context_Element
 */
 static void init_context(){
-	if(context_hashmap == NULL)
-	{
+	if(context_hashmap == NULL){
 		context_hashmap = hashmap_new();
 	}
 }
@@ -346,7 +353,6 @@ static void del_context(DWORD addr){
 	if(pce){
 		free(pce);
 	}
-	
 	hashmap_remove(context_hashmap, key_str);
 }
 
@@ -355,15 +361,17 @@ static void del_context(DWORD addr){
 */
 static int loop_context(any_t item, any_t data){
 	PCE pce = (PCE)data;
-	if(pce != NULL)
-	{
-		leak_count++;
-		leak_total += pce->size;
-		report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n%s\n\n"
-		, leak_count
-		, pce->addr
-		, pce->size
-		, pce->backtrace);
+	if(pce != NULL){
+		PBYTE P_USE = (PBYTE)((PBYTE)pce - 1);
+		if(*P_USE != 0){
+			leak_count++;
+			leak_total += pce->size;
+			report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n%s\n\n"
+			, leak_count
+			, pce->addr
+			, pce->size
+			, pce->backtrace);
+		}
 	}
 	return MAP_OK;
 }
@@ -469,7 +477,7 @@ static BOOL create_hooks_w(LPCWSTR lpFileName){
 /**
 * 检查内存泄漏状况 
 */
-static void detect(){
+static void detect(){	
 	hashmap_iterate(context_hashmap, &loop_context, NULL);
 
 	report("\n------------------------------ memory leak (count %d): total size = %ld ------------------------------\n"

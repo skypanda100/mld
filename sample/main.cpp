@@ -1,11 +1,21 @@
 #include "mld.h"
 #include <iostream>
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char** argv) {
 	MingwLeakDetector();
-
-	char *new_leak = new char[100];	
+	
+	int *new_leak = (int *)malloc(235);
+	BYTE *p_size = (BYTE *)new_leak - 8;
+	for(int i = 0;i < 8;i++){
+		printf("%d\t:\t%d\n", i, *(p_size + i));
+	}
+	free(new_leak);
+	printf("########################\n");
+	for(int i = 0;i < 8;i++){
+		printf("%d\t:\t%d\n", i, *(p_size + i));
+	}
 	char *malloc_leak = (char *)malloc(555);
 
 	HINSTANCE sampledll = LoadLibraryA("sampledll.dll");
