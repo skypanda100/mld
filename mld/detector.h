@@ -41,29 +41,23 @@ static BOOL create_hooks_a(LPCSTR);
 
 static BOOL create_hooks_w(LPCWSTR);
 
+static void load_dll();
+
 static void enter_malloc_lock(volatile LONG *);
 
 static void leave_malloc_lock(volatile LONG *);
 
-static void enter_HeapAlloc_lock(volatile LONG *);
+static void enter_calloc_lock(volatile LONG *);
 
-static void leave_HeapAlloc_lock(volatile LONG *);
+static void leave_calloc_lock(volatile LONG *);
 
 static void enter_realloc_lock(volatile LONG *);
 
 static void leave_realloc_lock(volatile LONG *);
 
-static void enter_HeapReAlloc_lock(volatile LONG *);
-
-static void leave_HeapReAlloc_lock(volatile LONG *);
-
 static void enter_free_lock(volatile LONG *);
 
 static void leave_free_lock(volatile LONG *);
-
-static void enter_HeapFree_lock(volatile LONG *);
-
-static void leave_HeapFree_lock(volatile LONG *);
 
 static void enter_libA_lock(volatile LONG *);
 

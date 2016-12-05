@@ -7,24 +7,19 @@ static int leak_count = 0;
 static ULONG leak_total = 0;
 
 static volatile LONG malloc_lock = FALSE;
-static volatile LONG HeapAlloc_lock = FALSE;
+static volatile LONG calloc_lock = FALSE;
 static volatile LONG realloc_lock = FALSE;
-static volatile LONG HeapReAlloc_lock = FALSE;
 static volatile LONG free_lock = FALSE;
-static volatile LONG HeapFree_lock = FALSE;
 static volatile LONG libA_lock = FALSE;
 static volatile LONG libW_lock = FALSE;
 static volatile LONG libExA_lock = FALSE;
 static volatile LONG libExW_lock = FALSE;
 
-static char *CPPDLL[] = {
-	"libstdc++-6.dll",
-	"Qt5Cored.dll",
-	"Qt5Core.dll",
-	"libwinpthread-1.dll",
-	"libgcc_s_dw2-1.dll",
+static char *EXCEPT_DLL[] = {
+	"mld.dll",
+	"kernel32.dll",
+	"msvcrt.dll",
 };
-
 /**
 * malloc
 */
@@ -48,23 +43,23 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 }
 
 /**
-* HeapAlloc
+* calloc
 */
-typedef LPVOID WINAPI(*HEAPALLOC)(HANDLE hHeap, DWORD dwFlags, SIZE_T dwBytes);
-HEAPALLOC fpHeapAlloc = NULL;
-WINBASEAPI LPVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwBytes){
-	enter_HeapAlloc_lock(&HeapAlloc_lock);
+typedef __cdecl void *(*CALLOC)(size_t _NumOfElements,size_t _SizeOfElements);
+CALLOC fpCalloc = NULL;
+__cdecl void *DetourCalloc(size_t _NumOfElements,size_t _SizeOfElements){
+	enter_calloc_lock(&calloc_lock);
 
-	LPVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
+	void *retPtr = fpCalloc(_NumOfElements, _SizeOfElements);
 
 	if(retPtr != NULL){
 		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
-		add_context((DWORD)retPtr, dwBytes, pcontext);
+		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements, pcontext);
 		enable_iat_hook();
 	}
 
-	leave_HeapAlloc_lock(&HeapAlloc_lock);		
+	leave_calloc_lock(&calloc_lock);
 
 	return retPtr;
 }
@@ -93,29 +88,6 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 }
 
 /**
-* HeapReAlloc
-*/
-typedef LPVOID WINAPI(*HEAPREALLOC)(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem, SIZE_T dwBytes);
-HEAPREALLOC fpHeapReAlloc = NULL;
-WINBASEAPI LPVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem, SIZE_T dwBytes){
-	enter_HeapReAlloc_lock(&HeapReAlloc_lock);
-
-	LPVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
-
-	if(retPtr != NULL){
-		disable_iat_hook();
-		PCONTEXT pcontext = current_context();
-		del_context((DWORD)lpMem);
-		add_context((DWORD)retPtr, dwBytes, pcontext);
-		enable_iat_hook();		
-	}
-
-	leave_HeapReAlloc_lock(&HeapReAlloc_lock);
-
-	return retPtr;
-}
-
-/**
 * free
 */
 typedef _CRTIMP __cdecl void (*FREE)(void *);
@@ -130,25 +102,6 @@ _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr){
 	fpFree(ptr);
 	
 	leave_free_lock(&free_lock);
-}
-
-/**
-* HeapFree
-*/
-typedef WINBOOL WINAPI(*HEAPFREE)(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
-HEAPFREE fpHeapFree = NULL;
-WINBASEAPI WINBOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem){
-	enter_HeapFree_lock(&HeapFree_lock);
-
-	disable_iat_hook();
-	del_context((DWORD)lpMem);
-	enable_iat_hook();
-
-	WINBOOL retF = fpHeapFree(hHeap, dwFlags, lpMem);
-	
-	leave_HeapFree_lock(&HeapFree_lock);
-	
-	return retF;
 }
 
 /**
@@ -259,14 +212,8 @@ BOOL init_detector(){
 	if(create_hooks_a(NULL) != TRUE){
 		return FALSE;
 	}
-	int cpp_dll_len = sizeof(CPPDLL) / sizeof(char *);
-	for(int i = 0;i < cpp_dll_len;i++){
-		create_hooks_a(CPPDLL[i]);
-//		HINSTANCE instance = LoadLibraryA(CPPDLL[i]);
-//		if(instance != NULL){
-//			load_symbol(instance);	
-//		}
-	}
+
+	load_dll();
 	
     //6
     enable_iat_hook();
@@ -387,43 +334,35 @@ static void	uninit_context(){
 * 创建所有挂钩 
 */
 static BOOL create_hooks_a(LPCSTR lpFileName){
-	if (create_iat_hook_a(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
+	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
 		return FALSE;
 	}
 
-	if (create_iat_hook_a(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
+	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "calloc", (FARPROC)&DetourCalloc, (LPVOID)&fpCalloc) != TRUE){
 		return FALSE;
 	}
-
-	if (create_iat_hook_a(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
-		return FALSE;
-	}
-
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "HeapAlloc", (FARPROC)&DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "HeapReAlloc", (FARPROC)&DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "HeapFree", (FARPROC)&DetourHeapFree, (LPVOID)&fpHeapFree) != TRUE){
-        return FALSE;
-    }
 	
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
+	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
+		return FALSE;
+	}
+
+	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
+		return FALSE;
+	}
+	
+    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
         return FALSE;
     }
     
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
+    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
         return FALSE;
     }
     
-	if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
+	if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
         return FALSE;
     }
     
-    if (create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
+    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
         return FALSE;
     }
     
@@ -431,49 +370,71 @@ static BOOL create_hooks_a(LPCSTR lpFileName){
 }
 
 static BOOL create_hooks_w(LPCWSTR lpFileName){
-	if (create_iat_hook_w(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
+	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
 		return FALSE;
 	}
 
-	if (create_iat_hook_w(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
-		return FALSE;
-	}
-
-	if (create_iat_hook_w(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
+	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "calloc", (FARPROC)&DetourCalloc, (LPVOID)&fpCalloc) != TRUE){
 		return FALSE;
 	}
 	
-	if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapAlloc", (FARPROC)&DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != TRUE){
+	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
+		return FALSE;
+	}
+
+	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
+		return FALSE;
+	}
+
+    if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
         return FALSE;
     }
 
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapReAlloc", (FARPROC)&DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapFree", (FARPROC)&DetourHeapFree, (LPVOID)&fpHeapFree) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
+    if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
         return FALSE;
     }
 	    
-	if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
+	if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
         return FALSE;
     }
 
-	if (create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
+	if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
         return FALSE;
     }
-	    
+
     return TRUE;	
 }
 
+/**
+* 加载exe中的动态库 
+*/
+static void load_dll(){
+	int except_dll_len = sizeof(EXCEPT_DLL) / sizeof(char *);
+	
+	HMODULE lpBase = GetModuleHandleA(NULL);
+	PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)lpBase;
+	PIMAGE_NT_HEADERS pNtHeader = (PIMAGE_NT_HEADERS32)((PBYTE)lpBase + pDosHeader->e_lfanew);; 
+	PIMAGE_IMPORT_DESCRIPTOR pImportDesc = (PIMAGE_IMPORT_DESCRIPTOR)((PBYTE)lpBase + pNtHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress);
+	PROC* procAddr = NULL;
+
+	while(pImportDesc->FirstThunk){
+		PSTR pszModName = (PSTR)((PBYTE)lpBase + pImportDesc->Name);
+		int i = 0;
+		for(;i < except_dll_len;i++){
+			if(stricmp(pszModName, EXCEPT_DLL[i]) == 0){
+				break;
+			}
+		}
+		if(i == except_dll_len){
+			create_hooks_a(pszModName);
+			HINSTANCE instance = LoadLibraryA(pszModName);
+			if(instance != NULL){
+				load_symbol(instance);
+			}
+		}
+		pImportDesc++;
+	}
+}
 /**
 * 检查内存泄漏状况 
 */
@@ -491,8 +452,7 @@ static void detect(){
 /**
 * 上锁 
 */
-static void enter_malloc_lock(volatile LONG *lock)
-{
+static void enter_malloc_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -505,8 +465,7 @@ static void enter_malloc_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_HeapAlloc_lock(volatile LONG *lock)
-{
+static void enter_calloc_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -519,8 +478,7 @@ static void enter_HeapAlloc_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_realloc_lock(volatile LONG *lock)
-{
+static void enter_realloc_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -533,8 +491,7 @@ static void enter_realloc_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_HeapReAlloc_lock(volatile LONG *lock)
-{
+static void enter_free_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -547,8 +504,7 @@ static void enter_HeapReAlloc_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_free_lock(volatile LONG *lock)
-{
+static void enter_libA_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -561,9 +517,7 @@ static void enter_free_lock(volatile LONG *lock)
 	}
 }
 
-
-static void enter_HeapFree_lock(volatile LONG *lock)
-{
+static void enter_libExA_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -576,8 +530,7 @@ static void enter_HeapFree_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_libA_lock(volatile LONG *lock)
-{
+static void enter_libW_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -590,36 +543,7 @@ static void enter_libA_lock(volatile LONG *lock)
 	}
 }
 
-static void enter_libExA_lock(volatile LONG *lock)
-{
-	size_t c = 0;
-	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
-	{
-		if(c < 20){
-			Sleep(0);
-		}else{
-			Sleep(1);
-		}
-		c++;
-	}
-}
-
-static void enter_libW_lock(volatile LONG *lock)
-{
-	size_t c = 0;
-	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
-	{
-		if(c < 20){
-			Sleep(0);
-		}else{
-			Sleep(1);
-		}
-		c++;
-	}
-}
-
-static void enter_libExW_lock(volatile LONG *lock)
-{
+static void enter_libExW_lock(volatile LONG *lock){
 	size_t c = 0;
 	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
 	{
@@ -635,52 +559,34 @@ static void enter_libExW_lock(volatile LONG *lock)
 /**
 * 解锁 
 */
-static void leave_malloc_lock(volatile LONG *lock)
-{
+static void leave_malloc_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_HeapAlloc_lock(volatile LONG *lock)
-{
+static void leave_calloc_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_realloc_lock(volatile LONG *lock)
-{
+static void leave_realloc_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_HeapReAlloc_lock(volatile LONG *lock)
-{
+static void leave_free_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_free_lock(volatile LONG *lock)
-{
+static void leave_libA_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_HeapFree_lock(volatile LONG *lock)
-{
+static void leave_libExA_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_libA_lock(volatile LONG *lock)
-{
+static void leave_libW_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
-static void leave_libExA_lock(volatile LONG *lock)
-{
-	InterlockedExchange(lock, FALSE);
-}
-
-static void leave_libW_lock(volatile LONG *lock)
-{
-	InterlockedExchange(lock, FALSE);
-}
-
-static void leave_libExW_lock(volatile LONG *lock)
-{
+static void leave_libExW_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
