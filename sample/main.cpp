@@ -3,7 +3,7 @@
 #include "dll.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-DWORD addr;
+int *new_leak = (int *)malloc(700);
 void test(){
 	int *new_leak = new int[100];
 //	addr = (DWORD)new_leak;
@@ -18,9 +18,7 @@ void test(){
 //	}
 }
 
-int main(int argc, char** argv) {
-	MingwLeakDetector();
-	
+int main(int argc, char** argv) {	
 	test();
 	
 	char *malloc_leak = (char *)malloc(555);

@@ -1,5 +1,19 @@
 #include "mld.h"
-#include <QCoreApplication>
+#include <QApplication>
+#include "mainwindow.h"
+
+class MemLeak{
+public:
+    MemLeak(){
+        m_i = new int[100];
+    }
+    ~MemLeak(){
+
+    }
+public:
+    int *m_i;
+};
+MemLeak *ml = new MemLeak;
 
 void test(){
     char *new_leak = new char[499];
@@ -10,11 +24,11 @@ void test(){
 
 int main(int argc, char *argv[])
 {
-    MingwLeakDetector();
-
     test();
 
-    QCoreApplication a(argc, argv);
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
     return a.exec();
 }

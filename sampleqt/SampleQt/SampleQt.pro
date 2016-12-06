@@ -1,15 +1,17 @@
-QT += core
-QT -= gui
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 DESTDIR = ./
 
 TARGET = SampleQt
-CONFIG += console
-CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    mainwindow.cpp
+
+HEADERS += \
+    mainwindow.h
 
 win32: LIBS += -L$$PWD/../../exe/ -lmld
 
@@ -18,3 +20,5 @@ DEPENDPATH += $$PWD/../../mld
 
 win32:!win32-g++: PRE_TARGETDEPS += $$PWD/../../exe/mld.lib
 else:win32-g++: PRE_TARGETDEPS += $$PWD/../../exe/libmld.a
+
+

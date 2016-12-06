@@ -7,10 +7,20 @@
 extern "C"{
 #endif
 
-void MingwLeakDetector();
+void mld_begin();
+
+void mld_end();
 
 #ifdef __cplusplus
 }
 #endif
+
+__attribute__((constructor(101))) void MLD_BEGIN(){
+	mld_begin();
+}
+
+__attribute__((destructor(101))) void MLD_END(){
+	mld_end();
+}
 
 #endif

@@ -22,7 +22,7 @@ static char *EXCEPT_HOOK_DLL[] = {
 	"mld.dll",
 	"kernel32.dll",
 	"msvcrt.dll",
-	"user32.dll",
+//	"user32.dll",
 };
 
 static char *EXCEPT_SYM_DLL[] = {
@@ -453,7 +453,7 @@ static BOOL create_hooks_a(LPCSTR lpFileName){
         return FALSE;
     }
     
-    return TRUE;	
+    return TRUE;
 }
 
 static BOOL create_hooks_w(LPCWSTR lpFileName){
@@ -501,7 +501,7 @@ static BOOL create_hooks_w(LPCWSTR lpFileName){
         return FALSE;
     }
 
-    return TRUE;	
+    return TRUE;
 }
 
 /**
@@ -558,6 +558,7 @@ static void load_dll(){
 		}
 	}
 }
+
 /**
 * ¼ì²éÄÚ´æÐ¹Â©×´¿ö 
 */

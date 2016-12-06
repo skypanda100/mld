@@ -178,18 +178,23 @@ Makefile: ../sampleqt/SampleQt/SampleQt.pro ../../../../QT/install_mingw/5.5/min
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/resolve_config.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/exclusive_builds_post.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/default_post.prf \
-		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/console.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/rtti.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/precompile_header.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/warn_on.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/qt.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/resources.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/moc.prf \
+		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/opengl.prf \
+		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/uic.prf \
+		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/windows.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/testcase_targets.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/exceptions.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/yacc.prf \
 		../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/lex.prf \
 		../sampleqt/SampleQt/SampleQt.pro \
+		D:/QT/install_mingw/5.5/mingw492_32/lib/qtmaind.prl \
+		D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Widgets.prl \
+		D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Gui.prl \
 		D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Core.prl
 	$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile ..\sampleqt\SampleQt\SampleQt.pro
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/spec_pre.prf:
@@ -311,18 +316,23 @@ Makefile: ../sampleqt/SampleQt/SampleQt.pro ../../../../QT/install_mingw/5.5/min
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/resolve_config.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/exclusive_builds_post.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/default_post.prf:
-../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/console.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/rtti.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/precompile_header.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/warn_on.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/qt.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/resources.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/moc.prf:
+../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/opengl.prf:
+../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/uic.prf:
+../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/win32/windows.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/testcase_targets.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/exceptions.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/yacc.prf:
 ../../../../QT/install_mingw/5.5/mingw492_32/mkspecs/features/lex.prf:
 ../sampleqt/SampleQt/SampleQt.pro:
+D:/QT/install_mingw/5.5/mingw492_32/lib/qtmaind.prl:
+D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Widgets.prl:
+D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Gui.prl:
 D:/QT/install_mingw/5.5/mingw492_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile ..\sampleqt\SampleQt\SampleQt.pro
