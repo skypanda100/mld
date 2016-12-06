@@ -323,6 +323,7 @@ BOOL uninit_detector(){
 * 初始化符号处理器 
 */
 static void init_symbol(){
+    SymSetOptions(SYMOPT_LOAD_LINES | SYMOPT_UNDNAME);
 	if(SymInitialize(GetCurrentProcess(), 0, false)){
 		load_symbol(NULL);		
 	}
