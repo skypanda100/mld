@@ -1,307 +1,304 @@
 ******************************************************************
-*******                 2016-12-05 17:50:48                *******
+*******                 2016-12-06 10:53:35                *******
 ******************************************************************
-1 dll:Qt5Cored.dll
-1 dll:libgcc_s_dw2-1.dll
-1 dll:libstdc++-6.dll
-2 dll:Qt5Cored.dll
-2 dll:libgcc_s_dw2-1.dll
-2 dll:libstdc++-6.dll
------------------------------- memory leak (block 1): address = 0x098F5540 size = 32 ------------------------------
+------------------------------ memory leak (block 1): address = 0x07D34A88 size = 501 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x009c30b6 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QListData11detach_growEPii  
-0x00bca3fd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c0c52f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c0c887 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c1302f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00af2c31 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QObjectPrivate16setParent_helperEP7QObject  
-0x00af2973 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QObject9setParentEPS_  
-0x00af0dc1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QObjectC2ER14QObjectPrivatePS_  
-0x00acc300 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN24QAbstractEventDispatcherC1ER31QAbstractEventDispatcherPrivateP7QObject  
-0x00b1cdec : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN21QEventDispatcherWin32C2EP7QObject  
-0x00ace099 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivate21createEventDispatcherEv  
-0x00acea05 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
-0x00ace8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
-0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 2): address = 0x0003EAE8 size = 500 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a728f : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znaj (No symbols) 
-0x00401631 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (6) : in function (_Z4testv) 
-0x00401697 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 3): address = 0x10758248 size = 32 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x00c5e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x0098aec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
-0x00bc2214 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c30bb0 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c31223 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c12ba1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00accce1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop13processEventsE6QFlagsINS_17ProcessEventsFlagEE  
-0x00acce73 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE  
-0x00acf3d5 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4execEv  
-0x004016bf : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (19) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 4): address = 0x006AEC48 size = 499 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x004a728f : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znaj (No symbols) 
-0x00031dc0 : [unknown module] : [unknown file] (No symbols) 
-0x00031ff8 : [unknown module] : [unknown file] (No symbols) 
-
-
------------------------------- memory leak (block 5): address = 0x007502E0 size = 501 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a728f : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znaj (No symbols) 
 0x00401648 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (7) : in function (_Z4testv) 
 0x00401697 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 6): address = 0x0C504398 size = 8 ------------------------------
+------------------------------ memory leak (block 2): address = 0x0B91BA98 size = 136 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00a88acd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
-
-
------------------------------- memory leak (block 7): address = 0x081993A0 size = 64 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00989592 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QThreadStorageData6finishEPPv  
-0x00c6caef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00986d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv  
-0x00c79fa8 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00acddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj  
-0x00ace882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x0074cdcd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN21QEventDispatcherWin32C2EP7QObject  
+0x006fe099 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivate21createEventDispatcherEv  
+0x006fea05 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 8): address = 0x0C452750 size = 136 ------------------------------
+------------------------------ memory leak (block 3): address = 0x1071C060 size = 36 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00b1cdcd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN21QEventDispatcherWin32C2EP7QObject  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00acea05 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv (No symbols) 
-0x00ace8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci (No symbols) 
-0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 9): address = 0x099E63A0 size = 100 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x00c5e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x0098aec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
-0x00bc311c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x009e6601 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QString11reallocDataEjb  
-0x00c137de : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00c136ef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00a470c0 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN4QDir20fromNativeSeparatorsERK7QString  
-0x00bc7987 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00a5134e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QFileInfoC2ERK7QString  
-0x00ad0ef1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication19applicationFilePathEv  
-0x00ad0d3b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv  
-0x00a9ae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE  
-0x00a6a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE  
-0x00a89e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
-0x00ace9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
-0x00ace8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
-0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 10): address = 0x10ED8270 size = 36 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x009c177a : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QHashData13detach_helperEPFvPNS_4NodeEPvEPFvS1_Eii  
-0x00c116e5 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00accefb : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE  
-0x00acf3d5 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4execEv  
+0x005f177a : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QHashData13detach_helperEPFvPNS_4NodeEPvEPFvS1_Eii  
+0x00820ea3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00820ef4 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0082123e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0082101b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0074d2c7 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN21QEventDispatcherWin3213processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE  
+0x006fcc68 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop13processEventsE6QFlagsINS_17ProcessEventsFlagEE  
+0x006fcefb : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE  
+0x006ff3d5 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4execEv  
 0x004016bf : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (19) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 11): address = 0x0837E858 size = 112 ------------------------------
+------------------------------ memory leak (block 4): address = 0x07CEEA90 size = 8 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00986a5d : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QSemaphore10tryAcquireEii  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00986d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv (No symbols) 
-0x00acddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj (No symbols) 
-0x00ace882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci (No symbols) 
+0x005b95cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QThreadStorageData6finishEPPv  
+0x0089caef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x005b6d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv  
+0x008a9fa8 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006fddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj  
+0x006fe882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 12): address = 0x006AEA20 size = 4 ------------------------------
+------------------------------ memory leak (block 5): address = 0x07D8D598 size = 500 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x00bbb881 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00ace882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci (No symbols) 
+0x00401631 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (6) : in function (_Z4testv) 
+0x00401697 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 6): address = 0x0FFA3650 size = 8 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x006b8acd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
+0x006fe08a : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivate21createEventDispatcherEv  
+0x006baa5b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
+0x006fea05 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 13): address = 0x081DC4D8 size = 104 ------------------------------
+------------------------------ memory leak (block 7): address = 0x0B5DE7C0 size = 100 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00ace865 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
-0x00031dc0 : [unknown module] : [unknown file]  
-0x00031ff8 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 14): address = 0x006AEBF0 size = 4 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x00c6569b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00ad0f12 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication19applicationFilePathEv (No symbols) 
-0x00ad0d3b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv (No symbols) 
-0x00a9ae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE (No symbols) 
-0x00a6a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE (No symbols) 
-0x00a89e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString (No symbols) 
-0x00ace9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv (No symbols) 
-0x00ace8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci (No symbols) 
+0x0088e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x005baec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
+0x007f311c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00616601 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QString11reallocDataEjb  
+0x008437de : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x008436ef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006770c0 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN4QDir20fromNativeSeparatorsERK7QString  
+0x007f7987 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0068134e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QFileInfoC2ERK7QString  
+0x00700ef1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication19applicationFilePathEv  
+0x00700d3b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv  
+0x006cae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE  
+0x0069a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE  
+0x006b9e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
+0x006fe9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 15): address = 0x099F6368 size = 74 ------------------------------
+------------------------------ memory leak (block 8): address = 0x10280048 size = 32 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x00c5e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x0098aec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
-0x00bc311c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x009e6146 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QStringC2EPK5QChari  
-0x009eb209 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZNK7QString4leftEi  
-0x00a85d0c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QFileSystemWatcher16directoryChangedERK7QStringNS_14QPrivateSignalE  
-0x00a51b4f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZNK9QFileInfo4pathEv  
-0x00ad0d5e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv  
-0x00a9ae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE  
-0x00a6a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE  
-0x00a89e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
-0x00ace9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
-0x00ace8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x005f30b6 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QListData11detach_growEPii  
+0x007fa3fd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0083c52f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0083c887 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0084302f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00722c31 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QObjectPrivate16setParent_helperEP7QObject  
+0x00722973 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QObject9setParentEPS_  
+0x00720dc1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QObjectC2ER14QObjectPrivatePS_  
+0x006fc300 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN24QAbstractEventDispatcherC1ER31QAbstractEventDispatcherPrivateP7QObject  
+0x0074cdec : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN21QEventDispatcherWin32C2EP7QObject  
+0x006fe099 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivate21createEventDispatcherEv  
+0x006fea05 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 16): address = 0x008A2D48 size = 502 ------------------------------
+------------------------------ memory leak (block 9): address = 0x08287618 size = 112 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a728f : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znaj (No symbols) 
+0x005b6a5d : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QSemaphore10tryAcquireEii  
+0x005b95dc : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QThreadStorageData6finishEPPv  
+0x005b6d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv  
+0x006fddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj  
+0x006fe882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 10): address = 0x081DCF90 size = 104 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x006fe865 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 11): address = 0x07CEEA40 size = 4 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x007eb881 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006fdc10 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : Z24qGlobalPostedEventsCountv  
+0x006fe882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 12): address = 0x004D2D48 size = 502 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
 0x0040166c : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (8) : in function (_Z4testv) 
 0x00401697 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
------------------------------- memory leak (block 17): address = 0x10BE6988 size = 80 ------------------------------
+------------------------------ memory leak (block 13): address = 0x07CEEC20 size = 4 ------------------------------
 [callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
+0x77860c52 : [unknown module] : [unknown file]  
 0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x00bb8a37 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00ad1dd7 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18setEventDispatcherEP24QAbstractEventDispatcher  
-0x00acf38e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4execEv  
-0x00ace8c8 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
-0x004016bf : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (19) : in function (main) 
-0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
-
-
------------------------------- memory leak (block 18): address = 0x006AEA70 size = 8 ------------------------------
-[callstack]
-0x77d90c52 : [unknown module] : [unknown file]  
-0x6f842fb8 : [unknown module] : [unknown file]  
-0x004a72da : D:\QT\install_mingw\5.5\mingw492_32\bin\libstdc++-6.dll : Znwj (No symbols) 
-0x009895cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QThreadStorageData6finishEPPv  
-0x00c6caef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00986d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv  
-0x00c79fa8 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
-0x00acddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj  
-0x00ace882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x0089569b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x0068135e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN9QFileInfoC2ERK7QString  
+0x00700f12 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication19applicationFilePathEv  
+0x00700d3b : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv  
+0x006cae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE  
+0x0069a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE  
+0x006b9e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
+0x006fe9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
 0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
 0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
-0x75a8336a : [unknown module] : [unknown file]  
-0x77da9902 : [unknown module] : [unknown file]  
-0x77da98d5 : [unknown module] : [unknown file]  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 14): address = 0x094FF1E8 size = 74 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x0088e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x005baec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
+0x007f311c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00616146 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QStringC2EPK5QChari  
+0x0061b209 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZNK7QString4leftEi  
+0x006b5d0c : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QFileSystemWatcher16directoryChangedERK7QStringNS_14QPrivateSignalE  
+0x00681b4f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZNK9QFileInfo4pathEv  
+0x00700d5e : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication18applicationDirPathEv  
+0x006cae54 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths17standardLocationsENS_16StandardLocationE  
+0x0069a53f : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN14QStandardPaths6locateENS_16StandardLocationERK7QString6QFlagsINS_12LocateOptionEE  
+0x006b9e35 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QLoggingCategory14setFilterRulesERK7QString  
+0x006fe9cd : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4initEv  
+0x006fe8b2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 15): address = 0x09414A58 size = 80 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x007e8a37 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006fcae3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoopC1EP7QObject  
+0x05e21dc0 : [unknown module] : [unknown file]  
+0x05e21ff8 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 16): address = 0x0826A4F8 size = 64 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x005b9592 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN18QThreadStorageData6finishEPPv  
+0x0089caef : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x005b6d38 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN7QThread13currentThreadEv  
+0x008a9fa8 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006fddf2 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN23QCoreApplicationPrivateC2ERiPPcj  
+0x006fe882 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplicationC2ERiPPci  
+0x004016b5 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 17): address = 0x07CEEC48 size = 499 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x00401622 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (5) : in function (_Z4testv) 
+0x00401697 : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (17) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 18): address = 0x105161F8 size = 32 ------------------------------
+[callstack]
+0x77860c52 : [unknown module] : [unknown file]  
+0x6f842fb8 : [unknown module] : [unknown file]  
+0x0088e7d3 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x005baec1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QArrayData8allocateEjjj6QFlagsINS_16AllocationOptionEE  
+0x007f2214 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00860bb0 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00861223 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x00842ba1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QEventTransition11qt_metacallEN11QMetaObject4CallEiPPv  
+0x006fcce1 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop13processEventsE6QFlagsINS_17ProcessEventsFlagEE  
+0x006fce73 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN10QEventLoop4execE6QFlagsINS_17ProcessEventsFlagEE  
+0x006ff3d5 : D:\QT\install_mingw\5.5\mingw492_32\bin\Qt5Cored.dll : ZN16QCoreApplication4execEv  
+0x004016bf : D:\Dev c++\workspace\mld\exe\SampleQt.exe : D:\Dev c++\workspace\mld\exe/../sampleqt/SampleQt/main.cpp (19) : in function (main) 
+0x004013de : D:\Dev c++\workspace\mld\exe\SampleQt.exe : crtexe.c  
+0x75f1336a : [unknown module] : [unknown file]  
+0x77879902 : [unknown module] : [unknown file]  
+0x778798d5 : [unknown module] : [unknown file]  
 
 
 

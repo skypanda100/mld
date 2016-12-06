@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
 	MingwLeakDetector();
 	
 	test();
-	printf("%d\n", IsBadHugeWritePtr((LPVOID)addr, 400));
 	
 	char *malloc_leak = (char *)malloc(555);
 

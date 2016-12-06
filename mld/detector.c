@@ -18,10 +18,15 @@ static volatile LONG libW_lock = FALSE;
 static volatile LONG libExA_lock = FALSE;
 static volatile LONG libExW_lock = FALSE;
 
-static char *EXCEPT_DLL[] = {
+static char *EXCEPT_HOOK_DLL[] = {
 	"mld.dll",
 	"kernel32.dll",
 	"msvcrt.dll",
+	"user32.dll",
+};
+
+static char *EXCEPT_SYM_DLL[] = {
+	"libstdc++-6.dll",
 };
 
 static char *LOADED_DLL[LOADED_DLL_LEN] = {NULL};
@@ -288,7 +293,7 @@ BOOL init_detector(){
     //6
     enable_iat_hook();
     
-    return TRUE;
+	return TRUE;
 }
 
 /**
@@ -319,7 +324,7 @@ BOOL uninit_detector(){
 */
 static void init_symbol(){
 	if(SymInitialize(GetCurrentProcess(), 0, false)){
-		load_symbol(NULL);
+		load_symbol(NULL);		
 	}
 }
 
@@ -503,7 +508,8 @@ static BOOL create_hooks_w(LPCWSTR lpFileName){
 * 加载exe中的动态库 
 */
 static void load_dll(){
-	int except_dll_len = sizeof(EXCEPT_DLL) / sizeof(char *);
+	int except_hook_dll_len = sizeof(EXCEPT_HOOK_DLL) / sizeof(char *);
+	int except_sym_dll_len = sizeof(EXCEPT_SYM_DLL) / sizeof(char *);
 	
 	HMODULE lpBase = GetModuleHandleA(NULL);
 	PIMAGE_DOS_HEADER pDosHeader = (PIMAGE_DOS_HEADER)lpBase;
@@ -513,13 +519,12 @@ static void load_dll(){
 	while(pImportDesc->FirstThunk){
 		PSTR pszModName = (PSTR)((PBYTE)lpBase + pImportDesc->Name);
 		int i = 0;
-		for(;i < except_dll_len;i++){
-			if(stricmp(pszModName, EXCEPT_DLL[i]) == 0){
+		for(;i < except_hook_dll_len;i++){
+			if(stricmp(pszModName, EXCEPT_HOOK_DLL[i]) == 0){
 				break;
 			}
 		}
-		if(i == except_dll_len){
-			report("1 dll:%s\n", pszModName);
+		if(i == except_hook_dll_len){
 			for(int i = 0;i < LOADED_DLL_LEN;i++){
 				if(LOADED_DLL[i] == NULL){
 					LOADED_DLL[i] = pszModName;
@@ -537,11 +542,18 @@ static void load_dll(){
 		if(LOADED_DLL[i] == NULL){
 			break;
 		}else{
-			report("2 dll:%s\n", LOADED_DLL[i]);
 			create_hooks_a(LOADED_DLL[i]);
-			HINSTANCE instance = LoadLibraryA(LOADED_DLL[i]);
-			if(instance != NULL){
-				load_symbol(instance);
+			int j = 0;
+			for(;j < except_sym_dll_len;j++){
+				if(stricmp(EXCEPT_SYM_DLL[j], LOADED_DLL[i]) == 0){
+					break;
+				}	
+			}
+			if(j == except_sym_dll_len){
+				HINSTANCE instance = LoadLibraryA(LOADED_DLL[i]);
+				if(instance != NULL){
+					load_symbol(instance);
+				}
 			}
 		}
 	}
