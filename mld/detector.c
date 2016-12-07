@@ -315,9 +315,9 @@ BOOL uninit_detector(){
 * 初始化符号处理器 
 */
 static void init_symbol(){
-    SymSetOptions(SYMOPT_LOAD_LINES | SYMOPT_UNDNAME);
+	SymSetOptions(SYMOPT_UNDNAME | SYMOPT_LOAD_LINES);
 	if(SymInitialize(GetCurrentProcess(), 0, false)){
-		load_symbol(NULL);		
+		load_symbol(NULL);
 	}
 }
 
@@ -348,8 +348,7 @@ static void add_context(DWORD addr, size_t size, PCONTEXT pcontext){
 	PCE pce = (PCE)malloc(sizeof(CE));
 	pce->addr = addr;
 	pce->size = size;
-	memset(pce->backtrace, '\0', BACKTRACELEN);
-	call_stack(pcontext, pce->backtrace);
+	pce->pcontext = pcontext;
 
 	hashmap_put(context_hashmap, key_str, pce);
 }
@@ -381,11 +380,11 @@ static int loop_context(any_t item, any_t data){
 		if(*P_USE != 0){
 			leak_count++;
 			leak_total += pce->size;
-			report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n%s\n\n"
+			report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n"
 			, leak_count
 			, pce->addr
-			, pce->size
-			, pce->backtrace);
+			, pce->size);
+			call_stack(pce->pcontext, NULL);
 		}
 	}
 	return MAP_OK;
