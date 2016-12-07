@@ -198,7 +198,7 @@ static void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char 
 					frame.AddrPC.Offset,
 					module_name,
 					file,
-					bfd_errors[err]);				
+					bfd_errors[err]);
 			}else{
 				sprintf(call_str + strlen(call_str)
 					, "0x%08x : %s : %s %s \n"
