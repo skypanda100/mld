@@ -244,6 +244,21 @@ WINBASEAPI HMODULE WINAPI DetourLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFi
     return retHmodule; 
 }
 
+//挂钩要素 
+static LPVOID HOOK_MODULE[][4] = {
+	{"msvcrt.dll",		"malloc",			&DetourMalloc,			&fpMalloc},
+	{"msvcrt.dll",		"calloc",			&DetourCalloc,			&fpCalloc},
+	{"msvcrt.dll",		"realloc",			&DetourRealloc,			&fpRealloc},
+	{"msvcrt.dll",		"free",				&DetourFree,			&fpFree},
+	{"kernel32.dll",	"HeapAlloc",		&DetourHeapAlloc,		&fpHeapAlloc},
+	{"kernel32.dll",	"HeapReAlloc",		&DetourHeapReAlloc,		&fpHeapReAlloc},
+	{"kernel32.dll",	"HeapFree",			&DetourHeapFree,		&fpHeapFree},
+	{"kernel32.dll",	"LoadLibraryA",		&DetourLoadLibraryA,	&fpLoadLibraryA},
+	{"kernel32.dll",	"LoadLibraryExA",	&DetourLoadLibraryExA,	&fpLoadLibraryExA},
+	{"kernel32.dll",	"LoadLibraryW",		&DetourLoadLibraryW,	&fpLoadLibraryW},
+	{"kernel32.dll",	"LoadLibraryExW",	&DetourLoadLibraryExW,	&fpLoadLibraryExW},
+};
+
 /**
 * 初始化内存泄漏检查 
 */
@@ -387,98 +402,22 @@ static void	uninit_context(){
 * 创建所有挂钩 
 */
 static BOOL create_hooks_a(LPCSTR lpFileName){
-	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
-		return FALSE;
+	int hook_module_len = sizeof(HOOK_MODULE)/sizeof(HOOK_MODULE[0]);
+	for(int i = 0;i < hook_module_len;i++){
+		if(create_iat_hook_a(lpFileName, (LPCSTR)(HOOK_MODULE[i][0]), (LPCSTR)(HOOK_MODULE[i][1]), (FARPROC)(HOOK_MODULE[i][2]), (LPVOID)(HOOK_MODULE[i][3])) != TRUE){
+			return FALSE;
+		}
 	}
-
-	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "calloc", (FARPROC)&DetourCalloc, (LPVOID)&fpCalloc) != TRUE){
-		return FALSE;
-	}
-	
-	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
-		return FALSE;
-	}
-
-	if(create_iat_hook_a(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
-		return FALSE;
-	}
-
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "HeapAlloc", (FARPROC)&DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "HeapReAlloc", (FARPROC)&DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "HeapFree", (FARPROC)&DetourHeapFree, (LPVOID)&fpHeapFree) != TRUE){
-        return FALSE;
-    }
-	
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
-        return FALSE;
-    }
-    
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
-        return FALSE;
-    }
-    
-	if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
-        return FALSE;
-    }
-    
-    if(create_iat_hook_a(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
-        return FALSE;
-    }
-    
     return TRUE;
 }
 
 static BOOL create_hooks_w(LPCWSTR lpFileName){
-	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "malloc", (FARPROC)&DetourMalloc, (LPVOID)&fpMalloc) != TRUE){
-		return FALSE;
+	int hook_module_len = sizeof(HOOK_MODULE)/sizeof(HOOK_MODULE[0]);
+	for(int i = 0;i < hook_module_len;i++){
+		if(create_iat_hook_w(lpFileName, (LPCSTR)(HOOK_MODULE[i][0]), (LPCSTR)(HOOK_MODULE[i][1]), (FARPROC)(HOOK_MODULE[i][2]), (LPVOID)(HOOK_MODULE[i][3])) != TRUE){
+			return FALSE;
+		}
 	}
-
-	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "calloc", (FARPROC)&DetourCalloc, (LPVOID)&fpCalloc) != TRUE){
-		return FALSE;
-	}
-	
-	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "realloc", (FARPROC)&DetourRealloc, (LPVOID)&fpRealloc) != TRUE){
-		return FALSE;
-	}
-
-	if(create_iat_hook_w(lpFileName, "msvcrt.dll", "free", (FARPROC)&DetourFree, (LPVOID)&fpFree) != TRUE){
-		return FALSE;
-	}
-	
-	if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapAlloc", (FARPROC)&DetourHeapAlloc, (LPVOID)&fpHeapAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapReAlloc", (FARPROC)&DetourHeapReAlloc, (LPVOID)&fpHeapReAlloc) != TRUE){
-        return FALSE;
-    }
-
-    if (create_iat_hook_w(lpFileName, "kernel32.dll", "HeapFree", (FARPROC)&DetourHeapFree, (LPVOID)&fpHeapFree) != TRUE){
-        return FALSE;
-    }
-
-    if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryA", (FARPROC)&DetourLoadLibraryA, (LPVOID)&fpLoadLibraryA) != TRUE){
-        return FALSE;
-    }
-
-    if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExA", (FARPROC)&DetourLoadLibraryExA, (LPVOID)&fpLoadLibraryExA) != TRUE){
-        return FALSE;
-    }
-	    
-	if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryW", (FARPROC)&DetourLoadLibraryW, (LPVOID)&fpLoadLibraryW) != TRUE){
-        return FALSE;
-    }
-
-	if(create_iat_hook_w(lpFileName, "kernel32.dll", "LoadLibraryExW", (FARPROC)&DetourLoadLibraryExW, (LPVOID)&fpLoadLibraryExW) != TRUE){
-        return FALSE;
-    }
-
     return TRUE;
 }
 

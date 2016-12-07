@@ -1,3 +1,688 @@
 ******************************************************************
-*******                 2016-12-07 10:52:34                *******
+*******                 2016-12-07 14:59:28                *******
 ******************************************************************
+------------------------------ memory leak (block 1): address = 0x033C7908 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041cfc4 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 2): address = 0x00AFA4C0 size = 400 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0047dd6a : D:\Dev c++\workspace\mld\exe\sample.exe : crtend.c  
+0x0047dd08 : D:\Dev c++\workspace\mld\exe\sample.exe : crtend.c  
+0x0040152c : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (8) : in function (_Z4testv) 
+0x0040154c : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (24) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 3): address = 0x00C29C60 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041a5c8 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a65c : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a7a0 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 4): address = 0x033C7998 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420a7f : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00421090 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 5): address = 0x00C29B70 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041af4f : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 6): address = 0x033C7A78 size = 1 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041d614 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041d55a : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+
+
+------------------------------ memory leak (block 7): address = 0x0394AC50 size = 28 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a314 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0042085c : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420168 : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420997 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420a35 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00421090 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 8): address = 0x03952950 size = 28 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a314 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x00420875 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420168 : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420997 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420a35 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00421090 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 9): address = 0x00C29B40 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041af75 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 10): address = 0x03144EA8 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420077 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041a49e : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a65c : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a7a0 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 11): address = 0x03969270 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041fee7 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420823 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420168 : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420997 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420a35 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00421090 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 12): address = 0x03E24DD8 size = 555 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00401671 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (6) : in function (__static_initialization_and_destruction_0) 
+0x00401558 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (24) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 13): address = 0x033C7928 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420168 : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 14): address = 0x00C29AA0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00419eac : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 15): address = 0x03C7C650 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+
+
+------------------------------ memory leak (block 16): address = 0x033C7A28 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041ce24 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 17): address = 0x033C79E8 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041cd5b : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+
+
+------------------------------ memory leak (block 18): address = 0x00C29BB0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0042012c : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041bec0 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 19): address = 0x04197670 size = 700 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0040ceaf : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/atonexit.c (58) : in function (atexit) 
+0x00401671 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (6) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 20): address = 0x00C29B00 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0040ef78 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/../libgcc/config/i386/shmem-win32.c (79) : in function (__shmem_grab) 
+0x0040e45c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (128) : in function (_Unwind_SjLj_Register) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 21): address = 0x02E41868 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041b052 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041cc18 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 22): address = 0x00B6B3C0 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420077 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 23): address = 0x02F77418 size = 108 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0042012c : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041f03e : D:\Dev c++\workspace\mld\exe\sample.exe : cond.c  
+0x0042088c : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420168 : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420997 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00420a35 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x00421090 : D:\Dev c++\workspace\mld\exe\sample.exe : rwlock.c  
+0x0041ccf1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 24): address = 0x009CC988 size = 500 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x76b3fdc6 : C:\Windows\syswow64\USER32.dll : MessageBoxA (No symbols) 
+0x004015fe : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (32) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 25): address = 0x033C78C8 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041b32e : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041b733 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 26): address = 0x00C29CC0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041b4a1 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041b733 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 27): address = 0x02F9D3C8 size = 128 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041b40a : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041b733 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 28): address = 0x033C78A8 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041b450 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041b733 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 29): address = 0x033C7A08 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041d0cf : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 30): address = 0x033C7A58 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00420062 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041d5f9 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041d55a : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+
+
+------------------------------ memory leak (block 31): address = 0x00C29BF0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0042012c : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041b88c : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd3a : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd69 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 32): address = 0x03088F68 size = 180 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041b728 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 33): address = 0x033C78E8 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0040ef78 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/../libgcc/config/i386/shmem-win32.c (79) : in function (__shmem_grab) 
+0x0040ddac : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 34): address = 0x00C29C90 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041b7bc : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 35): address = 0x03961570 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+
+
+------------------------------ memory leak (block 36): address = 0x00B72158 size = 28 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a314 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 37): address = 0x00C29AC0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0042033a : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 38): address = 0x032B59E0 size = 28 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x00419e67 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a314 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a546 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a65c : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a7a0 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 39): address = 0x00C29B20 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0040ef78 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/../libgcc/config/i386/shmem-win32.c (79) : in function (__shmem_grab) 
+0x0040dedd : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 40): address = 0x02A2E7C8 size = 32 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x0041febc : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ff27 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x00420077 : D:\Dev c++\workspace\mld\exe\sample.exe : spinlock.c  
+0x0041ae7d : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 41): address = 0x00C29C30 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041a56c : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a65c : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x0041a7a0 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+0x14281d8b : [unknown module] : [unknown file]  
+0xdb850049 : [unknown module] : [unknown file]  
+0x2ca15574 : [unknown module] : [unknown file]  
+0x85004914 : [unknown module] : [unknown file]  
+0xc72974c0 : [unknown module] : [unknown file]  
+0x00042444 : [unknown module] : [unknown file]  
+0x89000000 : [unknown module] : [unknown file]  
+0x49e82404 : [unknown module] : [unknown file]  
+0x850000ef : [unknown module] : [unknown file]  
+0xc0940fc0 : [unknown module] : [unknown file]  
+0x89c0b60f : [unknown module] : [unknown file]  
+0x18c48303 : [unknown module] : [unknown file]  
+0x768dc35b : [unknown module] : [unknown file]  
+0x27bc8d00 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 42): address = 0x0357C2E0 size = 100 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x76b3fdc6 : C:\Windows\syswow64\USER32.dll : MessageBoxA (No symbols) 
+0x00401618 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (33) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 43): address = 0x00C29CE0 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041b47b : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041b733 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 44): address = 0x033C79C8 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041cfea : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040dd77 : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (111) : in function (fc_key_init) 
+0x0041cc74 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0040de9c : D:\Dev c++\workspace\mld\exe\sample.exe : C:\crossdev\gccmaster\build-tdm64\gcc\x86_64-w64-mingw32\32\libgcc/../../../../../../src/gcc-4.9.2/libgcc/unwind-sjlj.c (119) : in function (fc_key_init_once) 
+0x00401659 : D:\Dev c++\workspace\mld\exe\sample.exe : D:/Dev c++/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/iostream (74) : in function (__static_initialization_and_destruction_0) 
+0x00401692 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (36) : in function (_GLOBAL__sub_I__Z9MLD_BEGINv) 
+0x0040d5ea : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/gccmain.c (42) : in function (__do_global_ctors) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+------------------------------ memory leak (block 45): address = 0x00C29C10 size = 4 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x004202cf : D:\Dev c++\workspace\mld\exe\sample.exe : shmem.c  
+0x0041b78c : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x0041bd95 : D:\Dev c++\workspace\mld\exe\sample.exe : thread.c  
+0x00419fb2 : D:\Dev c++\workspace\mld\exe\sample.exe : mutex.c  
+
+
+------------------------------ memory leak (block 46): address = 0x04362A10 size = 77 ------------------------------
+[callstack]
+0x777b0c52 : [unknown module] : [unknown file]  
+0x6f842f47 : [unknown module] : [unknown file]  
+0x76b3fdc6 : C:\Windows\syswow64\USER32.dll : MessageBoxA (No symbols) 
+0x664412f9 : D:\Dev c++\workspace\mld\exe\sampledll.dll : D:\Dev c++\workspace\mld\sampledll/dllmain.c (8) : in function (HelloWorld) 
+0x00401562 : D:\Dev c++\workspace\mld\exe\sample.exe : D:\Dev c++\workspace\mld\sample/main.cpp (28) : in function (main) 
+0x004013e2 : D:\Dev c++\workspace\mld\exe\sample.exe : C:/crossdev/src/mingw-w64-v3-git/mingw-w64-crt/crt/crtexe.c (334) : in function (__tmainCRTStartup) 
+0x76ec336a : [unknown module] : [unknown file]  
+0x777c9902 : [unknown module] : [unknown file]  
+0x777c98d5 : [unknown module] : [unknown file]  
+
+
+
+------------------------------ memory leak (count 46): total size = 3185 ------------------------------
