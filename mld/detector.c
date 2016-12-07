@@ -22,7 +22,6 @@ static char *EXCEPT_HOOK_DLL[] = {
 	"mld.dll",
 	"kernel32.dll",
 	"msvcrt.dll",
-//	"user32.dll",
 };
 
 static char *EXCEPT_SYM_DLL[] = {
@@ -42,10 +41,8 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 	void *retPtr = fpMalloc(size);
 
 	if(retPtr != NULL){
-		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
 		add_context((DWORD)retPtr, size, pcontext);
-		enable_iat_hook();
 	}
 
 	leave_malloc_lock(&malloc_lock);
@@ -64,10 +61,8 @@ __cdecl void *DetourCalloc(size_t _NumOfElements,size_t _SizeOfElements){
 	void *retPtr = fpCalloc(_NumOfElements, _SizeOfElements);
 
 	if(retPtr != NULL){
-		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
 		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements, pcontext);
-		enable_iat_hook();
 	}
 
 	leave_calloc_lock(&calloc_lock);
@@ -86,10 +81,8 @@ WINBASEAPI LPVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwB
 	LPVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
 
 	if(retPtr != NULL){
-		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
 		add_context((DWORD)retPtr, dwBytes, pcontext);
-		enable_iat_hook();
 	}
 
 	leave_HeapAlloc_lock(&HeapAlloc_lock);		
@@ -108,11 +101,9 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 	void *retPtr = fpRealloc(ptr, size);
 
 	if(retPtr != NULL){
-		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
 		del_context((DWORD)ptr);
 		add_context((DWORD)retPtr, size, pcontext);
-		enable_iat_hook();		
 	}
 
 	leave_realloc_lock(&realloc_lock);
@@ -131,11 +122,9 @@ WINBASEAPI LPVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID l
 	LPVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
 
 	if(retPtr != NULL){
-		disable_iat_hook();
 		PCONTEXT pcontext = current_context();
 		del_context((DWORD)lpMem);
 		add_context((DWORD)retPtr, dwBytes, pcontext);
-		enable_iat_hook();		
 	}
 
 	leave_HeapReAlloc_lock(&HeapReAlloc_lock);
@@ -151,9 +140,7 @@ FREE fpFree = NULL;
 _CRTIMP __cdecl __MINGW_NOTHROW void DetourFree(void *ptr){
 	enter_free_lock(&free_lock);
 
-	disable_iat_hook();
 	del_context((DWORD)ptr);
-	enable_iat_hook();
 
 	fpFree(ptr);
 	
@@ -168,9 +155,7 @@ HEAPFREE fpHeapFree = NULL;
 WINBASEAPI WINBOOL WINAPI DetourHeapFree(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem){
 	enter_HeapFree_lock(&HeapFree_lock);
 
-	disable_iat_hook();
 	del_context((DWORD)lpMem);
-	enable_iat_hook();
 
 	WINBOOL retF = fpHeapFree(hHeap, dwFlags, lpMem);
 	
@@ -190,10 +175,8 @@ HINSTANCE WINAPI DetourLoadLibraryA(LPCSTR lpFileName){
 	//loadlibrary 
 	HINSTANCE retInstance = fpLoadLibraryA(lpFileName);
 	if(retInstance != NULL){
-		disable_iat_hook();
 		load_symbol(retInstance);
 		create_hooks_a(lpFileName);
-		enable_iat_hook();
 	}
 
 	leave_libA_lock(&libA_lock);
@@ -212,10 +195,8 @@ WINBASEAPI HMODULE WINAPI DetourLoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFil
 	//loadlibrary 
 	HMODULE retHmodule = fpLoadLibraryExA(lpLibFileName, hFile, dwFlags);
 	if(retHmodule != NULL){
-		disable_iat_hook();
 		load_symbol(retHmodule);
 		create_hooks_a(lpLibFileName);
-		enable_iat_hook();
 	}
 
 	leave_libExA_lock(&libExA_lock);
@@ -234,10 +215,8 @@ HINSTANCE WINAPI DetourLoadLibraryW(LPCWSTR lpFileName){
 	//loadlibrary 
 	HINSTANCE retInstance = ((LOADLIBRARYW)fpLoadLibraryW)(lpFileName);
 	if(retInstance != NULL){
-		disable_iat_hook();
 		load_symbol(retInstance);
 		create_hooks_w(lpFileName);
-		enable_iat_hook();
 	}
 
 	leave_libW_lock(&libW_lock);
@@ -256,10 +235,8 @@ WINBASEAPI HMODULE WINAPI DetourLoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFi
 	//loadlibrary 
 	HMODULE retHmodule = fpLoadLibraryExW(lpLibFileName, hFile, dwFlags);
 	if(retHmodule != NULL){
-		disable_iat_hook();
 		load_symbol(retHmodule);
 		create_hooks_w(lpLibFileName);
-		enable_iat_hook();
 	}
 
 	leave_libExW_lock(&libExW_lock);
@@ -554,6 +531,7 @@ static void load_dll(){
 				HINSTANCE instance = LoadLibraryA(LOADED_DLL[i]);
 				if(instance != NULL){
 					load_symbol(instance);
+					FreeLibrary(instance);
 				}
 			}
 		}
