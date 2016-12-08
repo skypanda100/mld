@@ -1,5 +1,7 @@
 #include "callstack.h"
 
+static volatile LONG backtrace_lock = FALSE;
+
 static void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
 	struct find_info *data = opaque_data;
@@ -129,6 +131,23 @@ static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size)
 	GetModuleFileNameA(moduleInstance, lpFileName, MAX_PATH);
 }
 
+static void enter_backtrace_lock(volatile LONG *lock){
+	size_t c = 0;
+	while(InterlockedCompareExchange(lock, TRUE, FALSE) != FALSE)
+	{
+		if(c < 20){
+			Sleep(0);
+		}else{
+			Sleep(1);
+		}
+		c++;
+	}
+}
+
+static void leave_backtrace_lock(volatile LONG *lock){
+	InterlockedExchange(lock, FALSE);
+}
+
 void load_symbol(HINSTANCE retInstance)
 {	
 	//获取模块路径 
@@ -147,24 +166,26 @@ void load_symbol(HINSTANCE retInstance)
 	}
 }
 
-PCONTEXT current_context()
+PCONTEXT current_context(DWORD *threadId)
 {
-	bfd_init();
-	
-	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
+	*threadId = GetCurrentThreadId();
+//	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, *threadId);
 	HANDLE thread = GetCurrentThread();
+
+	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
 	pcontext->ContextFlags = CONTEXT_FULL;
 	GetThreadContext(thread, pcontext);
 
 	return pcontext;
 }
 
-void call_stack(PCONTEXT pcontext, DWORD *offset, int offset_len)
+void call_stack(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len)
 {
+	enter_backtrace_lock(&backtrace_lock);
+	
 	bfd_init();
 
 	struct bfd_set *set = calloc(1,sizeof(*set));
-	
 	
 	char procname[MAX_PATH];
 	GetModuleFileNameA(NULL, procname, sizeof procname);
@@ -173,7 +194,7 @@ void call_stack(PCONTEXT pcontext, DWORD *offset, int offset_len)
 	int err = BFD_ERR_OK;
 
 	HANDLE process = GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
+	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, threadId);
 
 	char symbol_buffer[sizeof(IMAGEHLP_SYMBOL) + 255];
 	char module_name_raw[MAX_PATH];
@@ -226,9 +247,13 @@ void call_stack(PCONTEXT pcontext, DWORD *offset, int offset_len)
 	}
 	
 	release_set(set);
+	
+	leave_backtrace_lock(&backtrace_lock);
 }
 
-void call_frame(PCONTEXT pcontext, DWORD *offset, int offset_len){
+void call_frame(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len){
+	enter_backtrace_lock(&backtrace_lock);
+
 	int depth = offset_len;
 
 	STACKFRAME frame;
@@ -240,11 +265,12 @@ void call_frame(PCONTEXT pcontext, DWORD *offset, int offset_len){
 	frame.AddrStack.Mode = AddrModeFlat;
 	frame.AddrFrame.Offset = pcontext->Ebp;
 	frame.AddrFrame.Mode = AddrModeFlat;
+	frame.Virtual = TRUE;
 
 	HANDLE process = GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
+	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, threadId);
 
-	while(StackWalk(IMAGE_FILE_MACHINE_I386, 
+	while(StackWalk(IMAGE_FILE_MACHINE_I386,
 		process, 
 		thread, 
 		&frame, 
@@ -253,16 +279,24 @@ void call_frame(PCONTEXT pcontext, DWORD *offset, int offset_len){
 		SymFunctionTableAccess, 
 		SymGetModuleBase, 0)) {
 
+        if (frame.AddrFrame.Offset == 0) {
+            break;
+        }
+        
 		--depth;
 		if (depth < 0)
 			break;
 
 		offset[offset_len - depth - 1] = frame.AddrPC.Offset;
 	}
+	
+	leave_backtrace_lock(&backtrace_lock);
 }
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 {
+	enter_backtrace_lock(&backtrace_lock);
+
 	report("------------------------------ exception ------------------------------\n[callstack]\n");
 
 	bfd_init();
@@ -301,6 +335,10 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 		SymFunctionTableAccess, 
 		SymGetModuleBase, 0)) {
 
+        if (frame.AddrFrame.Offset == 0) {
+            break;
+        }
+        
 		--depth;
 		if (depth < 0)
 			break;
@@ -353,5 +391,8 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 	
 	release_set(set);
 
+	leave_backtrace_lock(&backtrace_lock);
+
 	return EXCEPTION_CONTINUE_SEARCH;
 }
+

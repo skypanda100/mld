@@ -25,7 +25,7 @@ static char *EXCEPT_HOOK_DLL[] = {
 };
 
 static char *EXCEPT_SYM_DLL[] = {
-	"libstdc++-6.dll",
+//	"libstdc++-6.dll",
 };
 
 static char *LOADED_DLL[LOADED_DLL_LEN] = {NULL};
@@ -41,8 +41,9 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 	void *retPtr = fpMalloc(size);
 
 	if(retPtr != NULL){
-		PCONTEXT pcontext = current_context();
-		add_context((DWORD)retPtr, size, pcontext);
+		DWORD threadId;
+		PCONTEXT pcontext = current_context(&threadId);
+		add_context((DWORD)retPtr, size, pcontext, threadId);
 	}
 
 	leave_malloc_lock(&malloc_lock);
@@ -61,8 +62,9 @@ __cdecl void *DetourCalloc(size_t _NumOfElements,size_t _SizeOfElements){
 	void *retPtr = fpCalloc(_NumOfElements, _SizeOfElements);
 
 	if(retPtr != NULL){
-		PCONTEXT pcontext = current_context();
-		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements, pcontext);
+		DWORD threadId;
+		PCONTEXT pcontext = current_context(&threadId);
+		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements, pcontext, threadId);
 	}
 
 	leave_calloc_lock(&calloc_lock);
@@ -81,8 +83,9 @@ WINBASEAPI LPVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwB
 	LPVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
 
 	if(retPtr != NULL){
-		PCONTEXT pcontext = current_context();
-		add_context((DWORD)retPtr, dwBytes, pcontext);
+		DWORD threadId;
+		PCONTEXT pcontext = current_context(&threadId);
+		add_context((DWORD)retPtr, dwBytes, pcontext, threadId);
 	}
 
 	leave_HeapAlloc_lock(&HeapAlloc_lock);		
@@ -101,9 +104,10 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 	void *retPtr = fpRealloc(ptr, size);
 
 	if(retPtr != NULL){
-		PCONTEXT pcontext = current_context();
+		DWORD threadId;
+		PCONTEXT pcontext = current_context(&threadId);
 		del_context((DWORD)ptr);
-		add_context((DWORD)retPtr, size, pcontext);
+		add_context((DWORD)retPtr, size, pcontext, threadId);
 	}
 
 	leave_realloc_lock(&realloc_lock);
@@ -122,9 +126,10 @@ WINBASEAPI LPVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID l
 	LPVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
 
 	if(retPtr != NULL){
-		PCONTEXT pcontext = current_context();
+		DWORD threadId;
+		PCONTEXT pcontext = current_context(&threadId);
 		del_context((DWORD)lpMem);
-		add_context((DWORD)retPtr, dwBytes, pcontext);
+		add_context((DWORD)retPtr, dwBytes, pcontext, threadId);
 	}
 
 	leave_HeapReAlloc_lock(&HeapReAlloc_lock);
@@ -291,7 +296,7 @@ BOOL init_detector(){
 /**
 * 结束内存泄漏检查 
 */
-BOOL uninit_detector(){
+BOOL uninit_detector(){	
 	//1
 	disable_iat_hook();
 	
@@ -315,7 +320,7 @@ BOOL uninit_detector(){
 * 初始化符号处理器 
 */
 static void init_symbol(){
-	SymSetOptions(SYMOPT_UNDNAME | SYMOPT_LOAD_LINES);
+//    SymSetOptions(SYMOPT_UNDNAME | SYMOPT_DEFERRED_LOADS | SYMOPT_LOAD_LINES);
 	if(SymInitialize(GetCurrentProcess(), 0, false)){
 		load_symbol(NULL);
 	}
@@ -339,7 +344,7 @@ static void init_context(){
 /**
 * 添加Context_Element
 */
-static void add_context(DWORD addr, size_t size, PCONTEXT pcontext){
+static void add_context(DWORD addr, size_t size, PCONTEXT pcontext, DWORD threadId){
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
@@ -349,7 +354,8 @@ static void add_context(DWORD addr, size_t size, PCONTEXT pcontext){
 	pce->addr = addr;
 	pce->size = size;
 	pce->pcontext = pcontext;
-	call_frame(pce->pcontext, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
+	pce->threadId = threadId;
+	call_frame(pce->pcontext, pce->threadId, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
 	hashmap_put(context_hashmap, key_str, pce);
 }
 
@@ -376,16 +382,14 @@ static void del_context(DWORD addr){
 static int loop_context(any_t item, any_t data){
 	PCE pce = (PCE)data;
 	if(pce != NULL){
-		PBYTE P_USE = (PBYTE)((PBYTE)pce - 1);
-		if(*P_USE != 0){
-			leak_count++;
-			leak_total += pce->size;
-			report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n"
-			, leak_count
-			, pce->addr
-			, pce->size);
-			call_stack(pce->pcontext, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
-		}
+		leak_count++;
+		leak_total += pce->size;
+		report("------------------------------ memory leak (block %d): address = 0x%08X size = %ld ------------------------------\n[callstack]\n"
+		, leak_count
+		, pce->addr
+		, pce->size);
+		call_stack(pce->pcontext, pce->threadId, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
+		report("\n\n");
 	}
 	return MAP_OK;
 }

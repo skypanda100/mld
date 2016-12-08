@@ -23,6 +23,7 @@ typedef struct Context_Element
 	DWORD		offset[8];
 	DWORD		addr;
 	DWORD		size;
+	DWORD		threadId;
 	PCONTEXT	pcontext;
 }CE, *PCE;
 
@@ -38,7 +39,7 @@ static void uninit_symbol();
 
 static void init_context();
 
-static void add_context(DWORD addr, size_t size, PCONTEXT pcontext);
+static void add_context(DWORD addr, size_t size, PCONTEXT pcontext, DWORD threadId);
 
 static void del_context(DWORD addr);
 

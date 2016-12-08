@@ -61,13 +61,17 @@ static void release_set(struct bfd_set *set);
 
 static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
 
+static void enter_backtrace_lock(volatile LONG *);
+
+static void leave_backtrace_lock(volatile LONG *);
+
 void load_symbol(HINSTANCE retInstance);
 
-PCONTEXT current_context();
+PCONTEXT current_context(DWORD *);
 
-void call_stack(PCONTEXT, DWORD *, int);
+void call_stack(PCONTEXT, DWORD, DWORD *, int);
 
-void call_frame(PCONTEXT, DWORD *, int);
+void call_frame(PCONTEXT, DWORD, DWORD *, int);
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 
