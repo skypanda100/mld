@@ -15,10 +15,11 @@ int main(int argc, char *argv[])
     test();
 
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    MainWindow *w = new MainWindow;
+    w->show();
 
     MemLeak memleak;
+    memleak.start();
 
     return a.exec();
 }

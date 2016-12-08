@@ -2,6 +2,11 @@
 
 static volatile LONG backtrace_lock = FALSE;
 
+HANDLE G_PROCESS = NULL;
+HANDLE G_THREAD = NULL;
+DWORD G_PROCESS_ID = 0;
+DWORD G_THREAD_ID = 0;
+
 static void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
 	struct find_info *data = opaque_data;
@@ -155,7 +160,7 @@ void load_symbol(HINSTANCE retInstance)
 	module_path(retInstance, lpFileName, MAX_PATH);
 	//加载模块的调试信息
 	DWORD moduleAddress = SymLoadModule(
-		GetCurrentProcess(),
+		G_PROCESS,
 		NULL, 
 		lpFileName,
 		NULL,
@@ -168,11 +173,9 @@ void load_symbol(HINSTANCE retInstance)
 
 PCONTEXT current_context()
 {
-	HANDLE thread = GetCurrentThread();
-
 	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
 	pcontext->ContextFlags = CONTEXT_FULL;
-	GetThreadContext(thread, pcontext);
+	GetThreadContext(G_THREAD, pcontext);
 
 	return pcontext;
 }
@@ -191,10 +194,6 @@ void call_stack(DWORD *offset, int offset_len)
 	struct bfd_ctx *bc = NULL;
 	int err = BFD_ERR_OK;
 
-	HANDLE process = GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
-
-
 	char symbol_buffer[sizeof(IMAGEHLP_SYMBOL) + 255];
 	char module_name_raw[MAX_PATH];
 
@@ -203,7 +202,7 @@ void call_stack(DWORD *offset, int offset_len)
 		symbol->SizeOfStruct = (sizeof *symbol) + 255;
 		symbol->MaxNameLength = 254;
 
-		DWORD module_base = SymGetModuleBase(process, offset[i]);
+		DWORD module_base = SymGetModuleBase(G_PROCESS, offset[i]);
 
 		const char * module_name = "[unknown module]";
 		if (module_base && 
@@ -222,7 +221,7 @@ void call_stack(DWORD *offset, int offset_len)
 
 		if (file == NULL) {
 			DWORD dummy = 0;
-			if (SymGetSymFromAddr(process, offset[i], &dummy, symbol)) {
+			if (SymGetSymFromAddr(G_PROCESS, offset[i], &dummy, symbol)) {
 				file = symbol->Name;
 			} else {
 				file = "[unknown file]";
@@ -270,12 +269,9 @@ void call_frame(DWORD *offset, int offset_len){
 	frame.AddrFrame.Mode = AddrModeFlat;
 	frame.Virtual = TRUE;
 
-	HANDLE process = GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
-
 	while(StackWalk(IMAGE_FILE_MACHINE_I386,
-		process, 
-		thread, 
+		G_PROCESS, 
+		G_THREAD, 
 		&frame, 
 		pcontext, 
 		0, 
@@ -323,15 +319,12 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 	frame.AddrFrame.Offset = context->Ebp;
 	frame.AddrFrame.Mode = AddrModeFlat;
 
-	HANDLE process = GetCurrentProcess();
-	HANDLE thread = GetCurrentThread();
-
 	char symbol_buffer[sizeof(IMAGEHLP_SYMBOL) + 255];
 	char module_name_raw[MAX_PATH];
 
 	while(StackWalk(IMAGE_FILE_MACHINE_I386, 
-		process, 
-		thread, 
+		G_PROCESS, 
+		G_THREAD, 
 		&frame, 
 		context, 
 		0, 
@@ -350,7 +343,7 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 		symbol->SizeOfStruct = (sizeof *symbol) + 255;
 		symbol->MaxNameLength = 254;
 
-		DWORD module_base = SymGetModuleBase(process, frame.AddrPC.Offset);
+		DWORD module_base = SymGetModuleBase(G_PROCESS, frame.AddrPC.Offset);
 
 		const char * module_name = "[unknown module]";
 		if (module_base && 
@@ -369,7 +362,7 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 
 		if (file == NULL) {
 			DWORD dummy = 0;
-			if (SymGetSymFromAddr(process, frame.AddrPC.Offset, &dummy, symbol)) {
+			if (SymGetSymFromAddr(G_PROCESS, frame.AddrPC.Offset, &dummy, symbol)) {
 				file = symbol->Name;
 			} else {
 				file = "[unknown file]";

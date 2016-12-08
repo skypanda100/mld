@@ -1,5 +1,11 @@
 #include "detector.h"
 
+extern HANDLE G_PROCESS;
+extern HANDLE G_THREAD;
+extern DWORD G_PROCESS_ID;
+extern DWORD G_THREAD_ID;
+
+
 static map_t context_hashmap = NULL;
 static LPTOP_LEVEL_EXCEPTION_FILTER g_prev = NULL;
 
@@ -310,8 +316,12 @@ BOOL uninit_detector(){
 * 初始化符号处理器 
 */
 static void init_symbol(){
+	G_PROCESS = GetCurrentProcess();
+	G_THREAD = GetCurrentThread();
+	G_PROCESS_ID = GetCurrentProcessId();
+	G_THREAD_ID = GetCurrentThreadId();
 //    SymSetOptions(SYMOPT_UNDNAME | SYMOPT_DEFERRED_LOADS | SYMOPT_LOAD_LINES);
-	if(SymInitialize(GetCurrentProcess(), 0, false)){
+	if(SymInitialize(G_PROCESS, 0, false)){
 		load_symbol(NULL);
 	}
 }
@@ -320,7 +330,7 @@ static void init_symbol(){
 * 清空符号 
 */
 static void uninit_symbol(){
-	SymCleanup(GetCurrentProcess());
+	SymCleanup(G_PROCESS);
 }
 /**
 * 初始化Context_Element
@@ -377,9 +387,9 @@ static int loop_context(any_t item, any_t data){
 		, leak_count
 		, pce->addr
 		, pce->size);
-		if(OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, pce->threadId)){
-			call_stack(pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));			
-		}
+//		if(OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, pce->threadId)){
+			call_stack(pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
+//		}
 	}
 	return MAP_OK;
 }
