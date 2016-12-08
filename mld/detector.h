@@ -20,6 +20,7 @@
 
 typedef struct Context_Element
 {
+	DWORD		offset[8];
 	DWORD		addr;
 	DWORD		size;
 	PCONTEXT	pcontext;

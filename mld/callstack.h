@@ -59,15 +59,15 @@ static struct bfd_ctx *get_bc(struct bfd_set *set , const char *procname, int *e
 
 static void release_set(struct bfd_set *set);
 
-static void _backtrace(struct bfd_set *set, int depth , LPCONTEXT context, char *call_str);
-
 static void module_path(HINSTANCE moduleInstance, LPSTR lpFileName,DWORD size);
 
 void load_symbol(HINSTANCE retInstance);
 
 PCONTEXT current_context();
 
-void call_stack(PCONTEXT, char *);
+void call_stack(PCONTEXT, DWORD *, int);
+
+void call_frame(PCONTEXT, DWORD *, int);
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 

@@ -345,11 +345,11 @@ static void add_context(DWORD addr, size_t size, PCONTEXT pcontext){
 	sprintf(key_str, "%08X", addr);
 
 	//value
-	PCE pce = (PCE)malloc(sizeof(CE));
+	PCE pce = (PCE)calloc(1, sizeof(CE));
 	pce->addr = addr;
 	pce->size = size;
 	pce->pcontext = pcontext;
-
+	call_frame(pce->pcontext, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
 	hashmap_put(context_hashmap, key_str, pce);
 }
 
@@ -384,7 +384,7 @@ static int loop_context(any_t item, any_t data){
 			, leak_count
 			, pce->addr
 			, pce->size);
-			call_stack(pce->pcontext, NULL);
+			call_stack(pce->pcontext, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
 		}
 	}
 	return MAP_OK;
