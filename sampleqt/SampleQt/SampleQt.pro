@@ -8,10 +8,12 @@ TARGET = SampleQt
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    memleak.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    memleak.h
 
 win32: LIBS += -L$$PWD/../../exe/ -lmld
 

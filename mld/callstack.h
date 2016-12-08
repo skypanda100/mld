@@ -65,13 +65,13 @@ static void enter_backtrace_lock(volatile LONG *);
 
 static void leave_backtrace_lock(volatile LONG *);
 
+static PCONTEXT current_context();
+
 void load_symbol(HINSTANCE retInstance);
 
-PCONTEXT current_context(DWORD *);
+void call_stack(DWORD *, int);
 
-void call_stack(PCONTEXT, DWORD, DWORD *, int);
-
-void call_frame(PCONTEXT, DWORD, DWORD *, int);
+void call_frame(DWORD *, int);
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 

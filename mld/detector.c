@@ -41,9 +41,7 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourMalloc(size_t size){
 	void *retPtr = fpMalloc(size);
 
 	if(retPtr != NULL){
-		DWORD threadId;
-		PCONTEXT pcontext = current_context(&threadId);
-		add_context((DWORD)retPtr, size, pcontext, threadId);
+		add_context((DWORD)retPtr, size);
 	}
 
 	leave_malloc_lock(&malloc_lock);
@@ -62,9 +60,7 @@ __cdecl void *DetourCalloc(size_t _NumOfElements,size_t _SizeOfElements){
 	void *retPtr = fpCalloc(_NumOfElements, _SizeOfElements);
 
 	if(retPtr != NULL){
-		DWORD threadId;
-		PCONTEXT pcontext = current_context(&threadId);
-		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements, pcontext, threadId);
+		add_context((DWORD)retPtr, _NumOfElements * _SizeOfElements);
 	}
 
 	leave_calloc_lock(&calloc_lock);
@@ -83,9 +79,7 @@ WINBASEAPI LPVOID WINAPI DetourHeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwB
 	LPVOID retPtr = fpHeapAlloc(hHeap, dwFlags, dwBytes);
 
 	if(retPtr != NULL){
-		DWORD threadId;
-		PCONTEXT pcontext = current_context(&threadId);
-		add_context((DWORD)retPtr, dwBytes, pcontext, threadId);
+		add_context((DWORD)retPtr, dwBytes);
 	}
 
 	leave_HeapAlloc_lock(&HeapAlloc_lock);		
@@ -104,10 +98,8 @@ _CRTIMP __cdecl __MINGW_NOTHROW void *DetourRealloc(void *ptr, size_t size){
 	void *retPtr = fpRealloc(ptr, size);
 
 	if(retPtr != NULL){
-		DWORD threadId;
-		PCONTEXT pcontext = current_context(&threadId);
 		del_context((DWORD)ptr);
-		add_context((DWORD)retPtr, size, pcontext, threadId);
+		add_context((DWORD)retPtr, size);
 	}
 
 	leave_realloc_lock(&realloc_lock);
@@ -126,10 +118,8 @@ WINBASEAPI LPVOID WINAPI DetourHeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID l
 	LPVOID retPtr = fpHeapReAlloc(hHeap, dwFlags, lpMem, dwBytes);
 
 	if(retPtr != NULL){
-		DWORD threadId;
-		PCONTEXT pcontext = current_context(&threadId);
 		del_context((DWORD)lpMem);
-		add_context((DWORD)retPtr, dwBytes, pcontext, threadId);
+		add_context((DWORD)retPtr, dwBytes);
 	}
 
 	leave_HeapReAlloc_lock(&HeapReAlloc_lock);
@@ -344,7 +334,7 @@ static void init_context(){
 /**
 * Ìí¼ÓContext_Element
 */
-static void add_context(DWORD addr, size_t size, PCONTEXT pcontext, DWORD threadId){
+static void add_context(DWORD addr, size_t size){
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
@@ -353,9 +343,8 @@ static void add_context(DWORD addr, size_t size, PCONTEXT pcontext, DWORD thread
 	PCE pce = (PCE)calloc(1, sizeof(CE));
 	pce->addr = addr;
 	pce->size = size;
-	pce->pcontext = pcontext;
-	pce->threadId = threadId;
-	call_frame(pce->pcontext, pce->threadId, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
+	pce->threadId = GetCurrentThreadId();
+	call_frame(pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
 	hashmap_put(context_hashmap, key_str, pce);
 }
 
@@ -388,8 +377,9 @@ static int loop_context(any_t item, any_t data){
 		, leak_count
 		, pce->addr
 		, pce->size);
-		call_stack(pce->pcontext, pce->threadId, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
-		report("\n\n");
+		if(OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, pce->threadId)){
+			call_stack(pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));			
+		}
 	}
 	return MAP_OK;
 }

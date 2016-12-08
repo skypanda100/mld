@@ -166,10 +166,8 @@ void load_symbol(HINSTANCE retInstance)
 	}
 }
 
-PCONTEXT current_context(DWORD *threadId)
+PCONTEXT current_context()
 {
-	*threadId = GetCurrentThreadId();
-//	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, *threadId);
 	HANDLE thread = GetCurrentThread();
 
 	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
@@ -179,7 +177,7 @@ PCONTEXT current_context(DWORD *threadId)
 	return pcontext;
 }
 
-void call_stack(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len)
+void call_stack(DWORD *offset, int offset_len)
 {
 	enter_backtrace_lock(&backtrace_lock);
 	
@@ -194,7 +192,8 @@ void call_stack(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len
 	int err = BFD_ERR_OK;
 
 	HANDLE process = GetCurrentProcess();
-	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, threadId);
+	HANDLE thread = GetCurrentThread();
+
 
 	char symbol_buffer[sizeof(IMAGEHLP_SYMBOL) + 255];
 	char module_name_raw[MAX_PATH];
@@ -248,10 +247,12 @@ void call_stack(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len
 	
 	release_set(set);
 	
+	report("\n\n");
+
 	leave_backtrace_lock(&backtrace_lock);
 }
 
-void call_frame(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len){
+void call_frame(DWORD *offset, int offset_len){
 	enter_backtrace_lock(&backtrace_lock);
 
 	int depth = offset_len;
@@ -259,6 +260,8 @@ void call_frame(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len
 	STACKFRAME frame;
 	memset(&frame, 0, sizeof(frame));
 
+	PCONTEXT pcontext = current_context();
+	
 	frame.AddrPC.Offset = pcontext->Eip;
 	frame.AddrPC.Mode = AddrModeFlat;
 	frame.AddrStack.Offset = pcontext->Esp;
@@ -268,7 +271,7 @@ void call_frame(PCONTEXT pcontext, DWORD threadId, DWORD *offset, int offset_len
 	frame.Virtual = TRUE;
 
 	HANDLE process = GetCurrentProcess();
-	HANDLE thread = OpenThread(SYNCHRONIZE | THREAD_QUERY_INFORMATION, FALSE, threadId);
+	HANDLE thread = GetCurrentThread();
 
 	while(StackWalk(IMAGE_FILE_MACHINE_I386,
 		process, 

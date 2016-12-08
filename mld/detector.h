@@ -11,20 +11,12 @@
 #define BACKTRACELEN (1024*10)
 #define LOADED_DLL_LEN 1024
 
-//typedef struct Context_Element
-//{
-//	DWORD		addr;
-//	DWORD		size;
-//	char		backtrace[BACKTRACELEN];
-//}CE, *PCE;
-
 typedef struct Context_Element
 {
-	DWORD		offset[8];
 	DWORD		addr;
 	DWORD		size;
 	DWORD		threadId;
-	PCONTEXT	pcontext;
+	DWORD		offset[8];
 }CE, *PCE;
 
 BOOL init_detector();
@@ -39,7 +31,7 @@ static void uninit_symbol();
 
 static void init_context();
 
-static void add_context(DWORD addr, size_t size, PCONTEXT pcontext, DWORD threadId);
+static void add_context(DWORD addr, size_t size);
 
 static void del_context(DWORD addr);
 

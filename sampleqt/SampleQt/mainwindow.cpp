@@ -16,5 +16,4 @@ MainWindow::~MainWindow(){
 
 void MainWindow::initData(){
     char *new_leak = new char[503];
-    delete new_leak;
 }

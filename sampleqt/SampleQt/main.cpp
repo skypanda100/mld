@@ -1,19 +1,7 @@
 #include "mld.h"
 #include <QApplication>
 #include "mainwindow.h"
-
-class MemLeak{
-public:
-    MemLeak(){
-        m_i = new int[100];
-    }
-    ~MemLeak(){
-
-    }
-public:
-    int *m_i;
-};
-MemLeak *ml = new MemLeak;
+#include "memleak.h"
 
 void test(){
     char *new_leak = new char[499];
@@ -29,6 +17,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    MemLeak memleak;
 
     return a.exec();
 }
