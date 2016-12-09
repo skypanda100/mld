@@ -8,6 +8,7 @@ public:
     ~MemLeak();
 
     void run();
+    void nrun();
 };
 
 #endif // MEMLEAK

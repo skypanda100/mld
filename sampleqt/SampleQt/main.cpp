@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 
     MemLeak memleak;
     memleak.start();
+    memleak.nrun();
 
     return a.exec();
 }

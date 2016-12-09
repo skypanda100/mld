@@ -2,9 +2,6 @@
 
 extern HANDLE G_PROCESS;
 extern HANDLE G_THREAD;
-extern DWORD G_PROCESS_ID;
-extern DWORD G_THREAD_ID;
-
 
 static map_t context_hashmap = NULL;
 static LPTOP_LEVEL_EXCEPTION_FILTER g_prev = NULL;
@@ -318,8 +315,7 @@ BOOL uninit_detector(){
 static void init_symbol(){
 	G_PROCESS = GetCurrentProcess();
 	G_THREAD = GetCurrentThread();
-	G_PROCESS_ID = GetCurrentProcessId();
-	G_THREAD_ID = GetCurrentThreadId();
+	insert_thread(GetCurrentThreadId());
 //    SymSetOptions(SYMOPT_UNDNAME | SYMOPT_DEFERRED_LOADS | SYMOPT_LOAD_LINES);
 	if(SymInitialize(G_PROCESS, 0, false)){
 		load_symbol(NULL);

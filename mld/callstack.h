@@ -20,6 +20,8 @@
 #define BFD_ERR_NO_SYMBOLS  (3)
 #define BFD_ERR_READ_SYMBOL (4)
 
+#define THREAD_COUNT 128
+
 static const char *const bfd_errors[] = {
 	"",
 	"(Failed to open bfd)",
@@ -66,6 +68,12 @@ static void enter_backtrace_lock(volatile LONG *);
 static void leave_backtrace_lock(volatile LONG *);
 
 static PCONTEXT current_context();
+
+static void suspend_thread_except(DWORD);
+
+static void resume_thread_except(DWORD);
+
+int insert_thread(DWORD);
 
 void load_symbol(HINSTANCE retInstance);
 

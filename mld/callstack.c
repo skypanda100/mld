@@ -4,8 +4,8 @@ static volatile LONG backtrace_lock = FALSE;
 
 HANDLE G_PROCESS = NULL;
 HANDLE G_THREAD = NULL;
-DWORD G_PROCESS_ID = 0;
-DWORD G_THREAD_ID = 0;
+
+static DWORD THREAD_ID[THREAD_COUNT] = {0};
 
 static void lookup_section(bfd *abfd, asection *sec, void *opaque_data)
 {
@@ -153,11 +153,27 @@ static void leave_backtrace_lock(volatile LONG *lock){
 	InterlockedExchange(lock, FALSE);
 }
 
+int insert_thread(DWORD threadId){
+	int index = -1;
+	for(int i = 0;i < THREAD_COUNT;i++){
+		if(threadId == THREAD_ID[i]){
+			index = i;
+			break;
+		}else if(THREAD_ID[i] == 0){
+			THREAD_ID[i] = threadId;
+			index = i;
+			break;
+		}
+	}
+	return index;
+}
+
 void load_symbol(HINSTANCE retInstance)
 {	
 	//获取模块路径 
 	char lpFileName[MAX_PATH] = {'\0'}; 
 	module_path(retInstance, lpFileName, MAX_PATH);
+
 	//加载模块的调试信息
 	DWORD moduleAddress = SymLoadModule(
 		G_PROCESS,
@@ -174,10 +190,45 @@ void load_symbol(HINSTANCE retInstance)
 PCONTEXT current_context()
 {
 	PCONTEXT pcontext = (PCONTEXT)malloc(sizeof(CONTEXT));
+	memset(pcontext, '\0', sizeof(CONTEXT));
 	pcontext->ContextFlags = CONTEXT_FULL;
 	GetThreadContext(G_THREAD, pcontext);
 
 	return pcontext;
+}
+
+void suspend_thread_except(DWORD threadId){
+	for(int i = 0;i < THREAD_COUNT;i++){
+		DWORD tThreadId = THREAD_ID[i];
+		if(tThreadId == 0){
+			break;
+		}else{
+			if(tThreadId != threadId){
+				HANDLE tThread = OpenThread(THREAD_SUSPEND_RESUME, FALSE, tThreadId);
+				if(tThread != NULL){
+					SuspendThread(tThread);
+				}
+				CloseHandle(tThread);
+			}
+		}
+	}
+}
+
+void resume_thread_except(DWORD threadId){
+	for(int i = 0;i < THREAD_COUNT;i++){
+		DWORD tThreadId = THREAD_ID[i];
+		if(tThreadId == 0){
+			break;
+		}else{
+			if(tThreadId != threadId){
+				HANDLE tThread = OpenThread(THREAD_SUSPEND_RESUME, FALSE, tThreadId);
+				if(tThread != NULL){
+					ResumeThread(tThread);
+				}
+				CloseHandle(tThread);
+			}
+		}
+	}
 }
 
 void call_stack(DWORD *offset, int offset_len)
@@ -254,6 +305,10 @@ void call_stack(DWORD *offset, int offset_len)
 void call_frame(DWORD *offset, int offset_len){
 	enter_backtrace_lock(&backtrace_lock);
 
+	DWORD currentThreadId = GetCurrentThreadId();
+	insert_thread(currentThreadId);
+	suspend_thread_except(currentThreadId);
+	
 	int depth = offset_len;
 
 	STACKFRAME frame;
@@ -289,6 +344,8 @@ void call_frame(DWORD *offset, int offset_len){
 		offset[offset_len - depth - 1] = frame.AddrPC.Offset;
 	}
 	
+	resume_thread_except(currentThreadId);
+
 	leave_backtrace_lock(&backtrace_lock);
 }
 

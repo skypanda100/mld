@@ -243,14 +243,84 @@ release/main.o: ../sampleqt/SampleQt/main.cpp ../mld/mld.h \
 		../../../../QT/install_mingw/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		../sampleqt/SampleQt/mainwindow.h \
 		../../../../QT/install_mingw/5.5/mingw492_32/include/QtWidgets \
-		../sampleqt/SampleQt/memleak.h
+		../sampleqt/SampleQt/memleak.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/QThread \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qthread.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\sampleqt\SampleQt\main.cpp
 
 release/mainwindow.o: ../sampleqt/SampleQt/mainwindow.cpp ../sampleqt/SampleQt/mainwindow.h \
 		../../../../QT/install_mingw/5.5/mingw492_32/include/QtWidgets
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\sampleqt\SampleQt\mainwindow.cpp
 
-release/memleak.o: ../sampleqt/SampleQt/memleak.cpp ../sampleqt/SampleQt/memleak.h
+release/memleak.o: ../sampleqt/SampleQt/memleak.cpp ../sampleqt/SampleQt/memleak.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/QThread \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qthread.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qobject.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qglobal.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qconfig.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qlogging.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qflags.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qmutex.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qstring.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qchar.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qlist.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qiterator.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qregexp.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qisenum.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/QDebug \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qdebug.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qhash.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qpair.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qmap.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qlocale.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qvariant.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qvector.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qpoint.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qset.h \
+		../../../../QT/install_mingw/5.5/mingw492_32/include/QtCore/qcontiguouscache.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\memleak.o ..\sampleqt\SampleQt\memleak.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
