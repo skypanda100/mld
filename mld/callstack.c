@@ -307,7 +307,7 @@ void call_frame(DWORD *offset, int offset_len){
 
 	DWORD currentThreadId = GetCurrentThreadId();
 	insert_thread(currentThreadId);
-	suspend_thread_except(currentThreadId);
+//	suspend_thread_except(currentThreadId);
 	
 	int depth = offset_len;
 
@@ -322,7 +322,6 @@ void call_frame(DWORD *offset, int offset_len){
 	frame.AddrStack.Mode = AddrModeFlat;
 	frame.AddrFrame.Offset = pcontext->Ebp;
 	frame.AddrFrame.Mode = AddrModeFlat;
-	frame.Virtual = TRUE;
 
 	while(StackWalk(IMAGE_FILE_MACHINE_I386,
 		G_PROCESS, 
@@ -332,11 +331,7 @@ void call_frame(DWORD *offset, int offset_len){
 		0, 
 		SymFunctionTableAccess, 
 		SymGetModuleBase, 0)) {
-
-        if (frame.AddrFrame.Offset == 0) {
-            break;
-        }
-        
+			
 		--depth;
 		if (depth < 0)
 			break;
@@ -344,7 +339,7 @@ void call_frame(DWORD *offset, int offset_len){
 		offset[offset_len - depth - 1] = frame.AddrPC.Offset;
 	}
 	
-	resume_thread_except(currentThreadId);
+//	resume_thread_except(currentThreadId);
 
 	leave_backtrace_lock(&backtrace_lock);
 }
@@ -387,10 +382,6 @@ LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info)
 		0, 
 		SymFunctionTableAccess, 
 		SymGetModuleBase, 0)) {
-
-        if (frame.AddrFrame.Offset == 0) {
-            break;
-        }
         
 		--depth;
 		if (depth < 0)

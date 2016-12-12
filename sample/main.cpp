@@ -1,5 +1,6 @@
 #include "mld.h"
 #include <iostream>
+#include <windows.h>
 #include "dll.h"
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 

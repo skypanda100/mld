@@ -10,13 +10,14 @@
 #define KEYLEN	(8 + 1) 
 #define BACKTRACELEN (1024*10)
 #define LOADED_DLL_LEN 1024
+#define DEPTH 8
 
 typedef struct Context_Element
 {
 	DWORD		addr;
 	DWORD		size;
 	DWORD		threadId;
-	DWORD		offset[8];
+	DWORD		offset[DEPTH];
 }CE, *PCE;
 
 BOOL init_detector();

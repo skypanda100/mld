@@ -1,7 +1,8 @@
 #include "mld.h"
 #include <QApplication>
 #include "mainwindow.h"
-#include "memleak.h"
+#include "threadqt.h"
+#include "threadcpp.h"
 
 void test(){
     char *new_leak = new char[499];
@@ -18,9 +19,11 @@ int main(int argc, char *argv[])
     MainWindow *w = new MainWindow;
     w->show();
 
-    MemLeak memleak;
-    memleak.start();
-    memleak.nrun();
+    ThreadQT threadQT;
+    threadQT.start();
+
+    ThreadCPP threadCPP;
+    threadCPP.start();
 
     return a.exec();
 }

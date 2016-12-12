@@ -9,11 +9,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     mainwindow.cpp \
-    memleak.cpp
+    threadqt.cpp \
+    threadcpp.cpp
 
 HEADERS += \
     mainwindow.h \
-    memleak.h
+    threadqt.h \
+    threadcpp.h
 
 win32: LIBS += -L$$PWD/../../exe/ -lmld
 
@@ -22,5 +24,3 @@ DEPENDPATH += $$PWD/../../mld
 
 win32:!win32-g++: PRE_TARGETDEPS += $$PWD/../../exe/mld.lib
 else:win32-g++: PRE_TARGETDEPS += $$PWD/../../exe/libmld.a
-
-
