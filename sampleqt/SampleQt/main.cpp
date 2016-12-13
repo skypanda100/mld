@@ -2,7 +2,6 @@
 #include <QApplication>
 #include "mainwindow.h"
 #include "threadqt.h"
-#include "threadcpp.h"
 
 void test(){
     char *new_leak = new char[499];
@@ -21,9 +20,6 @@ int main(int argc, char *argv[])
 
     ThreadQT threadQT;
     threadQT.start();
-
-    ThreadCPP threadCPP;
-    threadCPP.start();
 
     return a.exec();
 }
