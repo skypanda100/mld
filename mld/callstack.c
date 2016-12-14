@@ -184,6 +184,13 @@ void load_symbol(HINSTANCE retInstance)
 		0);
 	if (moduleAddress == 0) {
 //		report("SymLoadModule(%s) failed: %d\n", lpFileName, GetLastError());
+	}else{
+		//卸载模块的调试信息 
+		struct bfd_ctx bc;
+		int err;
+		if (init_bfd_ctx(&bc, lpFileName, &err)) {
+			SymUnloadModule(G_PROCESS, (DWORD)GetModuleHandleA(lpFileName));
+		}
 	}
 }
 
