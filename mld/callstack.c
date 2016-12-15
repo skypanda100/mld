@@ -1,5 +1,5 @@
 #include "callstack.h"
-
+ 
 static volatile LONG backtrace_lock = FALSE;
 
 HANDLE G_PROCESS = NULL;
@@ -309,7 +309,7 @@ void call_stack(DWORD *offset, int offset_len)
 	leave_backtrace_lock(&backtrace_lock);
 }
 
-void call_frame(DWORD *offset, int offset_len){
+void call_frame(PCONTEXT pcontext, DWORD *offset, int offset_len){
 	enter_backtrace_lock(&backtrace_lock);
 
 	DWORD currentThreadId = GetCurrentThreadId();
@@ -321,7 +321,7 @@ void call_frame(DWORD *offset, int offset_len){
 	STACKFRAME frame;
 	memset(&frame, 0, sizeof(frame));
 
-	PCONTEXT pcontext = current_context();
+//	PCONTEXT pcontext = current_context();
 	
 	frame.AddrPC.Offset = pcontext->Eip;
 	frame.AddrPC.Mode = AddrModeFlat;

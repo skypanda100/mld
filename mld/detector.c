@@ -34,6 +34,12 @@ static char *EXCEPT_SYM_DLL[] = {
 static char *LOADED_DLL[LOADED_DLL_LEN] = {NULL};
 
 /**
+* RtlCaptureContext
+*/
+typedef VOID (*WINAPI CaptureContext)(PCONTEXT ContextRecord);
+CaptureContext captureContext = NULL;
+
+/**
 * malloc
 */
 typedef _CRTIMP __cdecl void *(*MALLOC)(size_t);
@@ -316,7 +322,7 @@ static void init_symbol(){
 	G_PROCESS = GetCurrentProcess();
 	G_THREAD = GetCurrentThread();
 	insert_thread(GetCurrentThreadId());
-//    SymSetOptions(SYMOPT_UNDNAME | SYMOPT_DEFERRED_LOADS | SYMOPT_LOAD_LINES);
+//    SymSetOptions(SYMOPT_UNDNAME | SYMOPT_LOAD_LINES);
 	if(SymInitialize(G_PROCESS, 0, false)){
 		load_symbol(NULL);
 	}
@@ -340,7 +346,18 @@ static void init_context(){
 /**
 * Ìí¼ÓContext_Element
 */
-static void add_context(DWORD addr, size_t size){
+static inline void add_context(DWORD addr, size_t size){
+	//context
+	CONTEXT context;
+	context.ContextFlags = CONTEXT_FULL;
+	
+	if(captureContext == NULL){
+		HMODULE hModule = LoadLibraryA("kernel32.dll");
+		captureContext = (CaptureContext)GetProcAddress(hModule, "RtlCaptureContext");
+		FreeLibrary(hModule);
+	}
+	captureContext(&context);
+	
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);
@@ -350,14 +367,14 @@ static void add_context(DWORD addr, size_t size){
 	pce->addr = addr;
 	pce->size = size;
 	pce->threadId = GetCurrentThreadId();
-	call_frame(pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
+	call_frame(&context, pce->offset, sizeof(pce->offset)/sizeof(pce->offset[0]));
 	hashmap_put(context_hashmap, key_str, pce);
 }
 
 /**
 * É¾³ýContext_Element
 */
-static void del_context(DWORD addr){
+static inline void del_context(DWORD addr){
 	//key
 	char *key_str = (char *)malloc(KEYLEN);
 	sprintf(key_str, "%08X", addr);

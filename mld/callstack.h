@@ -79,7 +79,7 @@ void load_symbol(HINSTANCE retInstance);
 
 void call_stack(DWORD *, int);
 
-void call_frame(DWORD *, int);
+void call_frame(PCONTEXT, DWORD *, int);
 
 LONG WINAPI exception_filter(LPEXCEPTION_POINTERS info);
 

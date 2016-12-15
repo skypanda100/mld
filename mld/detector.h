@@ -32,9 +32,9 @@ static void uninit_symbol();
 
 static void init_context();
 
-static void add_context(DWORD addr, size_t size);
+static inline void add_context(DWORD addr, size_t size);
 
-static void del_context(DWORD addr);
+static inline void del_context(DWORD addr);
 
 static int loop_context(any_t item, any_t data);
 
